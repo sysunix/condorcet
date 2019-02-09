@@ -12,9 +12,17 @@
     "@firebase/app": "0.3.8",
     "@firebase/auth": "0.9.2",
     "@firebase/firestore": "1.0.2",
+    "@fortawesome/fontawesome-free": "5.7.1",
+    "buefy": "0.7.2",
+    "normalize.css": "8.0.1",
+    "random-string": "0.2.0",
     "register-service-worker": "^1.5.2",
+    "uuid": "3.3.2",
     "vue": "^2.5.22",
+    "vue-clipboard2": "0.2.1",
+    "vue-fab": "2.3.1",
     "vue-router": "^3.0.1",
+    "vue-slicksort": "1.1.3",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
