@@ -50,7 +50,7 @@ export default {
     const poll = await this.fetchPoll(this.$route.params.id);
 
     if (!poll.users.includes(this.userId)) {
-      this.$router.push({ name: "polls" });
+      this.$router.push({ name: "polls_list" });
     }
 
     this.answers = poll.answers.map((answer, index) => ({

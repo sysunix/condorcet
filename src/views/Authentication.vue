@@ -27,7 +27,7 @@ export default {
       signIn(user => {
         this.setUser(user);
 
-        this.$router.push("polls");
+        this.$router.push("polls_list");
         this.addNotification({ text: "Vous êtes connecté", status: "info" });
       });
     }

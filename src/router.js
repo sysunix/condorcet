@@ -4,12 +4,12 @@ import Router from "vue-router";
 import store from "./store";
 import initializationMiddleware from "./utils/initialization";
 
-import Authentication from "./components/Authentication.vue";
-import Polls from "./components/Polls.vue";
-import Poll from "./components/Poll.vue";
-import PollResult from "./components/PollResult.vue";
-import PollJoin from "./components/PollJoin.vue";
-import PollCreation from "./components/PollCreation.vue";
+import Authentication from "./views/Authentication.vue";
+import Polls_listList from "./views/PollsList.vue";
+import Poll from "./views/Poll.vue";
+import PollResult from "./views/PollResult.vue";
+import PollJoin from "./views/PollJoin.vue";
+import PollCreation from "./views/PollCreation.vue";
 
 Vue.use(Router);
 
@@ -26,15 +26,15 @@ const router = new Router({
       }
     },
     {
-      path: "/polls",
-      name: "polls",
-      component: Polls,
+      path: "/polls_list",
+      name: "polls_list",
+      component: Polls_listList,
       meta: {
         auth: true
       }
     },
     {
-      path: "/polls/new",
+      path: "/polls_list/new",
       name: "poll_create",
       component: PollCreation,
       meta: {
@@ -42,7 +42,7 @@ const router = new Router({
       }
     },
     {
-      path: "/polls/:id",
+      path: "/polls_list/:id",
       name: "poll_show",
       component: Poll,
       meta: {
@@ -50,7 +50,7 @@ const router = new Router({
       }
     },
     {
-      path: "/polls/:id/result",
+      path: "/polls_list/:id/result",
       name: "poll_result",
       component: PollResult,
       meta: {
@@ -58,7 +58,7 @@ const router = new Router({
       }
     },
     {
-      path: "/polls/:id/join",
+      path: "/polls_list/:id/join",
       name: "poll_join",
       component: PollJoin,
       meta: {
@@ -77,7 +77,7 @@ router.beforeEach((to, from, next) => {
       case "just_logged":
         if (name === "authentication") {
           next({
-            name: "polls"
+            name: "polls_list"
           });
 
           return;
