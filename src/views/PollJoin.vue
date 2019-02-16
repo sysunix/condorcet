@@ -37,7 +37,7 @@ export default {
 
       this.message = `Tu as rejoint le scrutin : ${newPoll.name}`;
       setTimeout(() => {
-        if (newPoll.is_active) {
+        if (newPoll.isActive) {
           this.$router.push({ name: "poll_show", params: params.id });
           return;
         }

@@ -4,7 +4,6 @@ import { ADD_NOTIFCATION, REMOVE_NOTIFCATION, INITIALIZE } from "@/types";
 export default {
   namespaced: true,
   state: {
-    theme: "light",
     initialized: false,
     notifications: []
   },
@@ -30,7 +29,7 @@ export default {
     removeNotification({ commit }, id) {
       setTimeout(() => {
         commit(REMOVE_NOTIFCATION, id);
-      }, 3000);
+      }, 20000);
     }
   }
 };

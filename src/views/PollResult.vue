@@ -1,33 +1,28 @@
 <template>
   <div>
-    <nav class="navbar" role="navigation">
-      <div class="navbar-item">
-        <router-link to="/polls">Retour</router-link>
-      </div>
-    </nav>
-
     <h3>Condorcet</h3>
-    <div class="panel">
-      <div
+
+    <v-list>
+      <v-list-tile
         class="panel-block"
         v-for="item in ranking.condorcet.ranking"
         :key="item.position"
       >
-        <span class="panel-icon"> {{ item.position }} </span> {{ item.value }}
-      </div>
-    </div>
+        {{ item.position }} {{ item.value }}
+      </v-list-tile>
+    </v-list>
 
     <h3>Uninominal</h3>
-    <div class="panel">
-      <div
-        class="panel-block"
+    <v-list>
+      <v-list-tile
+        class="list-item"
         v-for="item in ranking.uninominal"
         :key="item.position"
       >
         <span class="panel-icon"> {{ item.position }} </span> {{ item.value }} -
         {{ item.numberOfVotes }} voix
-      </div>
-    </div>
+      </v-list-tile>
+    </v-list>
   </div>
 </template>
 

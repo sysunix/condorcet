@@ -1,39 +1,38 @@
 <template>
   <div>
-    <div class="columns is-multiline">
-      <div class="column is-one-third" v-for="poll in polls" :key="poll.id">
-        <div class="card">
-          <header class="card-header">
-            <p class="card-header-title">{{ poll.name }}</p>
-            <a
-              href="#"
-              class="card-header-icon"
-              @click.prevent="copyMagicLink(poll.id)"
+    <v-layout row wrap>
+      <v-flex xs12 sm6 v-for="poll in polls" :key="poll.id">
+        <v-card>
+          <v-card-title primary-title>
+            <div>
+              <h3 class="headline mb-0">{{ poll.name }}</h3>
+              <div>
+                {{ poll.description }}
+              </div>
+            </div>
+          </v-card-title>
+          <v-card-actions>
+            <v-btn flat color="orange" @click.prevent="copyMagicLink(poll.id)"
+              >Partager</v-btn
             >
-              <span class="icon"> <i class="fas fa-link"></i> </span>
-            </a>
-          </header>
-          <div class="card-content">
-            <div class="content">{{ poll.description }}</div>
-          </div>
-          <footer class="card-footer">
-            <a
+            <v-btn
               v-if="poll.isOwner"
-              href="#"
-              class="card-footer-item has-background-danger has-text-white"
+              flat
+              color="orange"
               @click.prevent="removePoll(poll.id, poll.name)"
-              >Supprimer</a
+              >Supprimer</v-btn
             >
-            <a
+            <v-btn
               v-if="poll.isOwner"
-              href="#"
-              class="card-footer-item has-background-grey-light has-text-white"
+              flat
+              color="orange"
               @click.prevent="togglePoll(poll.id, poll.name)"
+              >{{ poll.isActive ? "Fermer" : "Ré-ouvir" }}</v-btn
             >
-              {{ poll.isActive ? "Fermer" : "Ré-ouvir" }}
-            </a>
+            <!-- <v-btn  flat color="orange" @click.prevent="togglePoll(poll.id, poll.name)">{{ poll.isActive ? "Fermer" : "Ré-ouvir" }}</v-btn> -->
+
             <router-link
-              class="card-footer-item has-background-info has-text-white"
+              class="v-btn v-btn--flat theme--light orange--text"
               tag="a"
               :to="{
                 name: poll.isActive ? 'poll_show' : 'poll_result',
@@ -41,10 +40,10 @@
               }"
               >{{ poll.isActive ? "Voter" : "Résultats" }}</router-link
             >
-          </footer>
-        </div>
-      </div>
-    </div>
+          </v-card-actions>
+        </v-card>
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 
@@ -73,7 +72,7 @@ export default {
 
         const newPollState = {
           ...currentPollState,
-          is_active: !currentPollState.is_active
+          isActive: !currentPollState.isActive
         };
 
         document.set(newPollState);

@@ -1,59 +1,48 @@
 <template>
-  <div>
-    <div id="app">
+  <v-app>
+    <v-toolbar app>
+      <v-btn v-if="canGoBack" icon>
+        <router-link to="/polls">
+          <v-icon>arrow_back</v-icon>
+        </router-link>
+      </v-btn>
+      <v-toolbar-title class="headline text-uppercase">
+        <span>Condorcet</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+    </v-toolbar>
+
+    <v-content>
       <Notifications :notifications="notifications" />
+
       <transition name="fade" mode="out-in">
-        <router-view />
+        <router-view></router-view>
       </transition>
-      <fab
-        main-icon="menu"
-        :actions="fabActions"
-        @signOut="signOut"
-        @createPoll="goToCreationPage"
-      ></fab>
-    </div>
-  </div>
+      <SpeedDial />
+
+      <v-footer class="pa-3" fixed>
+        <v-spacer></v-spacer>
+        <div>&copy; {{ new Date().getFullYear() }}</div>
+      </v-footer>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import Fab from "vue-fab";
+import SpeedDial from "./components/SpeedDial";
 import Notifications from "./components/Notifications";
-import { signOut } from "./utils/authentication.js";
 
 export default {
+  name: "App",
   components: {
     Notifications,
-    Fab
+    SpeedDial
   },
   computed: {
-    ...mapState("app", ["notifications"])
-  },
-  data() {
-    return {
-      activeTab: 0,
-      fabActions: [
-        {
-          name: "signOut",
-          icon: "power_settings_new"
-        },
-        {
-          name: "createPoll",
-          icon: "playlist_add"
-        }
-      ]
-    };
-  },
-  methods: {
-    signOut() {
-      signOut(error => {
-        if (error) return;
-
-        this.$router.push({ name: "authentication" });
-      });
-    },
-    goToCreationPage() {
-      this.$router.push({ name: "poll_create" });
+    ...mapState("app", ["notifications"]),
+    canGoBack() {
+      return this.$route.path !== "/polls";
     }
   }
 };

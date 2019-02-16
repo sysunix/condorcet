@@ -1,17 +1,22 @@
 <template>
-  <div>
-    <div class="background"></div>
-    <section class="Authentication">
-      <b-message title="Connexion" :closable="false">
-        <div class="has-text-right">
-          <button class="button" @click="signIn">
-            <span class="icon is-small"> <i class="fab fa-google"></i> </span
-            ><span> Google </span>
-          </button>
-        </div>
-      </b-message>
-    </section>
-  </div>
+  <v-jumbotron color="grey lighten-2">
+    <v-container fill-height>
+      <v-layout align-center>
+        <v-flex>
+          <h3 class="display-3">Bienvenue sur Condorcet</h3>
+          <span class="subheading"
+            >Condorcet est une application permettant de réaliser des scrutin en
+            utilisant la méthode de Condorcet</span
+          >
+          <v-divider class="my-3"></v-divider>
+          <div class="title mb-3">Accéder à l'application :</div>
+          <v-btn large color="primary" class="mx-0" @click="signIn"
+            >Google</v-btn
+          >
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-jumbotron>
 </template>
 
 <script>
@@ -27,7 +32,7 @@ export default {
       signIn(user => {
         this.setUser(user);
 
-        this.$router.push("polls_list");
+        this.$router.push({ name: "polls_list" });
         this.addNotification({ text: "Vous êtes connecté", status: "info" });
       });
     }

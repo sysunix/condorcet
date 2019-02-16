@@ -21,13 +21,13 @@ exports.resultOfThePoll = functions.firestore
     const pollId = after.id;
     const newValue = after.data();
 
-    if (newValue.is_active === true) {
+    if (newValue.isActive === true) {
       return 200;
     }
 
     return db
       .collection("answers")
-      .where("poll_id", "==", pollId)
+      .where("pollId", "==", pollId)
       .get()
       .then(answersDocuments => {
         let results = [];

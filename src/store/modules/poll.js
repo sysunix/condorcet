@@ -28,7 +28,7 @@ export default {
           let data = [];
 
           polls.forEach(poll => {
-            const { is_active: isActive, ...pollData } = poll.data();
+            const { isActive: isActive, ...pollData } = poll.data();
             data.push({
               id: poll.id,
               isActive,

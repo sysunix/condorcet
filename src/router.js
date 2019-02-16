@@ -18,7 +18,7 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: "/",
+      path: "/authentication",
       name: "authentication",
       component: Authentication,
       meta: {
@@ -26,7 +26,7 @@ const router = new Router({
       }
     },
     {
-      path: "/polls_list",
+      path: "/polls",
       name: "polls_list",
       component: Polls_listList,
       meta: {
@@ -34,7 +34,7 @@ const router = new Router({
       }
     },
     {
-      path: "/polls_list/new",
+      path: "/polls/new",
       name: "poll_create",
       component: PollCreation,
       meta: {
@@ -42,7 +42,7 @@ const router = new Router({
       }
     },
     {
-      path: "/polls_list/:id",
+      path: "/polls/:id",
       name: "poll_show",
       component: Poll,
       meta: {
@@ -50,7 +50,7 @@ const router = new Router({
       }
     },
     {
-      path: "/polls_list/:id/result",
+      path: "/polls/:id/result",
       name: "poll_result",
       component: PollResult,
       meta: {
@@ -58,7 +58,7 @@ const router = new Router({
       }
     },
     {
-      path: "/polls_list/:id/join",
+      path: "/polls/:id/join",
       name: "poll_join",
       component: PollJoin,
       meta: {

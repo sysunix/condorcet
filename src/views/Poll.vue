@@ -1,45 +1,41 @@
 <template>
   <div>
-    <nav class="navbar" role="navigation">
-      <div class="navbar-item">
-        <router-link to="/polls">Retour</router-link>
-      </div>
-    </nav>
-
-    <div class="container">
+    <div>
       <p>
         Pour voter il suffit de classer vos préférences en les glissant-déposant
       </p>
 
-      <h3 class="title">{{ poll.name }}</h3>
-      <div class="panel">
-        <SlickList lockAxis="y" v-model="answers" @input="onMove">
-          <SlickItem
-            class="panel-block"
-            v-for="(answer, index) in answers"
-            :index="index"
-            :key="index"
-          >
-            <span class="panel-icon"> {{ index + 1 }} </span> {{ answer.value }}
-          </SlickItem>
-        </SlickList>
-      </div>
-      <button @click="saveAnswers" class="button">Valider</button>
+      <v-layout row>
+        <v-flex xs12 sm10 offset-sm1>
+          <v-card>
+            <SortableList lockAxis="y" v-model="answers" @input="onMove">
+              <SortableItem
+                v-for="(answer, index) in answers"
+                :index="index"
+                :key="index"
+                :answer="answer"
+              >
+              </SortableItem>
+            </SortableList>
+          </v-card>
+        </v-flex>
+      </v-layout>
+      <v-btn @click="saveAnswers" color="info">Valider</v-btn>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions, mapGetters } from "vuex";
-import { SlickList, SlickItem } from "vue-slicksort";
-
+import SortableList from "../components/SortableList";
+import SortableItem from "../components/SortableItem";
 import { db } from "@/firebase";
 
 export default {
   name: "Poll",
   components: {
-    SlickList,
-    SlickItem
+    SortableList,
+    SortableItem
   },
   data() {
     return {
@@ -73,7 +69,7 @@ export default {
       db.collection("answers")
         .doc(`${pollId}${userId}`)
         .set({
-          poll_id: pollId,
+          pollId: pollId,
           user_id: userId,
           answers: this.answers
         })

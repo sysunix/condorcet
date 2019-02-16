@@ -1,21 +1,23 @@
 <template>
   <div>
-    <b-field label="Nom"> <b-input v-model="name"></b-input> </b-field>
-    <b-field label="Description">
-      <b-input v-model="description" maxlength="200" type="textarea"></b-input>
-    </b-field>
-    <b-field label="Ajouter des réponses">
-      <b-taginput
-        v-model="answers"
-        ellipsis
-        icon="label"
-        placeholder="Ajouter une réponse"
-      >
-      </b-taginput>
-    </b-field>
-    <b-field>
-      <button class="button" @click="createPoll">Créer</button>
-    </b-field>
+    <v-text-field label="Nom" v-model="name"></v-text-field>
+
+    <v-textarea
+      name="input-7-1"
+      label="Description"
+      v-model="description"
+    ></v-textarea>
+
+    <v-text-field label="Ajouter une réponse" v-model="answer"></v-text-field>
+    <v-btn color="info" @click="addAnswer">Ajouter</v-btn>
+
+    <v-list>
+      <v-list-tile class="panel-block" v-for="answer in answers" :key="answer">
+        {{ answer }}
+      </v-list-tile>
+    </v-list>
+
+    <v-btn color="info" @click="createPoll">Créer</v-btn>
   </div>
 </template>
 
@@ -30,6 +32,7 @@ export default {
     return {
       name: "",
       description: "",
+      answer: "",
       answers: []
     };
   },
@@ -49,9 +52,8 @@ export default {
           description: this.description,
           answers: this.answers,
           owner: this.userId,
-          is_active: true,
+          isActive: true,
           token: randomString({ length: 20 }),
-          // timestamp: db.FieldValue.serverTimestamp,
           users
         });
 
@@ -66,8 +68,9 @@ export default {
         });
       }
     },
-    searchEmail() {
-      this.$firestoreRefs.polls;
+    addAnswer() {
+      this.answers.push(this.answer);
+      this.answer = "";
     }
   }
 };

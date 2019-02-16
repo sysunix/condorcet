@@ -10,7 +10,8 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "tdd": "jest --watch"
+    "tdd": "jest --watch",
+    "lint": "eslint ."
   },
   "dependencies": {
     "firebase-admin": "6.0.0",
