@@ -10,8 +10,11 @@
           >
           <v-divider class="my-3"></v-divider>
           <div class="title mb-3">Accéder à l'application :</div>
-          <v-btn large color="primary" class="mx-0" @click="signIn"
+          <v-btn large color="primary" class="mx-0" @click="signIn('google')"
             >Google</v-btn
+          >
+          <v-btn large color="primary" class="mx-0" @click="signIn('github')"
+            >Github</v-btn
           >
         </v-flex>
       </v-layout>
@@ -28,13 +31,29 @@ export default {
   methods: {
     ...mapActions("user", ["setUser"]),
     ...mapActions("app", ["addNotification"]),
-    signIn() {
-      signIn(user => {
-        this.setUser(user);
+    signIn(provider) {
+      signIn(
+        provider,
+        user => {
+          this.setUser(user);
 
-        this.$router.push({ name: "polls_list" });
-        this.addNotification({ text: "Vous êtes connecté", status: "info" });
-      });
+          this.$router.push({ name: "polls_list" });
+          this.addNotification({ text: "Vous êtes connecté", status: "info" });
+        },
+        error => {
+          switch (error.code) {
+            case "auth/account-exists-with-different-credential":
+              this.addNotification({
+                text: "Veuillez vous identifier via Google",
+                status: "error"
+              });
+              break;
+
+            default:
+              break;
+          }
+        }
+      );
     }
   }
 };

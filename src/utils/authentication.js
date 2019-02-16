@@ -1,17 +1,34 @@
 import firebase, { auth } from "../firebase";
 
-const provider = new firebase.auth.GoogleAuthProvider();
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+const githubAuthProvider = new firebase.auth.GithubAuthProvider();
 
-export const signIn = cb => {
+export const signIn = (provider, cb, errorCb) => {
   auth.useDeviceLanguage();
+
+  let authProvider;
+  switch (provider) {
+    case "google":
+      authProvider = googleAuthProvider;
+
+      break;
+    case "github":
+      authProvider = githubAuthProvider;
+
+      break;
+
+    default:
+      throw new Error('Provider must be "github" or "google"');
+  }
+
   auth
-    .signInWithPopup(provider)
+    .signInWithPopup(authProvider)
     .then(result => {
       auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
       cb(result.user);
     })
     .catch(function(error) {
-      console.error(error);
+      errorCb(error);
     });
 };
 
