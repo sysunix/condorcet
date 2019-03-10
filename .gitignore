@@ -1,7 +1,8 @@
 .DS_Store
-node_modules
-/dist
-/functions/config/serviceAccountKey.json
+node_modules/
+dist/
+functions/config/serviceAccountKey.json
+coverage/
 
 # local env files
 .env.local

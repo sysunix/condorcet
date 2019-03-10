@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PollCreation.vue should render 1`] = `
+<div>
+  <v-text-field-stub label="Nom" value=""></v-text-field-stub>
+  <v-textarea-stub color="primary" errorcount="1" errormessages="" messages="" rules="" successmessages="" value="" backgroundcolor="" label="Description" clearicon="$vuetify.icons.clear" type="text" rowheight="24" rows="5" name="input-7-1"></v-textarea-stub>
+  <v-text-field-stub label="Ajouter une réponse" value=""></v-text-field-stub>
+  <v-btn-stub color="info" activeclass="v-btn--active" tag="button" type="button">Ajouter</v-btn-stub>
+  <v-list-stub></v-list-stub>
+  <v-btn-stub color="info" activeclass="v-btn--active" tag="button" type="button">Créer</v-btn-stub>
+</div>
+`;

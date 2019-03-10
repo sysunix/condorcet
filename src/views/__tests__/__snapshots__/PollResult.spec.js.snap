@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PollResult.vue should render 1`] = `
+<div>
+  <h3>Condorcet</h3>
+  <!---->
+  <div>Problème</div>
+  <h3>Uninominal</h3>
+  <v-list-stub></v-list-stub>
+</div>
+`;

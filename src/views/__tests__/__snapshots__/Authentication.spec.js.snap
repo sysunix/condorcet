@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Authentication.vue should render 1`] = `
+<v-jumbotron-stub color="grey lighten-2" tag="div" height="400px">
+  <v-container-stub tag="div" fill-height="">
+    <v-layout-stub tag="div" align-center="">
+      <v-flex-stub tag="div">
+        <h3 class="display-3">Bienvenue sur Condorcet</h3> <span class="subheading">Condorcet est une application permettant de réaliser des scrutin en
+          utilisant la méthode de Condorcet</span>
+        <v-divider-stub class="my-3"></v-divider-stub>
+        <div class="title mb-3">Accéder à l'application :</div>
+        <v-btn-stub color="primary" activeclass="v-btn--active" tag="button" large="true" type="button" class="mx-0">Google</v-btn-stub>
+        <v-btn-stub color="primary" activeclass="v-btn--active" tag="button" large="true" type="button" class="mx-0">Github</v-btn-stub>
+      </v-flex-stub>
+    </v-layout-stub>
+  </v-container-stub>
+</v-jumbotron-stub>
+`;

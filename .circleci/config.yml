@@ -23,14 +23,14 @@ jobs:
           key: node-cache-{{ checksum "yarn.lock" }}
       - run: yarn lint
 
-  # test:
-  #   docker:
-  #     - image: circleci/node:11
-  #   steps:
-  #     - checkout
-  #     - restore_cache:
-  #         key: node-cache-{{ checksum "yarn.lock" }}
-  #     - run: yarn test:unit
+  test:
+    docker:
+      - image: circleci/node:11
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-cache-{{ checksum "yarn.lock" }}
+      - run: yarn test:unit
 
 workflows:
   version: 2
@@ -38,4 +38,4 @@ workflows:
     jobs:
       - "build"
       - "lint"
-      # - "test"
+      - "test"
