@@ -12,6 +12,9 @@ export default {
   getters: {
     userId: state => {
       return state.id;
+    },
+    isAuth: state => {
+      return state.id !== "";
     }
   },
   mutations: {

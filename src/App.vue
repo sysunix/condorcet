@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app>
+    <v-toolbar v-if="isAuth" app>
       <v-btn v-if="canGoBack" icon>
         <router-link to="/polls">
           <v-icon>arrow_back</v-icon>
@@ -18,7 +18,7 @@
       <transition name="fade" mode="out-in">
         <router-view></router-view>
       </transition>
-      <SpeedDial />
+      <SpeedDial v-if="isAuth" />
 
       <v-footer class="pa-3" fixed>
         <v-spacer></v-spacer>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import SpeedDial from "./components/SpeedDial";
 import Notifications from "./components/Notifications";
 
@@ -41,6 +41,7 @@ export default {
   },
   computed: {
     ...mapState("app", ["notifications"]),
+    ...mapGetters("user", ["isAuth"]),
     canGoBack() {
       return this.$route.path !== "/polls";
     }
