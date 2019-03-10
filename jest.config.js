@@ -23,6 +23,8 @@ module.exports = {
     "src/firebase.js",
     "src/main.js",
     "src/types.js",
-    "src/plugins/*"
+    "src/plugins/*",
+    "src/store/index.js",
+    "src/utils/firebase.js"
   ]
 };
