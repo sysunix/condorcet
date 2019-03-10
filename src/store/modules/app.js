@@ -1,11 +1,13 @@
 import uuid from "uuid/v1";
 import { ADD_NOTIFCATION, REMOVE_NOTIFCATION, INITIALIZE } from "@/types";
+import config from "../../config";
 
 export default {
   namespaced: true,
   state: {
     initialized: false,
-    notifications: []
+    notifications: [],
+    featureFlipping: config.featureFlipping
   },
   mutations: {
     [INITIALIZE](state) {

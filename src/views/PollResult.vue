@@ -2,7 +2,9 @@
   <div>
     <h3>Condorcet</h3>
 
-    <v-list>
+    <Graph v-if="featureFlipping.graphOfTheDuels"></Graph>
+
+    <v-list v-if="ranking.condorcet">
       <v-list-tile
         class="panel-block"
         v-for="item in ranking.condorcet.ranking"
@@ -11,6 +13,8 @@
         {{ item.position }} {{ item.value }}
       </v-list-tile>
     </v-list>
+
+    <div v-else>Problème</div>
 
     <h3>Uninominal</h3>
     <v-list>
@@ -27,14 +31,22 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import { db } from "@/firebase";
+import Graph from "../components/Graph.vue";
 
 export default {
   name: "PollResult",
+  components: {
+    Graph
+  },
   data() {
     return {
       ranking: ""
     };
+  },
+  computed: {
+    ...mapState("app", ["featureFlipping"])
   },
   async mounted() {
     const result = await db
