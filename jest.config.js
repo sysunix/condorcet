@@ -15,7 +15,6 @@ module.exports = {
   ],
   testURL: "http://localhost/",
   setupTestFrameworkScriptFile: "<rootDir>/src/config/setupTest.js",
-  collectCoverage: true,
   collectCoverageFrom: ["src/**/*.{js,vue}"],
   coveragePathIgnorePatterns: [
     "src/config",
