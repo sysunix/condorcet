@@ -32,10 +32,28 @@ jobs:
           key: node-cache-{{ checksum "yarn.lock" }}
       - run: yarn test:unit
 
+  deploy:
+    docker:
+      - image: circleci/node:11
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-cache-{{ checksum "yarn.lock" }}
+      - run: yarn build
+      - run: yarn firebase deploy --token "$FIREBASE_TOKEN" --only hosting
+
 workflows:
   version: 2
   build:
     jobs:
-      - "build"
-      - "lint"
-      - "test"
+      - build
+      - lint
+      - test
+      - deploy:
+          requires:
+            - build
+            - lint
+            - test
+          filters:
+            branches:
+              only: master
