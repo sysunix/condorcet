@@ -1,5 +1,7 @@
 # Condorcet
 
+[![CircleCI](https://circleci.com/gh/jean-smaug/condorcet/tree/master.svg?style=svg)](https://circleci.com/gh/jean-smaug/condorcet/tree/master)
+
 ## Project setup
 
 ```
