@@ -1,4 +1,4 @@
-import { SET_USER } from "@/types";
+import { SET_USER, CLEAR_USER } from "@/types";
 
 export default {
   namespaced: true,
@@ -24,6 +24,13 @@ export default {
       state.id = id;
       state.photoUrl = photoUrl;
       state.refreshToken = refreshToken;
+    },
+    [CLEAR_USER](state) {
+      state.name = "";
+      state.email = "";
+      state.id = "";
+      state.photoUrl = "";
+      state.refreshToken = "";
     }
   },
   actions: {
@@ -35,6 +42,9 @@ export default {
         photoUrl: photoURL,
         refreshToken
       });
+    },
+    clearUser({ commit }) {
+      commit(CLEAR_USER);
     }
   }
 };

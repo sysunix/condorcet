@@ -5,6 +5,7 @@ export const REMOVE_NOTIFCATION = "REMOVE_NOTIFCATION";
 
 // User
 export const SET_USER = "SET_USER";
+export const CLEAR_USER = "CLEAR_USER";
 
 // Rooms
 export const FETCH_POLLS = "FETCH_POLLS";

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 import { signOut } from "../utils/authentication.js";
 
 export default {
@@ -28,9 +28,11 @@ export default {
     ...mapState("app", ["notifications"])
   },
   methods: {
+    ...mapActions("user", ["clearUser"]),
     signOut() {
       signOut(error => {
         if (error) return;
+        this.clearUser();
         this.$router.push({ name: "authentication" });
       });
     },
