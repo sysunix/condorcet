@@ -1,63 +1,57 @@
-version: 2
-jobs:
-  install:
-    docker:
-      - image: circleci/node:11.10.1
-    working_directory: ~/project
+version: 2.1
+
+commands:
+  checkout_and_restore_cache:
     steps:
       - checkout
       - restore_cache:
-          key: node-cache-{{ checksum "yarn.lock" }}
+          key: v2-dependencies-{{ checksum "yarn.lock" }}
+
+executors:
+  node:
+    docker:
+      - image: circleci/node:11.10.1
+    working_directory: ~/app
+
+jobs:
+  install:
+    executor: node
+    steps:
+      - checkout_and_restore_cache
       - run: yarn install
       - save_cache:
-          key: node-cache-{{ checksum "yarn.lock" }}
+          key: v2-dependencies-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
 
   build:
-    docker:
-      - image: circleci/node:11.10.1
-    working_directory: ~/project
+    executor: node
     steps:
-      - checkout
-      - restore_cache:
-          key: node-cache-{{ checksum "yarn.lock" }}
+      - checkout_and_restore_cache
       - run: yarn build
       - persist_to_workspace:
-          root: ~/project
+          root: ~/app
           paths:
-            - dist/*
+            - ./dist
 
   lint:
-    docker:
-      - image: circleci/node:11.10.1
-    working_directory: ~/project
+    executor: node
     steps:
-      - checkout
-      - restore_cache:
-          key: node-cache-{{ checksum "yarn.lock" }}
+      - checkout_and_restore_cache
       - run: yarn lint
 
   test:
-    docker:
-      - image: circleci/node:11.10.1
-    working_directory: ~/project
+    executor: node
     steps:
-      - checkout
-      - restore_cache:
-          key: node-cache-{{ checksum "yarn.lock" }}
+      - checkout_and_restore_cache
       - run: yarn test:unit
 
   deploy:
-    docker:
-      - image: circleci/node:11.10.1
-    working_directory: ~/project
+    executor: node
     steps:
-      - checkout
-      - restore_cache:
-          key: node-cache-{{ checksum "yarn.lock" }}
+      - checkout_and_restore_cache
       - attach_workspace:
-          at: ~/project
+          at: ~/app
       - run: yarn firebase deploy --token "$FIREBASE_TOKEN" --only hosting
 
 workflows:
