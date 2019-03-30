@@ -31,7 +31,7 @@ export default {
     removeNotification({ commit }, id) {
       setTimeout(() => {
         commit(REMOVE_NOTIFCATION, id);
-      }, 20000);
+      }, config.notificationTimeout);
     }
   }
 };

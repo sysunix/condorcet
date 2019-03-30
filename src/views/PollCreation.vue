@@ -8,7 +8,11 @@
       v-model="description"
     ></v-textarea>
 
-    <v-text-field label="Ajouter une réponse" v-model="answer"></v-text-field>
+    <v-text-field
+      label="Ajouter une réponse"
+      v-model="answer"
+      @keypress.enter="addAnswer"
+    ></v-text-field>
     <v-btn color="info" @click="addAnswer">Ajouter</v-btn>
 
     <v-list>
@@ -61,6 +65,11 @@ export default {
           text: "Scrutin créé mon pote",
           status: "success"
         });
+
+        this.name = "";
+        this.description = "";
+        this.answer = "";
+        this.answers = [];
       } catch (error) {
         this.addNotification({
           text: `Il y a eu un problème lors de la création du scrutin`,

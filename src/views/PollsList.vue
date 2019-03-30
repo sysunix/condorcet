@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <v-container grid-list-md>
     <v-layout row wrap>
-      <v-flex xs12 sm6 v-for="poll in polls" :key="poll.id">
+      <v-flex xs12 md6 v-for="poll in polls" :key="poll.id">
         <v-card>
           <v-card-title primary-title>
             <div>
@@ -44,7 +44,7 @@
         </v-card>
       </v-flex>
     </v-layout>
-  </div>
+  </v-container>
 </template>
 
 <script>

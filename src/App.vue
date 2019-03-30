@@ -20,10 +20,10 @@
       </transition>
       <SpeedDial v-if="isAuth" />
 
-      <v-footer class="pa-3" fixed>
+      <!-- <v-footer class="pa-3" fixed>
         <v-spacer></v-spacer>
         <div>&copy; {{ new Date().getFullYear() }}</div>
-      </v-footer>
+      </v-footer> -->
     </v-content>
   </v-app>
 </template>

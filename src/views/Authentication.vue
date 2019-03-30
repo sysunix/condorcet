@@ -1,5 +1,5 @@
 <template>
-  <v-jumbotron color="grey lighten-2">
+  <div>
     <v-container fill-height>
       <v-layout align-center>
         <v-flex>
@@ -10,16 +10,55 @@
           >
           <v-divider class="my-3"></v-divider>
           <div class="title mb-3">Accéder à l'application :</div>
-          <v-btn large color="primary" class="mx-0" @click="signIn('google')"
+
+          <v-btn large color="primary" class="mx-1" @click="signIn('google')"
             >Google</v-btn
           >
-          <v-btn large color="primary" class="mx-0" @click="signIn('github')"
+          <v-btn large color="primary" class="mx-1" @click="signIn('github')"
             >Github</v-btn
           >
         </v-flex>
       </v-layout>
     </v-container>
-  </v-jumbotron>
+
+    <v-container grid-list-md>
+      <h4 class="display-1">Comment fonctionne la méthode de Condorcet ?</h4>
+      <v-layout row wrap>
+        <ul>
+          <li>Chaque électeur classe les candidats par ordre de préférence.</li>
+          <li>
+            Le dépouillement du scrutin consiste à simuler l'ensemble des duels
+            possibles : pour chaque paire de candidats, on détermine le nombre
+            d'électeurs ayant voté pour l'un ou l'autre en vérifiant, sur chaque
+            bulletin de vote, comment l'un était classé par rapport à l'autre.
+            Ainsi pour chaque duel, il y a un candidat vainqueur. Dans la
+            plupart des cas, il y a un unique candidat qui remporte tous ses
+            duels : il s'agit du vainqueur du scrutin.
+          </li>
+        </ul>
+      </v-layout>
+    </v-container>
+
+    <v-container>
+      <h4 class="display-1">Vidéos qui en parlent :</h4>
+      <v-layout row wrap>
+        <v-flex md4 pa-2 v-for="video in videos" :key="video.id">
+          <v-card>
+            <v-responsive :aspect-ratio="16 / 9">
+              <iframe
+                width="100%"
+                height="100%"
+                :src="video.link"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </v-responsive>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -28,6 +67,24 @@ import { signIn } from "../utils/authentication.js";
 
 export default {
   name: "Authentication",
+  data() {
+    return {
+      videos: [
+        {
+          id: "wKimU8jy2a8",
+          link: "https://www.youtube.com/embed/wKimU8jy2a8"
+        },
+        {
+          id: "ZoGH7d51bvc",
+          link: "https://www.youtube.com/embed/ZoGH7d51bvc?start=534"
+        },
+        {
+          id: "hI89r4LqaCc",
+          link: "https://www.youtube.com/embed/hI89r4LqaCc?start=534"
+        }
+      ]
+    };
+  },
   methods: {
     ...mapActions("user", ["setUser"]),
     ...mapActions("app", ["addNotification"]),
