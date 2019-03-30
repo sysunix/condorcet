@@ -7,11 +7,6 @@ export default {
     all: [],
     current: {}
   },
-  getters: {
-    allPolls: state => {
-      return state.all;
-    }
-  },
   mutations: {
     [FETCH_POLLS](state, polls) {
       state.all = polls;
