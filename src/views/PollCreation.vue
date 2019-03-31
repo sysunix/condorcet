@@ -53,6 +53,14 @@ export default {
   methods: {
     ...mapActions("app", ["addNotification"]),
     async createPoll() {
+      if (this.name === "" || this.answers.length < 2) {
+        this.addNotification({
+          text: "Veuillez renseigner l'ensemble des informations requises",
+          status: "error"
+        });
+        return;
+      }
+
       try {
         let users = [this.userId];
 
