@@ -80,7 +80,7 @@ export default {
           });
 
           this.$router.push({
-            name: "polls"
+            name: "polls_list"
           });
         });
     }
