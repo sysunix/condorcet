@@ -84,12 +84,16 @@ export default {
       }
     },
     removePoll(id, name) {
+      if (confirm("Confirmer le suppression ?") === false) {
+        return;
+      }
+
       try {
         db.collection("polls")
           .doc(id)
           .delete();
         this.addNotification({
-          text: `La salle ${name} a bien été supprimée`,
+          text: `Le scrutin ${name} a bien été supprimé`,
           status: "info"
         });
       } catch (error) {
