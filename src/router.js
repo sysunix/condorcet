@@ -75,7 +75,7 @@ router.beforeEach((to, from, next) => {
   initializationMiddleware(store, ({ state }) => {
     switch (state) {
       case "just_logged":
-        if (name === "authentication") {
+        if (name === "authentication" || name === null) {
           next({
             name: "polls_list"
           });
