@@ -44,7 +44,8 @@ jobs:
     executor: node
     steps:
       - checkout_and_restore_cache
-      - run: yarn test:unit
+      - run: yarn test:unit --coverage
+      - run: yarn codecov
 
   deploy:
     executor: node
