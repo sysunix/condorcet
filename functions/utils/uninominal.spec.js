@@ -4,40 +4,42 @@ describe("uninominal", () => {
   it("should determine the winner of a uninominal poll", () => {
     const anwsers = [
       [
-        { position: 2, value: "Luffy" },
-        { position: 1, value: "Zorro" },
-        { position: 3, value: "Sanji" }
+        { rank: 2, value: "Luffy" },
+        { rank: 1, value: "Zorro" },
+        { rank: 3, value: "Sanji" }
       ],
       [
-        { position: 2, value: "Luffy" },
-        { position: 1, value: "Zorro" },
-        { position: 3, value: "Sanji" }
+        { rank: 2, value: "Luffy" },
+        { rank: 1, value: "Zorro" },
+        { rank: 3, value: "Sanji" }
       ],
       [
-        { position: 1, value: "Luffy" },
-        { position: 2, value: "Zorro" },
-        { position: 3, value: "Sanji" }
+        { rank: 1, value: "Luffy" },
+        { rank: 2, value: "Zorro" },
+        { rank: 3, value: "Sanji" }
       ]
     ];
 
     expect(
       uninominal.getFirstRoundRanking(anwsers, ["Zorro", "Luffy", "Sanji"])
-    ).toEqual([
-      {
-        value: "Zorro",
-        position: 1,
-        numberOfVotes: 2
-      },
-      {
-        value: "Luffy",
-        position: 2,
-        numberOfVotes: 1
-      },
-      {
-        value: "Sanji",
-        position: 3,
-        numberOfVotes: 0
-      }
-    ]);
+    ).toMatchInlineSnapshot(`
+Array [
+  Object {
+    "numberOfVotes": 2,
+    "rank": 1,
+    "value": "Zorro",
+  },
+  Object {
+    "numberOfVotes": 1,
+    "rank": 2,
+    "value": "Luffy",
+  },
+  Object {
+    "numberOfVotes": 0,
+    "rank": 3,
+    "value": "Sanji",
+  },
+]
+`);
   });
 });

@@ -12,7 +12,7 @@
               <SortableItem
                 v-for="(answer, index) in answers"
                 :index="index"
-                :key="index"
+                :key="answer.rank"
                 :answer="answer"
               >
               </SortableItem>
@@ -49,23 +49,28 @@ export default {
       this.$router.push({ name: "polls_list" });
     }
 
-    this.answers = poll.answers.map((answer, index) => ({
-      position: index + 1,
-      value: answer
-    }));
+    this.answers = poll.answers.map((answer, index) => {
+      return {
+        rank: index + 1,
+        ...answer
+      };
+    });
   },
   methods: {
     ...mapActions("poll", ["fetchPoll"]),
     ...mapActions("app", ["addNotification"]),
     onMove(inputs) {
-      this.answers = inputs.map((input, index) => ({
-        ...input,
-        position: index + 1
-      }));
+      this.answers = inputs.map((input, index) => {
+        return {
+          ...input,
+          rank: index + 1
+        };
+      });
     },
     saveAnswers() {
       const pollId = this.$route.params.id;
       const userId = this.userId;
+
       db.collection("answers")
         .doc(`${pollId}${userId}`)
         .set({

@@ -2,34 +2,64 @@ import { shallowMount } from "@vue/test-utils";
 import PollResult from "../PollResult.vue";
 import store from "../../store/index";
 
-jest.mock("../../firebase", () => {
-  const firebasemock = require("firebase-mock");
-  const mockauth = new firebasemock.MockAuthentication();
-  const mockfirestore = new firebasemock.MockFirestore();
-  const mocksdk = new firebasemock.MockFirebaseSdk(
-    null,
-    () => mockauth,
-    () => mockfirestore
-  );
-  const firebase = mocksdk.initializeApp();
-  const db = firebase.firestore();
-  const auth = firebase.auth();
-  return firebase, { db, auth };
-});
+jest.mock("../../firebase.js", () => ({
+  db: {
+    collection: () => ({
+      doc: () => ({
+        get: () => ({
+          data: () => ({
+            condorcet: {
+              luffy: {
+                zorro: 0,
+                sanji: 1
+              },
+              zorro: {
+                luffy: 1,
+                sanji: 1
+              },
+              sanji: {
+                luffy: 0,
+                zorro: 0
+              }
+            },
+            uninominal: [{ value: "luffy", rank: 1 }]
+          })
+        })
+      })
+    })
+  }
+}));
 
 const $route = {
   params: "adz93dze823j"
 };
 
 describe("PollResult.vue", () => {
-  it("should render", () => {
-    const wrapper = shallowMount(PollResult, {
+  let wrapper = null;
+
+  beforeEach(() => {
+    wrapper = shallowMount(PollResult, {
       store,
       mocks: {
         $route
       }
     });
+  });
 
+  it("should render", () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should set computed props", () => {
+    expect(wrapper.vm.answers).toEqual(["luffy", "zorro", "sanji"]);
+  });
+
+  it("set data", () => {
+    expect(wrapper.vm.uninominal).toEqual([
+      {
+        rank: 1,
+        value: "luffy"
+      }
+    ]);
   });
 });

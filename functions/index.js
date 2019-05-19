@@ -1,6 +1,6 @@
 const functions = require("firebase-functions");
 const { db } = require("./config/firebase");
-const condorcet = require("./utils/condorcet");
+const condorcet = require("./utils/condorcet-v2");
 const uninominal = require("./utils/uninominal");
 
 // // Create and Deploy Your First Cloud Functions
@@ -36,9 +36,10 @@ exports.resultOfThePoll = functions.firestore
         });
 
         const condorcetRanking = condorcet.getRanking(results);
+
         const uninominalRanking = uninominal.getFirstRoundRanking(
           results,
-          newValue.answers
+          newValue.answers.map(a => a.value)
         );
 
         db.collection("results")

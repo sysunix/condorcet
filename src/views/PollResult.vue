@@ -4,29 +4,46 @@
 
     <Graph v-if="featureFlipping.graphOfTheDuels"></Graph>
 
-    <v-list v-if="ranking.condorcet">
-      <v-list-tile
-        class="panel-block"
-        v-for="item in ranking.condorcet.ranking"
-        :key="item.position"
-      >
+    <div v-if="condorcet && featureFlipping.matrixOfTheDuels && answers">
+      <table>
+        <thead>
+          <tr>
+            <th>Réponse</th>
+            <th v-for="answer in answers" :key="answer">{{ answer }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, key) in condorcet" :key="key">
+            <td>{{ key }}</td>
+            <td v-for="item2 in condorcet[key]" :key="`duel-${item2}-${key}`">
+              {{ item2 }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- <div v-for="item in condorcet"></div> -->
+    </div>
+
+    <v-list v-if="condorcet && featureFlipping.condorcetRanking">
+      <v-list-tile class="panel-block" v-for="item in condorcet" :key="item">
+        <p></p>
         {{ item.position }} {{ item.value }}
       </v-list-tile>
     </v-list>
 
-    <div v-else>Problème</div>
-
-    <h3>Uninominal</h3>
-    <v-list>
-      <v-list-tile
-        class="list-item"
-        v-for="item in ranking.uninominal"
-        :key="item.position"
-      >
-        <span class="panel-icon"> {{ item.position }} </span> {{ item.value }} -
-        {{ item.numberOfVotes }} voix
-      </v-list-tile>
-    </v-list>
+    <div v-if="uninominal && featureFlipping.uninominalRanking">
+      <h3>Uninominal</h3>
+      <v-list>
+        <v-list-tile
+          class="list-item"
+          v-for="item in uninominal"
+          :key="item.position"
+        >
+          <span class="panel-icon"> {{ item.position }} </span>
+          {{ item.value }} - {{ item.numberOfVotes }} voix
+        </v-list-tile>
+      </v-list>
+    </div>
   </div>
 </template>
 
@@ -42,19 +59,36 @@ export default {
   },
   data() {
     return {
-      ranking: ""
+      uninominal: null,
+      condorcet: null
     };
   },
   computed: {
-    ...mapState("app", ["featureFlipping"])
+    ...mapState("app", ["featureFlipping"]),
+    answers() {
+      return this.condorcet ? Object.keys(this.condorcet) : null;
+    }
   },
-  async mounted() {
+  async created() {
     const result = await db
       .collection("results")
       .doc(this.$route.params.id)
       .get();
 
-    this.ranking = result.data();
+    const { condorcet, uninominal } = result.data();
+
+    this.condorcet = Object.keys(condorcet).reduce((acc, item) => {
+      const temp = { ...condorcet[item], [item]: "/" };
+
+      const sortedTemp = Object.keys(temp)
+        .sort()
+        .reduce((acc, item2) => {
+          return { ...acc, [item2]: temp[item2] };
+        }, {});
+
+      return { ...acc, [item]: sortedTemp };
+    }, {});
+    this.uninominal = uninominal;
   }
 };
 </script>
