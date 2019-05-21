@@ -1,6 +1,7 @@
 # Condorcet
 
 [![CircleCI](https://circleci.com/gh/jean-smaug/condorcet/tree/master.svg?style=svg)](https://circleci.com/gh/jean-smaug/condorcet/tree/master)
+[![codecov](https://codecov.io/gh/jean-smaug/condorcet/branch/master/graph/badge.svg)](https://codecov.io/gh/jean-smaug/condorcet)
 
 ## Project setup
 
