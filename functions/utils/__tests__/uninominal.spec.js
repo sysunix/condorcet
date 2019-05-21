@@ -1,4 +1,4 @@
-const uninominal = require("./uninominal");
+const uninominal = require("../uninominal");
 
 describe("uninominal", () => {
   it("should determine the winner of a uninominal poll", () => {

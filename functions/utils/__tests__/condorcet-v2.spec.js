@@ -1,4 +1,4 @@
-const { getRanking } = require("./condorcet-v2");
+const { getRanking } = require("../condorcet-v2");
 
 describe("The condorcet poll", () => {
   it("should return condorcet's winner with one answer ", () => {
