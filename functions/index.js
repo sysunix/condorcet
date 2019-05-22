@@ -1,6 +1,6 @@
 const functions = require("firebase-functions");
 const { db } = require("./config/firebase");
-const condorcet = require("./utils/condorcet-v2");
+const condorcet = require("./utils/condorcet-v3");
 const uninominal = require("./utils/uninominal");
 
 // // Create and Deploy Your First Cloud Functions
@@ -26,13 +26,14 @@ exports.resultOfThePoll = functions.firestore
     }
 
     return db
-      .collection("answers")
-      .where("pollId", "==", pollId)
+      .collection("polls")
+      .doc(pollId)
+      .collection("votes")
       .get()
       .then(answersDocuments => {
         let results = [];
         answersDocuments.forEach(answersDocument => {
-          results.push(answersDocument.data().answers);
+          results.push(answersDocument.data().vote);
         });
 
         const condorcetRanking = condorcet.getRanking(results);
@@ -42,9 +43,13 @@ exports.resultOfThePoll = functions.firestore
           newValue.answers.map(a => a.value)
         );
 
-        db.collection("results")
+        db.collection("polls")
           .doc(pollId)
-          .set({ condorcet: condorcetRanking, uninominal: uninominalRanking });
+          .update({ condorcet: condorcetRanking });
+
+        db.collection("polls")
+          .doc(pollId)
+          .update({ uninominal: uninominalRanking });
 
         return 200;
       })

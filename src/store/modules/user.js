@@ -1,4 +1,4 @@
-import { SET_USER, CLEAR_USER } from "@/types";
+import { SET_USER, CLEAR_USER } from "../../types";
 
 export default {
   namespaced: true,

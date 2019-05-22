@@ -6,8 +6,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { db } from "@/firebase";
-import { setTimeout } from "timers";
+import { db } from "../firebase";
 
 export default {
   name: "PollJoin",
@@ -35,7 +34,7 @@ export default {
 
       document.set(newPoll);
 
-      this.message = `Tu as rejoint le scrutin : ${newPoll.name}`;
+      this.message = newPoll.question;
       setTimeout(() => {
         if (newPoll.isActive) {
           this.$router.push({ name: "poll_show", params: params.id });

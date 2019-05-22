@@ -8,20 +8,23 @@ jest.mock("../../firebase.js", () => ({
       doc: () => ({
         get: () => ({
           data: () => ({
-            condorcet: {
-              luffy: {
-                zorro: 0,
-                sanji: 1
+            condorcet: [
+              {
+                rank: 1,
+                value: "Zorro",
+                slug: "zorro",
+                wins: 1,
+                equalities: 1
               },
-              zorro: {
-                luffy: 1,
-                sanji: 1
+              {
+                rank: 2,
+                value: "Luffy",
+                slug: "luffy",
+                wins: 1,
+                equalities: 1
               },
-              sanji: {
-                luffy: 0,
-                zorro: 0
-              }
-            },
+              { rank: 3, value: "Sanji", slug: "sanji", wins: 0, equalities: 0 }
+            ],
             uninominal: [{ value: "luffy", rank: 1 }]
           })
         })
@@ -48,10 +51,6 @@ describe("PollResult.vue", () => {
 
   it("should render", () => {
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it("should set computed props", () => {
-    expect(wrapper.vm.answers).toEqual(["luffy", "zorro", "sanji"]);
   });
 
   it("set data", () => {

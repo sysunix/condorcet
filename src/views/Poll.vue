@@ -14,8 +14,7 @@
                 :index="index"
                 :key="answer.rank"
                 :answer="answer"
-              >
-              </SortableItem>
+              ></SortableItem>
             </SortableList>
           </v-card>
         </v-flex>
@@ -29,7 +28,7 @@
 import { mapState, mapActions, mapGetters } from "vuex";
 import SortableList from "../components/SortableList";
 import SortableItem from "../components/SortableItem";
-import { db } from "@/firebase";
+import { db } from "../firebase";
 
 export default {
   name: "Poll",
@@ -71,11 +70,11 @@ export default {
       const pollId = this.$route.params.id;
       const userId = this.userId;
 
-      db.collection("answers")
-        .doc(`${pollId}${userId}`)
+      db.collection("polls")
+        .doc(pollId)
+        .collection("answers")
+        .doc(userId)
         .set({
-          pollId: pollId,
-          user_id: userId,
           answers: this.answers
         })
         .then(() => {

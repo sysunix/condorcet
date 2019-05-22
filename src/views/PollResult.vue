@@ -25,9 +25,14 @@
     </div>
 
     <v-list v-if="condorcet && featureFlipping.condorcetRanking">
-      <v-list-tile class="panel-block" v-for="item in condorcet" :key="item">
+      <v-list-tile
+        class="panel-block"
+        v-for="item in condorcet"
+        :key="item.slug"
+      >
         <p></p>
-        {{ item.position }} {{ item.value }}
+        {{ item.rank }} {{ item.value }} {{ item.wins }} victoires //
+        {{ item.equalities }} matchs nuls
       </v-list-tile>
     </v-list>
 
@@ -37,11 +42,10 @@
         <v-list-tile
           class="list-item"
           v-for="item in uninominal"
-          :key="item.position"
+          :key="item.slug"
+          >{{ item.rank }} {{ item.value }} -
+          {{ item.numberOfVotes }} voix</v-list-tile
         >
-          <span class="panel-icon"> {{ item.position }} </span>
-          {{ item.value }} - {{ item.numberOfVotes }} voix
-        </v-list-tile>
       </v-list>
     </div>
   </div>
@@ -49,7 +53,7 @@
 
 <script>
 import { mapState } from "vuex";
-import { db } from "@/firebase";
+import { db } from "../firebase";
 import Graph from "../components/Graph.vue";
 
 export default {
@@ -60,35 +64,35 @@ export default {
   data() {
     return {
       uninominal: null,
-      condorcet: null
+      condorcet: null,
+      answers: null
     };
   },
   computed: {
-    ...mapState("app", ["featureFlipping"]),
-    answers() {
-      return this.condorcet ? Object.keys(this.condorcet) : null;
-    }
+    ...mapState("app", ["featureFlipping"])
   },
   async created() {
     const result = await db
-      .collection("results")
+      .collection("polls")
       .doc(this.$route.params.id)
       .get();
 
-    const { condorcet, uninominal } = result.data();
+    const { condorcet, uninominal, answers } = result.data();
 
-    this.condorcet = Object.keys(condorcet).reduce((acc, item) => {
-      const temp = { ...condorcet[item], [item]: "/" };
+    // this.condorcet = Object.keys(condorcet).reduce((acc, item) => {
+    //   const temp = { ...condorcet[item], [item]: "/" };
 
-      const sortedTemp = Object.keys(temp)
-        .sort()
-        .reduce((acc, item2) => {
-          return { ...acc, [item2]: temp[item2] };
-        }, {});
+    //   const sortedTemp = Object.keys(temp)
+    //     .sort()
+    //     .reduce((acc, item2) => {
+    //       return { ...acc, [item2]: temp[item2] };
+    //     }, {});
 
-      return { ...acc, [item]: sortedTemp };
-    }, {});
+    //   return { ...acc, [item]: sortedTemp };
+    // }, {});
+    this.condorcet = condorcet;
     this.uninominal = uninominal;
+    this.answers = answers;
   }
 };
 </script>

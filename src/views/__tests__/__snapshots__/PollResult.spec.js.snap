@@ -4,63 +4,29 @@ exports[`PollResult.vue should render 1`] = `
 <div>
   <h3>Condorcet</h3>
   <!---->
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>Réponse</th>
-          <th>luffy</th>
-          <th>zorro</th>
-          <th>sanji</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>luffy</td>
-          <td>
-            /
-          </td>
-          <td>
-            1
-          </td>
-          <td>
-            0
-          </td>
-        </tr>
-        <tr>
-          <td>zorro</td>
-          <td>
-            1
-          </td>
-          <td>
-            1
-          </td>
-          <td>
-            /
-          </td>
-        </tr>
-        <tr>
-          <td>sanji</td>
-          <td>
-            0
-          </td>
-          <td>
-            /
-          </td>
-          <td>
-            0
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
   <!---->
+  <v-list-stub>
+    <v-list-tile-stub activeclass="primary--text" class="panel-block">
+      <p></p>
+      1 Zorro 1 victoires //
+      1 matchs nuls
+    </v-list-tile-stub>
+    <v-list-tile-stub activeclass="primary--text" class="panel-block">
+      <p></p>
+      2 Luffy 1 victoires //
+      1 matchs nuls
+    </v-list-tile-stub>
+    <v-list-tile-stub activeclass="primary--text" class="panel-block">
+      <p></p>
+      3 Sanji 0 victoires //
+      0 matchs nuls
+    </v-list-tile-stub>
+  </v-list-stub>
   <div>
     <h3>Uninominal</h3>
     <v-list-stub>
-      <v-list-tile-stub activeclass="primary--text" class="list-item"><span class="panel-icon">  </span>
-        luffy - voix
-      </v-list-tile-stub>
+      <v-list-tile-stub activeclass="primary--text" class="list-item">1 luffy -
+        voix</v-list-tile-stub>
     </v-list-stub>
   </div>
 </div>

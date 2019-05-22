@@ -5,10 +5,8 @@
         <v-card>
           <v-card-title primary-title>
             <div>
-              <h3 class="headline mb-0">{{ poll.name }}</h3>
-              <div>
-                {{ poll.description }}
-              </div>
+              <h3 class="headline mb-0">{{ poll.question }}</h3>
+              <div>{{ poll.description }}</div>
             </div>
           </v-card-title>
           <v-card-actions>
@@ -19,14 +17,14 @@
               v-if="poll.isOwner"
               flat
               color="orange"
-              @click.prevent="removePoll(poll.id, poll.name)"
+              @click.prevent="removePoll(poll.id)"
               >Supprimer</v-btn
             >
             <v-btn
               v-if="poll.isOwner"
               flat
               color="orange"
-              @click.prevent="togglePoll(poll.id, poll.name)"
+              @click.prevent="togglePoll(poll.id)"
               >{{ poll.isActive ? "Fermer" : "Ré-ouvir" }}</v-btn
             >
             <!-- <v-btn  flat color="orange" @click.prevent="togglePoll(poll.id, poll.name)">{{ poll.isActive ? "Fermer" : "Ré-ouvir" }}</v-btn> -->
@@ -49,7 +47,7 @@
 
 <script>
 import { mapActions, mapState, mapGetters } from "vuex";
-import { db } from "@/firebase";
+import { db } from "../firebase";
 
 export default {
   name: "PollsList",
@@ -83,7 +81,7 @@ export default {
         });
       }
     },
-    removePoll(id, name) {
+    removePoll(id) {
       if (confirm("Confirmer le suppression ?") === false) {
         return;
       }
@@ -93,7 +91,7 @@ export default {
           .doc(id)
           .delete();
         this.addNotification({
-          text: `Le scrutin ${name} a bien été supprimé`,
+          text: "Le scrutin  a bien été supprimé",
           status: "info"
         });
       } catch (error) {

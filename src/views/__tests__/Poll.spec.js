@@ -14,7 +14,9 @@ describe("Poll.vue", () => {
   let store;
   beforeEach(() => {
     store = new Vuex.Store({
-      state: { user: { id: "azfj334N3FJ2" } },
+      state: {
+        user: { id: "azfj334N3FJ2" }
+      },
       modules: {
         poll: {
           namespaced: true,

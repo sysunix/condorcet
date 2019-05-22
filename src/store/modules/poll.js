@@ -1,4 +1,4 @@
-import { FETCH_POLLS, SET_POLL } from "@/types";
+import { FETCH_POLLS, SET_POLL } from "../../types";
 import { db } from "../../firebase";
 
 export default {

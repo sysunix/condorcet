@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-text-field label="Nom" v-model="name"></v-text-field>
+    <v-text-field label="Nom" v-model="question"></v-text-field>
 
     <v-textarea
       name="input-7-1"
@@ -20,9 +20,8 @@
         class="panel-block"
         v-for="answer in answers"
         :key="answer.slug"
+        >{{ answer.value }}</v-list-tile
       >
-        {{ answer.value }}
-      </v-list-tile>
     </v-list>
 
     <v-btn color="info" @click="createPoll">Créer</v-btn>
@@ -33,13 +32,13 @@
 import { mapState, mapActions } from "vuex";
 import randomString from "random-string";
 import slugify from "slugify";
-import { db } from "@/firebase";
+import { db } from "../firebase";
 
 export default {
   name: "PollCreation",
   data() {
     return {
-      name: "",
+      question: "",
       description: "",
       answer: "",
       answers: []
@@ -53,7 +52,7 @@ export default {
   methods: {
     ...mapActions("app", ["addNotification"]),
     async createPoll() {
-      if (this.name === "" || this.answers.length < 2) {
+      if (this.question === "" || this.answers.length < 2) {
         this.addNotification({
           text: "Veuillez renseigner l'ensemble des informations requises",
           status: "error"
@@ -65,13 +64,15 @@ export default {
         let users = [this.userId];
 
         await db.collection("polls").add({
-          name: this.name,
+          question: this.question,
           description: this.description,
           answers: this.answers,
           owner: this.userId,
           isActive: true,
           token: randomString({ length: 20 }),
-          users
+          users,
+          condorcet: null,
+          uninominal: null
         });
 
         this.addNotification({
