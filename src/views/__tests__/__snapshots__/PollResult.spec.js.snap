@@ -4,7 +4,44 @@ exports[`PollResult.vue should render 1`] = `
 <div>
   <h3>Condorcet</h3>
   <!---->
-  <!---->
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Réponse</th>
+          <th>
+            Luffy
+          </th>
+          <th>
+            Sanji
+          </th>
+          <th>
+            Zorro
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>luffy</td>
+          <td>
+            /
+          </td>
+        </tr>
+        <tr>
+          <td>sanji</td>
+          <td>
+            /
+          </td>
+        </tr>
+        <tr>
+          <td>zorro</td>
+          <td>
+            /
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <v-list-stub>
     <v-list-tile-stub activeclass="primary--text" class="panel-block">
       <p></p>

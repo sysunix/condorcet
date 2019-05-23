@@ -36,6 +36,7 @@ exports.resultOfThePoll = functions.firestore
           results.push(answersDocument.data().vote);
         });
 
+        const condorcetMatrix = condorcet.getMatrixOfTheDuels(results);
         const condorcetRanking = condorcet.getRanking(results);
 
         const uninominalRanking = uninominal.getFirstRoundRanking(
@@ -45,7 +46,9 @@ exports.resultOfThePoll = functions.firestore
 
         db.collection("polls")
           .doc(pollId)
-          .update({ condorcet: condorcetRanking });
+          .update({
+            condorcet: { ranking: condorcetRanking, matrix: condorcetMatrix }
+          });
 
         db.collection("polls")
           .doc(pollId)

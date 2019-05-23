@@ -8,23 +8,50 @@ jest.mock("../../firebase.js", () => ({
       doc: () => ({
         get: () => ({
           data: () => ({
-            condorcet: [
-              {
-                rank: 1,
-                value: "Zorro",
-                slug: "zorro",
-                wins: 1,
-                equalities: 1
-              },
-              {
-                rank: 2,
-                value: "Luffy",
-                slug: "luffy",
-                wins: 1,
-                equalities: 1
-              },
-              { rank: 3, value: "Sanji", slug: "sanji", wins: 0, equalities: 0 }
+            answers: [
+              { slug: "luffy", value: "Luffy" },
+              { value: "Zorro", slug: "zorro" },
+              { value: "Sanji", slug: "sanji" }
             ],
+            condorcet: {
+              matrix: {
+                zorro: {
+                  luffy: 1,
+                  sanji: 1
+                },
+                luffy: {
+                  zorro: 0,
+                  sanji: 1
+                },
+                sanji: {
+                  zorro: 0,
+                  luffy: 0
+                }
+              },
+              ranking: [
+                {
+                  rank: 1,
+                  value: "Zorro",
+                  slug: "zorro",
+                  wins: 1,
+                  equalities: 1
+                },
+                {
+                  rank: 2,
+                  value: "Luffy",
+                  slug: "luffy",
+                  wins: 1,
+                  equalities: 1
+                },
+                {
+                  rank: 3,
+                  value: "Sanji",
+                  slug: "sanji",
+                  wins: 0,
+                  equalities: 0
+                }
+              ]
+            },
             uninominal: [{ value: "luffy", rank: 1 }]
           })
         })
