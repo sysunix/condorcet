@@ -1,4 +1,4 @@
-const mergeObjectsValues = require("./merge-objects-values");
+const mergeObjectsValues = require("merge-objects-values");
 
 const getMatrixOfTheDuelsForOneVote = ranking => {
   const rankingMatrix = ranking.reduce((secondAcc, answer) => {
@@ -35,7 +35,7 @@ const getMatrixOfTheDuels = votes => {
       return getMatrixOfTheDuelsForOneVote(vote);
     }
 
-    return mergeObjectsValues(acc, getMatrixOfTheDuelsForOneVote(vote));
+    return mergeObjectsValues(null, acc, getMatrixOfTheDuelsForOneVote(vote));
   }, {});
 };
 
