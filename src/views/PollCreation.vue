@@ -1,30 +1,28 @@
 <template>
   <div>
-    <v-text-field label="Nom" v-model="question"></v-text-field>
+    <input type="text" label="Nom" v-model="question" />
 
-    <v-textarea
+    <textarea
       name="input-7-1"
       label="Description"
       v-model="description"
-    ></v-textarea>
+    ></textarea>
 
-    <v-text-field
+    <input
+      type="text"
       label="Ajouter une réponse"
       v-model="answer"
       @keypress.enter="addAnswer"
-    ></v-text-field>
-    <v-btn color="info" @click="addAnswer">Ajouter</v-btn>
+    />
+    <button color="info" @click="addAnswer">Ajouter</button>
 
-    <v-list>
-      <v-list-tile
-        class="panel-block"
-        v-for="answer in answers"
-        :key="answer.slug"
-        >{{ answer.value }}</v-list-tile
-      >
-    </v-list>
+    <div>
+      <div class="panel-block" v-for="answer in answers" :key="answer.slug">
+        {{ answer.value }}
+      </div>
+    </div>
 
-    <v-btn color="info" @click="createPoll">Créer</v-btn>
+    <button color="info" @click="createPoll">Créer</button>
   </div>
 </template>
 

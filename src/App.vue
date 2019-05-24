@@ -1,31 +1,25 @@
 <template>
-  <v-app>
-    <v-toolbar v-if="isAuth" app>
-      <v-btn v-if="canGoBack" icon>
+  <div>
+    <div v-if="isAuth">
+      <button v-if="canGoBack" icon>
         <router-link to="/polls">
-          <v-icon>arrow_back</v-icon>
+          <i>arrow_back</i>
         </router-link>
-      </v-btn>
-      <v-toolbar-title class="headline text-uppercase">
+      </button>
+      <div class="headline text-uppercase">
         <span>Condorcet</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-toolbar>
+      </div>
+    </div>
 
-    <v-content>
+    <div>
       <Notifications :notifications="notifications" />
 
       <transition name="fade" mode="out-in">
         <router-view></router-view>
       </transition>
       <SpeedDial v-if="isAuth" />
-
-      <!-- <v-footer class="pa-3" fixed>
-        <v-spacer></v-spacer>
-        <div>&copy; {{ new Date().getFullYear() }}</div>
-      </v-footer> -->
-    </v-content>
-  </v-app>
+    </div>
+  </div>
 </template>
 
 <script>

@@ -2,11 +2,25 @@
 
 exports[`PollCreation.vue should render 1`] = `
 <div>
-  <v-text-field-stub label="Nom" value=""></v-text-field-stub>
-  <v-textarea-stub color="primary" errorcount="1" errormessages="" messages="" rules="" successmessages="" value="" backgroundcolor="" label="Description" clearicon="$vuetify.icons.clear" type="text" rowheight="24" rows="5" name="input-7-1"></v-textarea-stub>
-  <v-text-field-stub label="Ajouter une réponse" value=""></v-text-field-stub>
-  <v-btn-stub color="info" activeclass="v-btn--active" tag="button" type="button">Ajouter</v-btn-stub>
-  <v-list-stub></v-list-stub>
-  <v-btn-stub color="info" activeclass="v-btn--active" tag="button" type="button">Créer</v-btn-stub>
+  <form autocomplete="off" class="w-full">
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0"><label for="grid-first-name" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Question *
+        </label> <input id="grid-first-name" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+        <div class="w-full md:w-1/2 px-3"><textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"></textarea></div>
+      </div>
+      <div class="w-full md:w-1/2 px-3"><label for="answer" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Ajouter des réponses *
+        </label> <input id="answer" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"> <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Ajouter
+        </button>
+        <div>
+          <ul></ul>
+        </div>
+      </div>
+    </div> <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Créer
+    </button>
+  </form>
 </div>
 `;

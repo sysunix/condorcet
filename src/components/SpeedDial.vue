@@ -1,22 +1,12 @@
 <template>
-  <v-speed-dial
-    :fixed="true"
-    :right="true"
-    :bottom="true"
-    direction="top"
-    transition="slide-y-reverse-transition"
-  >
-    <v-btn slot="activator" color="blue darken-2" dark fab>
-      <v-icon>menu</v-icon>
-      <v-icon>close</v-icon>
-    </v-btn>
-    <v-btn fab dark small color="green" @click="goToCreationPage">
-      <v-icon>add_circle</v-icon>
-    </v-btn>
-    <v-btn fab dark small color="red" @click="signOut">
-      <v-icon>power_settings_new</v-icon>
-    </v-btn>
-  </v-speed-dial>
+  <div>
+    <button fab dark small color="green" @click="goToCreationPage">
+      <i>add_circle</i>
+    </button>
+    <button fab dark small color="red" @click="signOut">
+      <i>power_settings_new</i>
+    </button>
+  </div>
 </template>
 
 <script>

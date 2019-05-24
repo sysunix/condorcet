@@ -1,36 +1,38 @@
 <template>
-  <v-container grid-list-md>
-    <v-layout row wrap>
-      <v-flex xs12 md6 v-for="poll in polls" :key="poll.id">
-        <v-card>
-          <v-card-title primary-title>
+  <div>
+    <div>
+      <div md6 v-for="poll in polls" :key="poll.id">
+        <div>
+          <div primary-title>
             <div>
               <h3 class="headline mb-0">{{ poll.question }}</h3>
               <div>{{ poll.description }}</div>
             </div>
-          </v-card-title>
-          <v-card-actions>
-            <v-btn flat color="orange" @click.prevent="copyMagicLink(poll.id)"
-              >Partager</v-btn
-            >
-            <v-btn
+          </div>
+          <div>
+            <button flat color="orange" @click.prevent="copyMagicLink(poll.id)">
+              Partager
+            </button>
+            <button
               v-if="poll.isOwner"
               flat
               color="orange"
               @click.prevent="removePoll(poll.id)"
-              >Supprimer</v-btn
             >
-            <v-btn
+              Supprimer
+            </button>
+            <button
               v-if="poll.isOwner"
               flat
               color="orange"
               @click.prevent="togglePoll(poll.id)"
-              >{{ poll.isActive ? "Fermer" : "Ré-ouvir" }}</v-btn
             >
-            <!-- <v-btn  flat color="orange" @click.prevent="togglePoll(poll.id, poll.name)">{{ poll.isActive ? "Fermer" : "Ré-ouvir" }}</v-btn> -->
+              {{ poll.isActive ? "Fermer" : "Ré-ouvir" }}
+            </button>
+            <!-- <button  flat color="orange" @click.prevent="togglePoll(poll.id, poll.name)">{{ poll.isActive ? "Fermer" : "Ré-ouvir" }}</button> -->
 
             <router-link
-              class="v-btn v-btn--flat theme--light orange--text"
+              class="button button--flat theme--light orange--text"
               tag="a"
               :to="{
                 name: poll.isActive ? 'poll_show' : 'poll_result',
@@ -38,11 +40,11 @@
               }"
               >{{ poll.isActive ? "Voter" : "Résultats" }}</router-link
             >
-          </v-card-actions>
-        </v-card>
-      </v-flex>
-    </v-layout>
-  </v-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

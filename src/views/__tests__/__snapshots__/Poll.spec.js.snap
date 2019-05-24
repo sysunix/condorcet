@@ -6,9 +6,9 @@ exports[`Poll.vue should render 1`] = `
     <p>
       Pour voter il suffit de classer vos préférences en les glissant-déposant
     </p>
-    <v-layout-stub tag="div" row="">
-      <v-flex-stub tag="div" xs12="" sm10="" offset-sm1="">
-        <v-card-stub tag="div">
+    <div>
+      <div>
+        <div>
           <sortablelist-stub value="" axis="y" distance="0" pressdelay="0" pressthreshold="5" hidesortableghost="true" lockoffset="50%" transitionduration="300" appendto="body" lockaxis="y" shouldcancelstart="function _default(e) {
         // Cancel sorting if the event target is an \`input\`, \`textarea\`, \`select\` or \`option\`
         var disabledElements = ['input', 'textarea', 'select', 'option', 'button'];
@@ -20,10 +20,9 @@ exports[`Poll.vue should render 1`] = `
           height: node.offsetHeight
         };
       }"></sortablelist-stub>
-        </v-card-stub>
-      </v-flex-stub>
-    </v-layout-stub>
-    <v-btn-stub color="info" activeclass="v-btn--active" tag="button" type="button">Valider</v-btn-stub>
+        </div>
+      </div>
+    </div> <button color="info">Valider</button>
   </div>
 </div>
 `;

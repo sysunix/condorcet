@@ -1,14 +1,14 @@
 <template>
   <div class="Notification">
     <transition-group name="Transition" tag="p">
-      <v-alert
+      <div
         v-for="notification in notifications"
         :key="notification.id"
         :value="true"
         :type="notification.status"
       >
         {{ notification.text }}
-      </v-alert>
+      </div>
     </transition-group>
   </div>
 </template>

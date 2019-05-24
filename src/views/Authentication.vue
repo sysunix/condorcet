@@ -1,29 +1,29 @@
 <template>
   <div>
-    <v-container fill-height>
-      <v-layout align-center>
-        <v-flex>
+    <div>
+      <div>
+        <div>
           <h3 class="display-3">Bienvenue sur Condorcet</h3>
-          <span class="subheading"
-            >Condorcet est une application permettant de réaliser des scrutin en
-            utilisant la méthode de Condorcet</span
-          >
-          <v-divider class="my-3"></v-divider>
+          <span class="subheading">
+            Condorcet est une application permettant de réaliser des scrutin en
+            utilisant la méthode de Condorcet
+          </span>
+
           <div class="title mb-3">Accéder à l'application :</div>
 
-          <v-btn large color="primary" class="mx-1" @click="signIn('google')"
-            >Google</v-btn
-          >
-          <v-btn large color="primary" class="mx-1" @click="signIn('github')"
-            >Github</v-btn
-          >
-        </v-flex>
-      </v-layout>
-    </v-container>
+          <button large color="primary" class="mx-1" @click="signIn('google')">
+            Google
+          </button>
+          <button large color="primary" class="mx-1" @click="signIn('github')">
+            Github
+          </button>
+        </div>
+      </div>
+    </div>
 
-    <v-container grid-list-md>
+    <div>
       <h4 class="display-1">Comment fonctionne la méthode de Condorcet ?</h4>
-      <v-layout row wrap>
+      <div row wrap>
         <ul>
           <li>Chaque électeur classe les candidats par ordre de préférence.</li>
           <li>
@@ -36,15 +36,15 @@
             duels : il s'agit du vainqueur du scrutin.
           </li>
         </ul>
-      </v-layout>
-    </v-container>
+      </div>
+    </div>
 
-    <v-container>
+    <div>
       <h4 class="display-1">Vidéos qui en parlent :</h4>
-      <v-layout row wrap>
-        <v-flex md4 pa-2 v-for="video in videos" :key="video.id">
-          <v-card>
-            <v-responsive :aspect-ratio="16 / 9">
+      <div>
+        <div v-for="video in videos" :key="video.id">
+          <div>
+            <div>
               <iframe
                 width="100%"
                 height="100%"
@@ -53,11 +53,11 @@
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
               ></iframe>
-            </v-responsive>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

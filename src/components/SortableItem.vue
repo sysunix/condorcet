@@ -1,5 +1,5 @@
 <template>
-  <v-list-tile class="list-item">{{ answer.value }}</v-list-tile>
+  <div class="list-item">{{ answer.value }}</div>
 </template>
 
 <script>

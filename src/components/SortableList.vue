@@ -1,7 +1,7 @@
 <template>
-  <v-list>
+  <div>
     <slot />
-  </v-list>
+  </div>
 </template>
 
 <script>

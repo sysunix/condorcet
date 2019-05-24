@@ -2,69 +2,81 @@
 
 exports[`PollResult.vue should render 1`] = `
 <div>
-  <h3>Condorcet</h3>
+  <h3 class="text-4xl">Condorcet</h3>
   <!---->
   <div>
-    <table>
+    <table class="text-left w-full border-collapse">
       <thead>
         <tr>
-          <th>Réponse</th>
-          <th>
+          <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
+            Réponse
+          </th>
+          <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
             Luffy
           </th>
-          <th>
+          <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
             Sanji
           </th>
-          <th>
+          <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
             Zorro
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>luffy</td>
-          <td>
+          <td class="py-4 px-6 border-b border-grey-light">
+            luffy
+          </td>
+          <td class="py-4 px-6 border-b border-grey-light">
             /
           </td>
         </tr>
         <tr>
-          <td>sanji</td>
-          <td>
+          <td class="py-4 px-6 border-b border-grey-light">
+            sanji
+          </td>
+          <td class="py-4 px-6 border-b border-grey-light">
             /
           </td>
         </tr>
         <tr>
-          <td>zorro</td>
-          <td>
+          <td class="py-4 px-6 border-b border-grey-light">
+            zorro
+          </td>
+          <td class="py-4 px-6 border-b border-grey-light">
             /
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <v-list-stub>
-    <v-list-tile-stub activeclass="primary--text" class="panel-block">
-      <p></p>
-      1 Zorro 1 victoires //
-      1 matchs nuls
-    </v-list-tile-stub>
-    <v-list-tile-stub activeclass="primary--text" class="panel-block">
-      <p></p>
-      2 Luffy 1 victoires //
-      1 matchs nuls
-    </v-list-tile-stub>
-    <v-list-tile-stub activeclass="primary--text" class="panel-block">
-      <p></p>
-      3 Sanji 0 victoires //
-      0 matchs nuls
-    </v-list-tile-stub>
-  </v-list-stub>
   <div>
-    <h3>Uninominal</h3>
-    <v-list-stub>
-      <v-list-tile-stub activeclass="primary--text" class="list-item">1 luffy -
-        voix</v-list-tile-stub>
-    </v-list-stub>
+    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-8">
+      <div class="overflow-hidden bg-white rounded max-w-xs w-full shadow-lg  leading-normal">
+        1 Zorro 1 victoires //
+        1 matchs nuls
+      </div>
+    </div>
+    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-8">
+      <div class="overflow-hidden bg-white rounded max-w-xs w-full shadow-lg  leading-normal">
+        2 Luffy 1 victoires //
+        1 matchs nuls
+      </div>
+    </div>
+    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-8">
+      <div class="overflow-hidden bg-white rounded max-w-xs w-full shadow-lg  leading-normal">
+        3 Sanji 0 victoires //
+        0 matchs nuls
+      </div>
+    </div>
+  </div>
+  <div>
+    <h3 class="text-4xl">Uninominal</h3>
+    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-8">
+      <div class="overflow-hidden bg-white rounded max-w-xs w-full shadow-lg  leading-normal">
+        1 luffy - voix
+      </div>
+    </div>
   </div>
 </div>
 `;

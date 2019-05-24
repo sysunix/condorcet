@@ -5,9 +5,9 @@
         Pour voter il suffit de classer vos préférences en les glissant-déposant
       </p>
 
-      <v-layout row>
-        <v-flex xs12 sm10 offset-sm1>
-          <v-card>
+      <div>
+        <div>
+          <div>
             <SortableList lockAxis="y" v-model="answers" @input="onMove">
               <SortableItem
                 v-for="(answer, index) in answers"
@@ -16,10 +16,10 @@
                 :answer="answer"
               ></SortableItem>
             </SortableList>
-          </v-card>
-        </v-flex>
-      </v-layout>
-      <v-btn @click="saveAnswers" color="info">Valider</v-btn>
+          </div>
+        </div>
+      </div>
+      <button @click="saveAnswers" color="info">Valider</button>
     </div>
   </div>
 </template>

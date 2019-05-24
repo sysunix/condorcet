@@ -28,8 +28,8 @@
       </table>
     </div>
 
-    <v-list v-if="condorcet && featureFlipping.condorcetRanking">
-      <v-list-tile
+    <div v-if="condorcet && featureFlipping.condorcetRanking">
+      <div
         class="panel-block"
         v-for="item in condorcet.ranking"
         :key="item.slug"
@@ -37,20 +37,16 @@
         <p></p>
         {{ item.rank }} {{ item.value }} {{ item.wins }} victoires //
         {{ item.equalities }} matchs nuls
-      </v-list-tile>
-    </v-list>
+      </div>
+    </div>
 
     <div v-if="uninominal && featureFlipping.uninominalRanking">
       <h3>Uninominal</h3>
-      <v-list>
-        <v-list-tile
-          class="list-item"
-          v-for="item in uninominal"
-          :key="item.slug"
-          >{{ item.rank }} {{ item.value }} -
-          {{ item.numberOfVotes }} voix</v-list-tile
-        >
-      </v-list>
+      <div>
+        <div class="list-item" v-for="item in uninominal" :key="item.slug">
+          {{ item.rank }} {{ item.value }} - {{ item.numberOfVotes }} voix
+        </div>
+      </div>
     </div>
   </div>
 </template>

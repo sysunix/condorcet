@@ -2,54 +2,49 @@
 
 exports[`Authentication.vue should render 1`] = `
 <div>
-  <v-container-stub tag="div" fill-height="">
-    <v-layout-stub tag="div" align-center="">
-      <v-flex-stub tag="div">
-        <h3 class="display-3">Bienvenue sur Condorcet</h3> <span class="subheading">Condorcet est une application permettant de réaliser des scrutin en
-          utilisant la méthode de Condorcet</span>
-        <v-divider-stub class="my-3"></v-divider-stub>
-        <div class="title mb-3">Accéder à l'application :</div>
-        <v-btn-stub color="primary" activeclass="v-btn--active" tag="button" large="true" type="button" class="mx-1">Google</v-btn-stub>
-        <v-btn-stub color="primary" activeclass="v-btn--active" tag="button" large="true" type="button" class="mx-1">Github</v-btn-stub>
-      </v-flex-stub>
-    </v-layout-stub>
-  </v-container-stub>
-  <v-container-stub tag="div" grid-list-md="">
-    <h4 class="display-1">Comment fonctionne la méthode de Condorcet ?</h4>
-    <v-layout-stub tag="div" row="" wrap="">
-      <ul>
-        <li>Chaque électeur classe les candidats par ordre de préférence.</li>
+  <div class="mt-16 flex flex-col justify-center">
+    <div>
+      <typewriter-stub class="inline-flex text-3xl">
+        Bienvenue sur Condorcet
+      </typewriter-stub>
+    </div> <span>
+      L'application qui vous permet de réaliser des scrutins en utilisant la
+      méthode de Condorcet
+    </span>
+    <div class="mt-4">Acceder à l'application via :</div>
+    <div class="mt-2 flex justify-center"><button class="mx-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+        Google
+      </button> <button class="mx-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+        Github
+      </button></div>
+  </div>
+  <div class="mt-16">
+    <h4 class="text-2xl">Comment fonctionne le vote ?</h4>
+    <div>
+      <ul class="list-disc">
         <li>
-          Le dépouillement du scrutin consiste à simuler l'ensemble des duels
-          possibles : pour chaque paire de candidats, on détermine le nombre
-          d'électeurs ayant voté pour l'un ou l'autre en vérifiant, sur chaque
-          bulletin de vote, comment l'un était classé par rapport à l'autre.
-          Ainsi pour chaque duel, il y a un candidat vainqueur. Dans la
-          plupart des cas, il y a un unique candidat qui remporte tous ses
-          duels : il s'agit du vainqueur du scrutin.
+          Chaque votant classe les alternatives par ordre de préférence
         </li>
+        <li>
+          On organise des duels entre toutes les alternatives
+        </li>
+        <li>Celui qui remporte tous les duels est déclaré gagnant</li>
       </ul>
-    </v-layout-stub>
-  </v-container-stub>
-  <v-container-stub tag="div">
-    <h4 class="display-1">Vidéos qui en parlent :</h4>
-    <v-layout-stub tag="div" row="" wrap="">
-      <v-flex-stub tag="div" md4="" pa-2="">
-        <v-card-stub tag="div">
-          <v-responsive-stub aspectratio="1.7777777777777777"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/wKimU8jy2a8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></v-responsive-stub>
-        </v-card-stub>
-      </v-flex-stub>
-      <v-flex-stub tag="div" md4="" pa-2="">
-        <v-card-stub tag="div">
-          <v-responsive-stub aspectratio="1.7777777777777777"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/ZoGH7d51bvc?start=534" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></v-responsive-stub>
-        </v-card-stub>
-      </v-flex-stub>
-      <v-flex-stub tag="div" md4="" pa-2="">
-        <v-card-stub tag="div">
-          <v-responsive-stub aspectratio="1.7777777777777777"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/hI89r4LqaCc?start=534" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></v-responsive-stub>
-        </v-card-stub>
-      </v-flex-stub>
-    </v-layout-stub>
-  </v-container-stub>
+    </div>
+  </div>
+  <div class="mt-16">
+    <h4 class="text-2xl">Vidéos qui en parlent :</h4>
+    <div class="flex justify-around">
+      <div>
+        <div class="px-4 py-2 m-2"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/wKimU8jy2a8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></div>
+      </div>
+      <div>
+        <div class="px-4 py-2 m-2"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/ZoGH7d51bvc?start=534" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></div>
+      </div>
+      <div>
+        <div class="px-4 py-2 m-2"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/hI89r4LqaCc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></div>
+      </div>
+    </div>
+  </div>
 </div>
 `;

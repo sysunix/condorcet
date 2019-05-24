@@ -1,20 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App.vue should render 1`] = `
-<v-app-stub id="app">
-  <v-toolbar-stub app="true" scrollthreshold="300">
-    <v-btn-stub activeclass="v-btn--active" tag="button" icon="true" type="button">
-      <router-link-stub to="/polls">
-        <v-icon-stub>arrow_back</v-icon-stub>
-      </router-link-stub>
-    </v-btn-stub>
-    <v-toolbar-title-stub class="headline text-uppercase"><span>Condorcet</span></v-toolbar-title-stub>
-    <v-spacer-stub></v-spacer-stub>
-  </v-toolbar-stub>
-  <v-content-stub tag="main">
+<div>
+  <navbar-stub></navbar-stub>
+  <div class="container mx-auto">
     <notifications-stub notifications=""></notifications-stub>
     <router-view-stub name="fade" mode="out-in"></router-view-stub>
-    <speeddial-stub></speeddial-stub>
-  </v-content-stub>
-</v-app-stub>
+  </div>
+</div>
 `;

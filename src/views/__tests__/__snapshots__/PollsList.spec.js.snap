@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PollsList.vue should render 1`] = `
-<v-container-stub tag="div" grid-list-md="">
-  <v-layout-stub tag="div" row="" wrap=""></v-layout-stub>
-</v-container-stub>
+<div>
+  <div class="flex flex-wrap justify-between"></div>
+</div>
 `;
