@@ -44,8 +44,8 @@
     "firebase-mock": "2.2.10",
     "firebase-tools": "6.10.0",
     "sort-keys": "3.0.0",
-    "stylus": "0.54.5",
-    "stylus-loader": "3.0.2",
+    "tailwindcss": "^1.0.1",
+    "vue-style-loader": "4.1.2",
     "vue-template-compiler": "2.6.10"
   }
 }

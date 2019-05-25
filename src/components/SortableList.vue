@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cursor-move">
     <slot />
   </div>
 </template>

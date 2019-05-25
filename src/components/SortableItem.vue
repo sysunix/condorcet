@@ -1,5 +1,7 @@
 <template>
-  <div class="list-item">{{ answer.value }}</div>
+  <div class="px-6 py-4 rounded overflow-hidden shadow select-none">
+    {{ answer.value }}
+  </div>
 </template>
 
 <script>

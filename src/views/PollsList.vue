@@ -1,47 +1,46 @@
 <template>
-  <div>
-    <div>
-      <div md6 v-for="poll in polls" :key="poll.id">
-        <div>
-          <div primary-title>
-            <div>
-              <h3 class="headline mb-0">{{ poll.question }}</h3>
-              <div>{{ poll.description }}</div>
-            </div>
-          </div>
-          <div>
-            <button flat color="orange" @click.prevent="copyMagicLink(poll.id)">
-              Partager
-            </button>
-            <button
-              v-if="poll.isOwner"
-              flat
-              color="orange"
-              @click.prevent="removePoll(poll.id)"
-            >
-              Supprimer
-            </button>
-            <button
-              v-if="poll.isOwner"
-              flat
-              color="orange"
-              @click.prevent="togglePoll(poll.id)"
-            >
-              {{ poll.isActive ? "Fermer" : "Ré-ouvir" }}
-            </button>
-            <!-- <button  flat color="orange" @click.prevent="togglePoll(poll.id, poll.name)">{{ poll.isActive ? "Fermer" : "Ré-ouvir" }}</button> -->
-
-            <router-link
-              class="button button--flat theme--light orange--text"
-              tag="a"
-              :to="{
-                name: poll.isActive ? 'poll_show' : 'poll_result',
-                params: { id: poll.id }
-              }"
-              >{{ poll.isActive ? "Voter" : "Résultats" }}</router-link
-            >
-          </div>
-        </div>
+  <div class="flex flex-wrap justify-around">
+    <div
+      class="max-w-sm rounded overflow-hidden shadow-lg mb-10"
+      v-for="poll in polls"
+      :key="poll.id"
+    >
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">{{ poll.question }}</div>
+        <p class="text-gray-700 text-base">
+          {{ poll.description }}
+        </p>
+      </div>
+      <div class="px-6 py-4">
+        <button
+          class="bg-yellow-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          @click.prevent="copyMagicLink(poll.id)"
+        >
+          Partager
+        </button>
+        <button
+          v-if="poll.isOwner"
+          class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          @click.prevent="removePoll(poll.id)"
+        >
+          Supprimer
+        </button>
+        <button
+          v-if="poll.isOwner"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          @click.prevent="togglePoll(poll.id)"
+        >
+          {{ poll.isActive ? "Fermer" : "Ré-ouvir" }}
+        </button>
+        <router-link
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          tag="button"
+          :to="{
+            name: poll.isActive ? 'poll_show' : 'poll_result',
+            params: { id: poll.id }
+          }"
+          >{{ poll.isActive ? "Voter" : "Résultats" }}</router-link
+        >
       </div>
     </div>
   </div>

@@ -7,6 +7,7 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 const $route = {
+  path: "/polls",
   params: "adz93dze823j"
 };
 

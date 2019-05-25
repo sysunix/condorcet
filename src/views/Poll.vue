@@ -1,25 +1,33 @@
 <template>
   <div>
     <div>
-      <p>
+      <p class="text-xl">
         Pour voter il suffit de classer vos préférences en les glissant-déposant
+        :
       </p>
 
-      <div>
-        <div>
-          <div>
-            <SortableList lockAxis="y" v-model="answers" @input="onMove">
-              <SortableItem
-                v-for="(answer, index) in answers"
-                :index="index"
-                :key="answer.rank"
-                :answer="answer"
-              ></SortableItem>
-            </SortableList>
-          </div>
-        </div>
+      <SortableList
+        class="mt-6 mx-auto w-1/2"
+        lockAxis="y"
+        v-model="answers"
+        @input="onMove"
+      >
+        <SortableItem
+          v-for="(answer, index) in answers"
+          :index="index"
+          :key="answer.rank"
+          :answer="answer"
+        ></SortableItem>
+      </SortableList>
+
+      <div class="w-full mt-10 px-3 flex justify-center">
+        <button
+          class="w-1/3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          @click="saveAnswers"
+        >
+          Voter
+        </button>
       </div>
-      <button @click="saveAnswers" color="info">Valider</button>
     </div>
   </div>
 </template>

@@ -50,31 +50,32 @@ exports[`PollResult.vue should render 1`] = `
       </tbody>
     </table>
   </div>
-  <div>
-    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-8">
-      <div class="overflow-hidden bg-white rounded max-w-xs w-full shadow-lg  leading-normal">
-        1 Zorro 1 victoires //
-        1 matchs nuls
+  <div class="mt-10">
+    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
+      <div class="w-1/2 px-6 py-4 rounded overflow-hidden shadow">
+        1 - <span class="font-bold">Zorro</span> /
+        1 victoire(s) &amp; 1 match(s) nul(s)
       </div>
     </div>
-    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-8">
-      <div class="overflow-hidden bg-white rounded max-w-xs w-full shadow-lg  leading-normal">
-        2 Luffy 1 victoires //
-        1 matchs nuls
+    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
+      <div class="w-1/2 px-6 py-4 rounded overflow-hidden shadow">
+        2 - <span class="font-bold">Luffy</span> /
+        1 victoire(s) &amp; 1 match(s) nul(s)
       </div>
     </div>
-    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-8">
-      <div class="overflow-hidden bg-white rounded max-w-xs w-full shadow-lg  leading-normal">
-        3 Sanji 0 victoires //
-        0 matchs nuls
+    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
+      <div class="w-1/2 px-6 py-4 rounded overflow-hidden shadow">
+        3 - <span class="font-bold">Sanji</span> /
+        0 victoire(s) &amp; 0 match(s) nul(s)
       </div>
     </div>
   </div>
-  <div>
+  <div class="mt-10">
     <h3 class="text-4xl">Uninominal</h3>
-    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-8">
-      <div class="overflow-hidden bg-white rounded max-w-xs w-full shadow-lg  leading-normal">
-        1 luffy - voix
+    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
+      <div class="w-1/2 px-6 py-4 rounded overflow-hidden shadow">
+        1 - <span class="font-bold">luffy</span> /
+        voix
       </div>
     </div>
   </div>

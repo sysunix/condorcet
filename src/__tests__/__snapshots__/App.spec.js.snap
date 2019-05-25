@@ -3,7 +3,7 @@
 exports[`App.vue should render 1`] = `
 <div>
   <navbar-stub></navbar-stub>
-  <div class="container mx-auto">
+  <div class="container mx-auto mt-10">
     <notifications-stub notifications=""></notifications-stub>
     <router-view-stub name="fade" mode="out-in"></router-view-stub>
   </div>

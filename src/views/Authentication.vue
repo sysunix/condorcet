@@ -1,59 +1,63 @@
 <template>
   <div>
-    <div>
+    <div class="mt-10 flex flex-col justify-center">
       <div>
-        <div>
-          <h3 class="display-3">Bienvenue sur Condorcet</h3>
-          <span class="subheading">
-            Condorcet est une application permettant de réaliser des scrutin en
-            utilisant la méthode de Condorcet
-          </span>
+        <Typewriter class="inline-flex text-3xl">
+          Bienvenue sur Condorcet
+        </Typewriter>
+      </div>
+      <span class="mt-4">
+        L'application qui vous permet de réaliser des scrutins en utilisant la
+        méthode de Condorcet et de comparer le résultat au scrutin uninominal.
+      </span>
 
-          <div class="title mb-3">Accéder à l'application :</div>
+      <div class="mt-12 text-center">Acceder à l'application via :</div>
+      <div class="mt-2 flex justify-center">
+        <button
+          class="mx-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+          @click="signIn('google')"
+        >
+          Google
+        </button>
 
-          <button large color="primary" class="mx-1" @click="signIn('google')">
-            Google
-          </button>
-          <button large color="primary" class="mx-1" @click="signIn('github')">
-            Github
-          </button>
-        </div>
+        <button
+          class="mx-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+          @click="signIn('github')"
+        >
+          Github
+        </button>
       </div>
     </div>
 
-    <div>
-      <h4 class="display-1">Comment fonctionne la méthode de Condorcet ?</h4>
-      <div row wrap>
-        <ul>
-          <li>Chaque électeur classe les candidats par ordre de préférence.</li>
+    <div class="mt-12">
+      <h4 class="text-2xl">Comment fonctionne le vote ?</h4>
+      <div class="mt-4">
+        <ul class="list-disc">
           <li>
-            Le dépouillement du scrutin consiste à simuler l'ensemble des duels
-            possibles : pour chaque paire de candidats, on détermine le nombre
-            d'électeurs ayant voté pour l'un ou l'autre en vérifiant, sur chaque
-            bulletin de vote, comment l'un était classé par rapport à l'autre.
-            Ainsi pour chaque duel, il y a un candidat vainqueur. Dans la
-            plupart des cas, il y a un unique candidat qui remporte tous ses
-            duels : il s'agit du vainqueur du scrutin.
+            Chaque votant classe les alternatives par ordre de préférence
           </li>
+          <li>
+            On organise des duels entre toutes les alternatives
+          </li>
+          <li>Celui qui remporte le plus de duels est déclaré gagnant</li>
         </ul>
       </div>
     </div>
 
-    <div>
-      <h4 class="display-1">Vidéos qui en parlent :</h4>
-      <div>
+    <div class="mt-12">
+      <h4 class="text-2xl">Vidéos qui en parlent :</h4>
+
+      <div class="mt-3 flex justify-around">
         <div v-for="video in videos" :key="video.id">
-          <div>
-            <div>
-              <iframe
-                width="100%"
-                height="100%"
-                :src="video.link"
-                frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </div>
+          <div class="px-4 py-2 m-2">
+            <iframe
+              width="100%"
+              height="100%"
+              :src="video.link"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
       </div>
@@ -64,12 +68,27 @@
 <script>
 import { mapActions } from "vuex";
 import { signIn } from "../utils/authentication.js";
+import Typewriter from "../components/Typewriter";
+// :style="{
+//       backgroundImage: `url('${require('../assets/images/artistic-background.jpg')}')`
+//     }"
 
 export default {
   name: "Authentication",
+  components: {
+    Typewriter
+  },
   data() {
     return {
       videos: [
+        {
+          id: "vfTJ4vmIsO4",
+          link: "https://www.youtube.com/embed/vfTJ4vmIsO4?start=260"
+        },
+        {
+          id: "hI89r4LqaCc",
+          link: "https://www.youtube.com/embed/hI89r4LqaCc"
+        },
         {
           id: "wKimU8jy2a8",
           link: "https://www.youtube.com/embed/wKimU8jy2a8"
@@ -77,10 +96,6 @@ export default {
         {
           id: "ZoGH7d51bvc",
           link: "https://www.youtube.com/embed/ZoGH7d51bvc?start=534"
-        },
-        {
-          id: "hI89r4LqaCc",
-          link: "https://www.youtube.com/embed/hI89r4LqaCc?start=534"
         }
       ]
     };

@@ -1,7 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PollsList.vue should render 1`] = `
-<div>
-  <div class="flex flex-wrap justify-between"></div>
-</div>
-`;
+exports[`PollsList.vue should render 1`] = `<div class="flex flex-wrap justify-around"></div>`;

@@ -3,13 +3,11 @@
 exports[`Poll.vue should render 1`] = `
 <div>
   <div>
-    <p>
+    <p class="text-xl">
       Pour voter il suffit de classer vos préférences en les glissant-déposant
+      :
     </p>
-    <div>
-      <div>
-        <div>
-          <sortablelist-stub value="" axis="y" distance="0" pressdelay="0" pressthreshold="5" hidesortableghost="true" lockoffset="50%" transitionduration="300" appendto="body" lockaxis="y" shouldcancelstart="function _default(e) {
+    <sortablelist-stub value="" axis="y" distance="0" pressdelay="0" pressthreshold="5" hidesortableghost="true" lockoffset="50%" transitionduration="300" appendto="body" lockaxis="y" shouldcancelstart="function _default(e) {
         // Cancel sorting if the event target is an \`input\`, \`textarea\`, \`select\` or \`option\`
         var disabledElements = ['input', 'textarea', 'select', 'option', 'button'];
         return disabledElements.indexOf(e.target.tagName.toLowerCase()) !== -1;
@@ -19,10 +17,10 @@ exports[`Poll.vue should render 1`] = `
           width: node.offsetWidth,
           height: node.offsetHeight
         };
-      }"></sortablelist-stub>
-        </div>
-      </div>
-    </div> <button color="info">Valider</button>
+      }" class="mt-6 mx-auto w-1/2"></sortablelist-stub>
+    <div class="w-full mt-10 px-3 flex justify-center"><button class="w-1/3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Voter
+      </button></div>
   </div>
 </div>
 `;

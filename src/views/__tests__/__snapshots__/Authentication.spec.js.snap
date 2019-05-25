@@ -2,25 +2,25 @@
 
 exports[`Authentication.vue should render 1`] = `
 <div>
-  <div class="mt-16 flex flex-col justify-center">
+  <div class="mt-10 flex flex-col justify-center">
     <div>
       <typewriter-stub class="inline-flex text-3xl">
         Bienvenue sur Condorcet
       </typewriter-stub>
-    </div> <span>
+    </div> <span class="mt-4">
       L'application qui vous permet de réaliser des scrutins en utilisant la
-      méthode de Condorcet
+      méthode de Condorcet et de comparer le résultat au scrutin uninominal.
     </span>
-    <div class="mt-4">Acceder à l'application via :</div>
+    <div class="mt-12 text-center">Acceder à l'application via :</div>
     <div class="mt-2 flex justify-center"><button class="mx-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
         Google
       </button> <button class="mx-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
         Github
       </button></div>
   </div>
-  <div class="mt-16">
+  <div class="mt-12">
     <h4 class="text-2xl">Comment fonctionne le vote ?</h4>
-    <div>
+    <div class="mt-4">
       <ul class="list-disc">
         <li>
           Chaque votant classe les alternatives par ordre de préférence
@@ -28,21 +28,24 @@ exports[`Authentication.vue should render 1`] = `
         <li>
           On organise des duels entre toutes les alternatives
         </li>
-        <li>Celui qui remporte tous les duels est déclaré gagnant</li>
+        <li>Celui qui remporte le plus de duels est déclaré gagnant</li>
       </ul>
     </div>
   </div>
-  <div class="mt-16">
+  <div class="mt-12">
     <h4 class="text-2xl">Vidéos qui en parlent :</h4>
-    <div class="flex justify-around">
+    <div class="mt-3 flex justify-around">
+      <div>
+        <div class="px-4 py-2 m-2"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/vfTJ4vmIsO4?start=260" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></div>
+      </div>
+      <div>
+        <div class="px-4 py-2 m-2"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/hI89r4LqaCc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></div>
+      </div>
       <div>
         <div class="px-4 py-2 m-2"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/wKimU8jy2a8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></div>
       </div>
       <div>
         <div class="px-4 py-2 m-2"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/ZoGH7d51bvc?start=534" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></div>
-      </div>
-      <div>
-        <div class="px-4 py-2 m-2"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/hI89r4LqaCc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen"></iframe></div>
       </div>
     </div>
   </div>
