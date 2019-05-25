@@ -2,7 +2,7 @@ require("dotenv").config();
 const pollsFixtures = require("./polls");
 const votesFixtures = require("./votes");
 
-const { db } = require("../config/firebase");
+const { db, admin } = require("../config/firebase");
 
 const polls = pollsFixtures();
 
@@ -16,6 +16,12 @@ polls.forEach(async poll => {
     db.collection("polls")
       .doc(pollDocument.id)
       .collection("votes")
-      .add({ vote });
+      .add({ vote, timestamp: admin.firestore.FieldValue.serverTimestamp() })
+      .then(() => {
+        console.log("add vote");
+      })
+      .catch(() => {
+        console.log("c'est la merde");
+      });
   });
 });

@@ -36,7 +36,7 @@
 import { mapState, mapActions, mapGetters } from "vuex";
 import SortableList from "../components/SortableList";
 import SortableItem from "../components/SortableItem";
-import { db } from "../firebase";
+import firebase, { db } from "../firebase";
 
 export default {
   name: "Poll",
@@ -83,7 +83,8 @@ export default {
         .collection("answers")
         .doc(userId)
         .set({
-          answers: this.answers
+          vote: this.answers,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
         })
         .then(() => {
           this.addNotification({

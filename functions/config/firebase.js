@@ -15,3 +15,4 @@ firestore.settings(settings);
 
 exports.db = firestore;
 exports.auth = admin.auth();
+exports.admin = admin;

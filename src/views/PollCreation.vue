@@ -80,7 +80,7 @@
 import { mapState, mapActions } from "vuex";
 import randomString from "random-string";
 import slugify from "slugify";
-import { db } from "../firebase";
+import firebase, { db } from "../firebase";
 
 export default {
   name: "PollCreation",
@@ -120,7 +120,8 @@ export default {
           token: randomString({ length: 20 }),
           users,
           condorcet: null,
-          uninominal: null
+          uninominal: null,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
 
         this.addNotification({
@@ -128,7 +129,7 @@ export default {
           status: "success"
         });
 
-        this.name = "";
+        this.question = "";
         this.description = "";
         this.answer = "";
         this.answers = [];

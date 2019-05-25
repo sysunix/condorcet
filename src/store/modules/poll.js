@@ -19,6 +19,7 @@ export default {
     fetchPolls({ commit }, userId) {
       db.collection("polls")
         .where("users", "array-contains", userId)
+        .orderBy("timestamp", "desc")
         .onSnapshot(polls => {
           let data = [];
 

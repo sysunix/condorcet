@@ -2,6 +2,7 @@ const uuid = require("uuid/v1");
 const slugify = require("slugify");
 const faker = require("faker");
 const random = require("./random");
+const { admin } = require("../config/firebase");
 
 let { USER_ID, NUMBER_OF_POLLS, NUMBER_OF_ANSWERS } = process.env;
 
@@ -33,7 +34,8 @@ module.exports = () => {
         token: uuid(),
         users: [USER_ID],
         condorcet: null,
-        uninominal: null
+        uninominal: null,
+        timestamp: admin.firestore.FieldValue.serverTimestamp()
       };
     });
 };
