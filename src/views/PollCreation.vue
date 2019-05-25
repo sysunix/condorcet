@@ -140,7 +140,16 @@ export default {
       }
     },
     addAnswer() {
-      if (this.answers.find(answer => answer.value === this.answer)) {
+      const cleanAnswer = this.answer.trim();
+      if (cleanAnswer.length === 0) {
+        this.addNotification({
+          text: "Une réponse ne peut pas être vide",
+          status: "warning"
+        });
+        return;
+      }
+
+      if (this.answers.find(answer => answer.value === cleanAnswer)) {
         this.addNotification({
           text: "Cette réponse existe déjà",
           status: "warning"
@@ -152,8 +161,8 @@ export default {
       this.answers = [
         ...this.answers,
         {
-          value: this.answer,
-          slug: slugify(this.answer, { lower: true, replacement: "-" })
+          value: cleanAnswer,
+          slug: slugify(cleanAnswer, { lower: true, replacement: "-" })
         }
       ];
       this.answer = "";
