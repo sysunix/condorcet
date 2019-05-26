@@ -1,9 +1,17 @@
 <template>
   <div class="flex flex-wrap justify-around">
+    <div v-if="polls.length === 0">
+      Tu n'a pas encore de scrutin. Tu peux en créé un en cliquant sur
+      <router-link to="polls/new" class="text-teal-500 hover:underline"
+        >ce lien</router-link
+      >.
+    </div>
+
     <div
       class="max-w-sm rounded overflow-hidden shadow-lg mb-10"
       v-for="poll in polls"
       :key="poll.id"
+      v-else
     >
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{ poll.question }}</div>
