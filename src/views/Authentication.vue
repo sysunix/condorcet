@@ -26,6 +26,12 @@
         >
           Github
         </button>
+        <button
+          class="mx-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+          @click="signIn('facebook')"
+        >
+          Facebook
+        </button>
       </div>
     </div>
 
@@ -113,15 +119,23 @@ export default {
           this.addNotification({ text: "Vous êtes connecté", status: "info" });
         },
         error => {
+          console.log(error);
           switch (error.code) {
             case "auth/account-exists-with-different-credential":
               this.addNotification({
-                text: "Veuillez vous identifier via Google",
+                text: `Ton compte n'est pas assicié à ${
+                  error.credential.signInMethod
+                }. Essaye une autre méthode d'authentification`,
                 status: "error"
               });
+
               break;
 
             default:
+              this.addNotification({
+                text: "Il y a eu un problème pour vous authentifier",
+                status: "error"
+              });
               break;
           }
         }

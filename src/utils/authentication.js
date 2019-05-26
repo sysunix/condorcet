@@ -2,6 +2,7 @@ import firebase, { auth } from "../firebase";
 
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 const githubAuthProvider = new firebase.auth.GithubAuthProvider();
+const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
 
 export const signIn = (provider, cb, errorCb) => {
   auth.useDeviceLanguage();
@@ -17,8 +18,13 @@ export const signIn = (provider, cb, errorCb) => {
 
       break;
 
+    case "facebook":
+      authProvider = facebookAuthProvider;
+
+      break;
+
     default:
-      throw new Error('Provider must be "github" or "google"');
+      throw new Error('Provider must be "facebook", "github" or "google"');
   }
 
   auth

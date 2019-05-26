@@ -8,16 +8,48 @@ describe("utils/authentication", () => {
     function error() {
       signIn("twitter");
     }
-    expect(error).toThrow('Provider must be "github" or "google"');
+    expect(error).toThrow('Provider must be "facebook", "github" or "google"');
   });
 
-  it("should signIn and return ", done => {
+  it("should signIn with google ", done => {
     auth.signInWithPopup.mockImplementation(() =>
       Promise.resolve({ user: "Smaug" })
     );
 
     signIn(
       "google",
+      user => {
+        expect(auth.signInWithPopup).toBeCalled();
+        expect(user).toBe("Smaug");
+        done();
+      },
+      () => {}
+    );
+  });
+
+  it("should signIn with github ", done => {
+    auth.signInWithPopup.mockImplementation(() =>
+      Promise.resolve({ user: "Smaug" })
+    );
+
+    signIn(
+      "github",
+      user => {
+        expect(auth.signInWithPopup).toBeCalled();
+        expect(user).toBe("Smaug");
+        done();
+      },
+      () => {}
+    );
+  });
+
+  it("should signIn with facebook ", done => {
+    auth.signInWithPopup.mockImplementation(() =>
+      Promise.resolve({ user: "Smaug" })
+    );
+
+    signIn(
+      "facebook",
       user => {
         expect(auth.signInWithPopup).toBeCalled();
         expect(user).toBe("Smaug");
