@@ -8,7 +8,11 @@ exports[`PollCreation.vue should render 1`] = `
           Question *
         </label> <input id="question" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"> <label for="description" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
           Description
-        </label> <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"></textarea></div>
+        </label> <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"></textarea>
+        <div class="md:flex md:items-center mb-6"><input id="isPublic" type="checkbox" name="isPublic" class="mr-2 leading-tight"> <label for="isPublic" class="md:w-2/3 block text-gray-500 font-bold"><span class="text-sm">
+              Rendre le scrutin public ? Non
+            </span></label></div>
+      </div>
       <div class="w-full md:w-1/2 px-3"><label for="answer" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
           Ajouter des réponses *
         </label>

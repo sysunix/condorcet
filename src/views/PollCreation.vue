@@ -1,11 +1,6 @@
 <template>
   <div>
-    <form
-      class="w-full"
-      autocomplete="off"
-      @keypress.enter.prevent
-      @click.prevent
-    >
+    <form class="w-full" autocomplete="off" @keypress.enter.prevent>
       <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label
@@ -32,6 +27,24 @@
             v-model="description"
             class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           ></textarea>
+
+          <div class="md:flex md:items-center mb-6">
+            <input
+              id="isPublic"
+              class="mr-2 leading-tight"
+              type="checkbox"
+              v-model="isPublic"
+              name="isPublic"
+            />
+            <label
+              for="isPublic"
+              class="md:w-2/3 block text-gray-500 font-bold"
+            >
+              <span class="text-sm">
+                Rendre le scrutin public ? {{ isPublicText }}
+              </span>
+            </label>
+          </div>
         </div>
         <div class="w-full md:w-1/2 px-3">
           <label
@@ -89,13 +102,17 @@ export default {
       question: "",
       description: "",
       answer: "",
-      answers: []
+      answers: [],
+      isPublic: false
     };
   },
   computed: {
     ...mapState({
       userId: state => state.user.id
-    })
+    }),
+    isPublicText() {
+      return this.isPublic ? "Oui" : "Non";
+    }
   },
   methods: {
     ...mapActions("app", ["addNotification"]),
@@ -121,7 +138,8 @@ export default {
           users,
           condorcet: null,
           uninominal: null,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          isPublic: this.isPublic
         });
 
         this.addNotification({
