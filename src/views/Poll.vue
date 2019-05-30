@@ -36,7 +36,8 @@
 import { mapState, mapActions, mapGetters } from "vuex";
 import SortableList from "../components/SortableList";
 import SortableItem from "../components/SortableItem";
-import firebase, { db } from "../firebase";
+import { db } from "../firebase";
+import VoteModel from "../models/Vote";
 
 export default {
   name: "Poll",
@@ -78,14 +79,23 @@ export default {
       const pollId = this.$route.params.id;
       const userId = this.userId;
 
+      const vote = new VoteModel({
+        vote: this.answers
+      });
+
+      if (vote.validate().valid === false) {
+        this.addNotification({
+          text: "Il y a eu un problème",
+          status: "error"
+        });
+        return;
+      }
+
       db.collection("polls")
         .doc(pollId)
         .collection("answers")
         .doc(userId)
-        .set({
-          vote: this.answers,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        })
+        .set(vote.toJSON())
         .then(() => {
           this.addNotification({
             text: "Merci de ton vote",

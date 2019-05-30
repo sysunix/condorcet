@@ -91,9 +91,9 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-import randomString from "random-string";
 import slugify from "slugify";
-import firebase, { db } from "../firebase";
+import { db } from "../firebase";
+import PollModel from "../models/Poll";
 
 export default {
   name: "PollCreation",
@@ -117,7 +117,16 @@ export default {
   methods: {
     ...mapActions("app", ["addNotification"]),
     async createPoll() {
-      if (this.question === "" || this.answers.length < 2) {
+      const poll = new PollModel({
+        question: this.question,
+        description: this.description,
+        answers: this.answers,
+        owner: this.userId,
+        users: [this.userId],
+        isPublic: this.isPublic
+      });
+
+      if (poll.validate().valid === false) {
         this.addNotification({
           text: "Veuillez renseigner l'ensemble des informations requises",
           status: "error"
@@ -126,21 +135,7 @@ export default {
       }
 
       try {
-        let users = [this.userId];
-
-        await db.collection("polls").add({
-          question: this.question,
-          description: this.description,
-          answers: this.answers,
-          owner: this.userId,
-          isActive: true,
-          token: randomString({ length: 20 }),
-          users,
-          condorcet: null,
-          uninominal: null,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-          isPublic: this.isPublic
-        });
+        await db.collection("polls").add(poll.toJSON());
 
         this.addNotification({
           text: "Scrutin créé mon pote",

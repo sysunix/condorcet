@@ -11,6 +11,13 @@ jest.mock("../../firebase.js", () => ({
     collection: jest.fn(() => ({
       add: jest.fn(() => Promise.resolve())
     }))
+  },
+  firestore: {
+    FieldValue: {
+      serverTimestamp() {
+        return {};
+      }
+    }
   }
 }));
 

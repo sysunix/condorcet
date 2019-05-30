@@ -11,9 +11,14 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe("Poll.vue", () => {
-  let store;
+  let wrapper;
+  let appActions;
+
   beforeEach(() => {
-    store = new Vuex.Store({
+    jest.clearAllMocks();
+    appActions = { addNotification: jest.fn() };
+
+    const store = new Vuex.Store({
       state: {
         user: { id: "azfj334N3FJ2" }
       },
@@ -22,13 +27,11 @@ describe("Poll.vue", () => {
           namespaced: true,
           actions: { fetchPoll: jest.fn(() => ({ users: [], answers: [] })) }
         },
-        app: { namespaced: true, actions: { addNotification: jest.fn() } }
+        app: { namespaced: true, actions: appActions }
       }
     });
-  });
 
-  it("should render", () => {
-    const wrapper = shallowMount(Poll, {
+    wrapper = shallowMount(Poll, {
       localVue,
       store,
       mocks: {
@@ -36,7 +39,17 @@ describe("Poll.vue", () => {
         $router: { push: jest.fn() }
       }
     });
+  });
 
+  it("should render", () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it("click to inform user with a notification", () => {
+    const voteButton = wrapper.find("button");
+
+    voteButton.trigger("click");
+
+    expect(appActions.addNotification).toBeCalled();
   });
 });

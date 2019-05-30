@@ -20,7 +20,7 @@ jobs:
     executor: node
     steps:
       - checkout_and_restore_cache
-      - run: yarn install
+      - run: yarn install --ignore-engines
       - save_cache:
           key: v2-dependencies-{{ checksum "yarn.lock" }}
           paths:
