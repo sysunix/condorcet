@@ -19,6 +19,8 @@ polls.forEach(async poll => {
       .add({ vote, timestamp: admin.firestore.FieldValue.serverTimestamp() })
       .then(() => {
         console.log("add vote");
+
+        return true;
       })
       .catch(() => {
         console.log("c'est la merde");

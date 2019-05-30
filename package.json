@@ -45,6 +45,7 @@
     "faker": "4.1.0",
     "firebase-mock": "2.2.10",
     "firebase-tools": "6.10.0",
+    "jest-when": "2.5.0",
     "sort-keys": "3.0.0",
     "tailwindcss": "^1.0.1",
     "vue-style-loader": "4.1.2",

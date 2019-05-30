@@ -4,7 +4,7 @@ exports[`PollResult.vue should render 1`] = `
 <div>
   <h3 class="text-4xl">Condorcet</h3>
   <!---->
-  <div>
+  <div class="overflow-scroll">
     <table class="text-left w-full border-collapse">
       <thead>
         <tr>
@@ -25,7 +25,7 @@ exports[`PollResult.vue should render 1`] = `
       <tbody>
         <tr>
           <td class="py-4 px-6 border-b border-grey-light">
-            luffy
+
           </td>
           <td class="py-4 px-6 border-b border-grey-light">
             /
@@ -33,7 +33,7 @@ exports[`PollResult.vue should render 1`] = `
         </tr>
         <tr>
           <td class="py-4 px-6 border-b border-grey-light">
-            sanji
+
           </td>
           <td class="py-4 px-6 border-b border-grey-light">
             /
@@ -41,7 +41,7 @@ exports[`PollResult.vue should render 1`] = `
         </tr>
         <tr>
           <td class="py-4 px-6 border-b border-grey-light">
-            zorro
+
           </td>
           <td class="py-4 px-6 border-b border-grey-light">
             /

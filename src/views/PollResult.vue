@@ -4,7 +4,10 @@
 
     <Graph v-if="featureFlipping.graphOfTheDuels"></Graph>
 
-    <div v-if="condorcet && featureFlipping.matrixOfTheDuels && answers">
+    <div
+      class="overflow-scroll"
+      v-if="condorcet && featureFlipping.matrixOfTheDuels && answers"
+    >
       <table class="text-left w-full border-collapse">
         <thead>
           <tr>
@@ -28,7 +31,7 @@
             :key="alternative"
           >
             <td class="py-4 px-6 border-b border-grey-light">
-              {{ alternative }}
+              {{ item.value }}
             </td>
             <td
               class="py-4 px-6 border-b border-grey-light"
@@ -93,12 +96,13 @@ export default {
     ...mapState("app", ["featureFlipping"])
   },
   async created() {
-    const result = await db
+    const resultsRef = db
       .collection("polls")
       .doc(this.$route.params.id)
-      .get();
+      .collection("results");
 
-    const { condorcet, uninominal, answers } = result.data();
+    const condorcet = (await resultsRef.doc("condorcet").get()).data();
+    const uninominal = (await resultsRef.doc("uninominal").get()).data();
 
     const condorcetMatrix = Object.keys(condorcet.matrix).reduce(
       (acc, key) => ({
@@ -118,10 +122,13 @@ export default {
       ranking: condorcet.ranking,
       matrix: sortKeys(condorcetMatrix, { deep: true })
     };
-    this.uninominal = uninominal;
-    this.answers = answers.sort((a, b) => {
-      return a.slug.localeCompare(b.slug);
-    });
+
+    this.uninominal = uninominal.ranking;
+    this.answers = condorcet.ranking
+      .map(c => ({ value: c.value, slug: c.slug }))
+      .sort((a, b) => {
+        return a.slug.localeCompare(b.slug);
+      });
   }
 };
 </script>

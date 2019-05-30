@@ -46,13 +46,18 @@ exports.resultOfThePoll = functions.firestore
 
         db.collection("polls")
           .doc(pollId)
-          .update({
-            condorcet: { ranking: condorcetRanking, matrix: condorcetMatrix }
+          .collection("results")
+          .doc("condorcet")
+          .set({
+            ranking: condorcetRanking,
+            matrix: condorcetMatrix
           });
 
         db.collection("polls")
           .doc(pollId)
-          .update({ uninominal: uninominalRanking });
+          .collection("results")
+          .doc("uninominal")
+          .set({ ranking: uninominalRanking });
 
         return 200;
       })

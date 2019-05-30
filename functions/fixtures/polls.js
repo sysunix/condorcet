@@ -33,8 +33,6 @@ module.exports = () => {
         owner: USER_ID,
         token: uuid(),
         users: [USER_ID],
-        condorcet: null,
-        uninominal: null,
         timestamp: admin.firestore.FieldValue.serverTimestamp()
       };
     });
