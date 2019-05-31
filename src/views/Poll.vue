@@ -93,7 +93,7 @@ export default {
 
       db.collection("polls")
         .doc(pollId)
-        .collection("answers")
+        .collection("votes")
         .doc(userId)
         .set(vote.toJSON())
         .then(() => {
