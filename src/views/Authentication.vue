@@ -75,9 +75,6 @@
 import { mapActions } from "vuex";
 import { signIn } from "../utils/authentication.js";
 import Typewriter from "../components/Typewriter";
-// :style="{
-//       backgroundImage: `url('${require('../assets/images/artistic-background.jpg')}')`
-//     }"
 
 export default {
   name: "Authentication",
@@ -109,37 +106,33 @@ export default {
   methods: {
     ...mapActions("user", ["setUser"]),
     ...mapActions("app", ["addNotification"]),
-    signIn(provider) {
-      signIn(
-        provider,
-        user => {
-          this.setUser(user);
+    async signIn(provider) {
+      try {
+        const { user } = await signIn(provider);
+        this.setUser(user);
 
-          this.$router.push({ name: "polls_list" });
-          this.addNotification({ text: "Vous êtes connecté", status: "info" });
-        },
-        error => {
-          console.log(error);
-          switch (error.code) {
-            case "auth/account-exists-with-different-credential":
-              this.addNotification({
-                text: `Ton compte n'est pas assicié à ${
-                  error.credential.signInMethod
-                }. Essaye une autre méthode d'authentification`,
-                status: "error"
-              });
+        this.$router.push({ name: "polls_list" });
+        this.addNotification({ text: "Vous êtes connecté", status: "info" });
+      } catch (error) {
+        switch (error.code) {
+          case "auth/account-exists-with-different-credential":
+            this.addNotification({
+              text: `Ton compte n'est pas assicié à ${
+                error.credential.signInMethod
+              }. Essaye une autre méthode d'authentification`,
+              status: "error"
+            });
 
-              break;
+            break;
 
-            default:
-              this.addNotification({
-                text: "Il y a eu un problème pour vous authentifier",
-                status: "error"
-              });
-              break;
-          }
+          default:
+            this.addNotification({
+              text: "Il y a eu un problème pour vous authentifier",
+              status: "error"
+            });
+            break;
         }
-      );
+      }
     }
   }
 };

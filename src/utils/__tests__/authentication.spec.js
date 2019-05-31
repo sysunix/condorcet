@@ -4,68 +4,37 @@ import { signIn, signOut } from "../authentication";
 jest.mock("../../firebase");
 
 describe("utils/authentication", () => {
-  it("should not signIn if provider is not correct", () => {
-    function error() {
-      signIn("twitter");
+  auth.signInWithPopup.mockImplementation(() =>
+    Promise.resolve({ user: "Smaug" })
+  );
+
+  it("should not signIn if provider is not correct", async () => {
+    expect.assertions(1);
+    try {
+      await signIn("twitter");
+    } catch (error) {
+      expect(error).toMatchInlineSnapshot(
+        `[Error: Provider must be "facebook", "github" or "google"]`
+      );
     }
-    expect(error).toThrow('Provider must be "facebook", "github" or "google"');
   });
 
-  it("should signIn with google ", done => {
-    auth.signInWithPopup.mockImplementation(() =>
-      Promise.resolve({ user: "Smaug" })
-    );
+  ["google", "github", "facebook"].forEach(provider => {
+    it(`should signIn with ${provider} `, async done => {
+      expect.assertions(2);
 
-    signIn(
-      "google",
-      user => {
-        expect(auth.signInWithPopup).toBeCalled();
-        expect(user).toBe("Smaug");
-        done();
-      },
-      () => {}
-    );
-  });
+      const { user } = await signIn(provider);
 
-  it("should signIn with github ", done => {
-    auth.signInWithPopup.mockImplementation(() =>
-      Promise.resolve({ user: "Smaug" })
-    );
-
-    signIn(
-      "github",
-      user => {
-        expect(auth.signInWithPopup).toBeCalled();
-        expect(user).toBe("Smaug");
-        done();
-      },
-      () => {}
-    );
-  });
-
-  it("should signIn with facebook ", done => {
-    auth.signInWithPopup.mockImplementation(() =>
-      Promise.resolve({ user: "Smaug" })
-    );
-
-    signIn(
-      "facebook",
-      user => {
-        expect(auth.signInWithPopup).toBeCalled();
-        expect(user).toBe("Smaug");
-        done();
-      },
-      () => {}
-    );
-  });
-
-  it("should signOut and return null ", done => {
-    auth.signOut.mockImplementation(() => Promise.resolve());
-
-    signOut(result => {
-      expect(auth.signOut).toBeCalled();
-      expect(result).toBe(null);
+      expect(auth.signInWithPopup).toBeCalled();
+      expect(user).toBe("Smaug");
       done();
     });
+  });
+
+  it("should signOut", async () => {
+    expect.assertions(1);
+    auth.signOut.mockImplementation(() => Promise.resolve());
+    await signOut();
+    expect(auth.signOut).toBeCalled();
   });
 });

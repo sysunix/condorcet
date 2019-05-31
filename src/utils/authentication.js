@@ -4,7 +4,7 @@ const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 const githubAuthProvider = new firebase.auth.GithubAuthProvider();
 const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
 
-export const signIn = (provider, cb, errorCb) => {
+export const signIn = async provider => {
   auth.useDeviceLanguage();
 
   let authProvider;
@@ -27,24 +27,8 @@ export const signIn = (provider, cb, errorCb) => {
       throw new Error('Provider must be "facebook", "github" or "google"');
   }
 
-  auth
-    .signInWithPopup(authProvider)
-    .then(result => {
-      auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-      cb(result.user);
-    })
-    .catch(function(error) {
-      errorCb(error);
-    });
+  auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+  return await auth.signInWithPopup(authProvider);
 };
 
-export const signOut = cb => {
-  auth
-    .signOut()
-    .then(() => {
-      cb(null);
-    })
-    .catch(error => {
-      cb({ status: "error", error });
-    });
-};
+export const signOut = () => auth.signOut();

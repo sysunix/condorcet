@@ -51,12 +51,18 @@ export default {
   },
   methods: {
     ...mapActions("user", ["clearUser"]),
-    signOut() {
-      signOut(error => {
-        if (error) return;
+    ...mapActions("app", ["addNotification"]),
+    async signOut() {
+      try {
+        await signOut();
         this.clearUser();
         this.$router.push({ name: "authentication" });
-      });
+      } catch (error) {
+        this.addNotification({
+          status: "error",
+          message: "Il y a eu un problème"
+        });
+      }
     }
   }
 };
