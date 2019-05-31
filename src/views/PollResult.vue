@@ -79,6 +79,7 @@ import { mapState } from "vuex";
 import sortKeys from "sort-keys";
 import { db } from "../firebase";
 import Graph from "../components/Graph.vue";
+import { CondorcetModel, UninominalModel } from "../models/Result";
 
 export default {
   name: "PollResult",
@@ -101,29 +102,42 @@ export default {
       .doc(this.$route.params.id)
       .collection("results");
 
-    const condorcet = (await resultsRef.doc("condorcet").get()).data();
-    const uninominal = (await resultsRef.doc("uninominal").get()).data();
-
-    const condorcetMatrix = Object.keys(condorcet.matrix).reduce(
-      (acc, key) => ({
-        ...acc,
-        [key]: {
-          duels: {
-            ...condorcet.matrix[key].duels,
-            [key]: "/"
-          },
-          value: condorcet.matrix[key].value
-        }
-      }),
-      {}
+    let condorcet = new CondorcetModel(
+      (await resultsRef.doc("condorcet").get()).data()
     );
 
-    this.condorcet = {
-      ranking: condorcet.ranking,
-      matrix: sortKeys(condorcetMatrix, { deep: true })
-    };
+    let uninominal = new UninominalModel(
+      (await resultsRef.doc("uninominal").get()).data()
+    );
 
-    this.uninominal = uninominal.ranking;
+    if (condorcet.validate().valid) {
+      condorcet = condorcet.toJSON();
+
+      const condorcetMatrix = Object.keys(condorcet.matrix).reduce(
+        (acc, key) => ({
+          ...acc,
+          [key]: {
+            duels: {
+              ...condorcet.matrix[key].duels,
+              [key]: "/"
+            },
+            value: condorcet.matrix[key].value
+          }
+        }),
+        {}
+      );
+
+      this.condorcet = {
+        ranking: condorcet.ranking,
+        matrix: sortKeys(condorcetMatrix, { deep: true })
+      };
+    }
+
+    if (uninominal.validate().valid) {
+      uninominal = uninominal.toJSON();
+      this.uninominal = uninominal.ranking;
+    }
+
     this.answers = condorcet.ranking
       .map(c => ({ value: c.value, slug: c.slug }))
       .sort((a, b) => {

@@ -1,14 +1,28 @@
 import { attributes } from "structure";
-import firebase from "../firebase";
 
-const Result = attributes({
-  condorcet: { type: Object, required: true, default: null },
-  uninominal: { type: Object, required: true, default: null },
-  timestamp: {
+export const CondorcetModel = attributes({
+  ranking: {
+    type: Array,
+    itemType: Object,
+    required: true
+  },
+  matrix: {
     type: Object,
-    required: true,
-    default: firebase.firestore.FieldValue.serverTimestamp()
+    required: true
+  },
+  timestamp: {
+    type: Object
   }
-})(class Result {});
+})(class Condorcet {});
 
-export default Result;
+export const UninominalModel = attributes({
+  ranking: {
+    type: Array,
+    itemType: Object,
+    required: true,
+    default: null
+  },
+  timestamp: {
+    type: Object
+  }
+})(class Uninominal {});
