@@ -2,6 +2,6 @@
 
 exports[`PollJoin.vue should render 1`] = `
 <div class="Container">
-  <div>Traitement en cours...</div>
+  <div>Qui est le meilleur ?</div>
 </div>
 `;

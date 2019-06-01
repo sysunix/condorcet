@@ -6,20 +6,7 @@ import firebase from "../../firebase";
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-jest.mock("../../firebase.js", () => ({
-  db: {
-    collection: jest.fn(() => ({
-      add: jest.fn(() => Promise.resolve())
-    }))
-  },
-  firestore: {
-    FieldValue: {
-      serverTimestamp() {
-        return {};
-      }
-    }
-  }
-}));
+jest.mock("../../firebase");
 
 describe("PollCreation.vue", () => {
   let wrapper;

@@ -4,10 +4,6 @@ import { signIn, signOut } from "../authentication";
 jest.mock("../../firebase");
 
 describe("utils/authentication", () => {
-  auth.signInWithPopup.mockImplementation(() =>
-    Promise.resolve({ user: "Smaug" })
-  );
-
   it("should not signIn if provider is not correct", async () => {
     expect.assertions(1);
     try {
@@ -33,7 +29,6 @@ describe("utils/authentication", () => {
 
   it("should signOut", async () => {
     expect.assertions(1);
-    auth.signOut.mockImplementation(() => Promise.resolve());
     await signOut();
     expect(auth.signOut).toBeCalled();
   });

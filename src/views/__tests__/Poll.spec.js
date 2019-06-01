@@ -2,9 +2,12 @@ import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 
 import Poll from "../Poll.vue";
+import { MOCK_POLL_ID, MOCK_USER_ID } from "../../utils/test";
+
+jest.mock("../../firebase");
 
 const $route = {
-  params: "adz93dze823j"
+  params: { id: MOCK_POLL_ID }
 };
 
 const localVue = createLocalVue();
@@ -20,7 +23,7 @@ describe("Poll.vue", () => {
 
     const store = new Vuex.Store({
       state: {
-        user: { id: "azfj334N3FJ2" }
+        user: { id: MOCK_USER_ID }
       },
       modules: {
         poll: {

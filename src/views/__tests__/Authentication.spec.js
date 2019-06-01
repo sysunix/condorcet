@@ -6,7 +6,7 @@ import { signIn } from "../../utils/authentication";
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-jest.mock("../../utils/authentication.js");
+jest.mock("../../utils/authentication");
 
 describe("Authentication.vue", () => {
   let wrapper;

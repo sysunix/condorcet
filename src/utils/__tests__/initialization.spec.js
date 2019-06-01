@@ -1,5 +1,7 @@
 import initialization from "../initialization";
 
+jest.mock("../../firebase");
+
 const store = {
   state: {
     app: {
