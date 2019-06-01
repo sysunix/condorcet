@@ -6,7 +6,7 @@ const Poll = attributes({
   answers: { type: Array, required: true, itemType: Object, minLength: 2 },
   description: { type: String, empty: true },
   isActive: { type: Boolean, required: true, default: true },
-  isPublic: { type: Boolean, required: true },
+  isPublic: { type: Boolean, required: true, default: false },
   owner: { type: String, required: true },
   question: { type: String, required: true },
   token: {

@@ -1,10 +1,12 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
+import { createVote } from "../../utils/request";
 
 import Poll from "../Poll.vue";
-import { MOCK_POLL_ID, MOCK_USER_ID } from "../../utils/test";
+import { MOCK_POLL_ID, MOCK_USER_ID, MOCK_ANSWERS } from "../../utils/test";
 
 jest.mock("../../firebase");
+jest.mock("../../utils/request");
 
 const $route = {
   params: { id: MOCK_POLL_ID }
@@ -16,10 +18,12 @@ localVue.use(Vuex);
 describe("Poll.vue", () => {
   let wrapper;
   let appActions;
+  let pollActions;
 
   beforeEach(() => {
     jest.clearAllMocks();
     appActions = { addNotification: jest.fn() };
+    pollActions = { setPoll: jest.fn() };
 
     const store = new Vuex.Store({
       state: {
@@ -28,7 +32,10 @@ describe("Poll.vue", () => {
       modules: {
         poll: {
           namespaced: true,
-          actions: { fetchPoll: jest.fn(() => ({ users: [], answers: [] })) }
+          state: {
+            current: { answers: MOCK_ANSWERS, users: [MOCK_USER_ID] }
+          },
+          actions: pollActions
         },
         app: { namespaced: true, actions: appActions }
       }
@@ -45,6 +52,7 @@ describe("Poll.vue", () => {
   });
 
   it("should render", () => {
+    expect(pollActions.setPoll).toBeCalled();
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -53,6 +61,6 @@ describe("Poll.vue", () => {
 
     voteButton.trigger("click");
 
-    expect(appActions.addNotification).toBeCalled();
+    expect(createVote).toBeCalled();
   });
 });

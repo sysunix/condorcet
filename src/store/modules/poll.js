@@ -1,5 +1,6 @@
-import { FETCH_POLLS, SET_POLL } from "../../types";
+import { SET_POLLS, SET_POLL } from "../../types";
 import { db } from "../../firebase";
+import { getDataFromQuerySnapshot } from "../../utils/firebase";
 
 export default {
   namespaced: true,
@@ -8,7 +9,7 @@ export default {
     current: {}
   },
   mutations: {
-    [FETCH_POLLS](state, polls) {
+    [SET_POLLS](state, polls) {
       state.all = polls;
     },
     [SET_POLL](state, poll) {
@@ -16,35 +17,18 @@ export default {
     }
   },
   actions: {
-    fetchPolls({ commit }, userId) {
+    listenPolls({ commit }, userId) {
       db.collection("polls")
         .where("users", "array-contains", userId)
         .orderBy("timestamp", "desc")
-        .onSnapshot(polls => {
-          let data = [];
+        .onSnapshot(querySnapshot => {
+          const polls = getDataFromQuerySnapshot(querySnapshot);
+          const enhancedPolls = polls.map(poll => ({
+            ...poll,
+            isOwner: userId === poll.owner
+          }));
 
-          polls.forEach(poll => {
-            const { isActive: isActive, ...pollData } = poll.data();
-            data.push({
-              id: poll.id,
-              isActive,
-              isOwner: userId === pollData.owner,
-              ...pollData
-            });
-          });
-
-          commit(FETCH_POLLS, data);
-        });
-    },
-    fetchPoll({ commit }, pollId) {
-      return db
-        .collection("polls")
-        .doc(pollId)
-        .get()
-        .then(snapshot => {
-          const poll = { id: snapshot.id, ...snapshot.data() };
-          commit(SET_POLL, poll);
-          return poll;
+          commit(SET_POLLS, enhancedPolls);
         });
     },
     setPoll({ commit, state }, pollId) {

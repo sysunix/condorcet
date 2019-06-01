@@ -12,7 +12,7 @@ describe("store/modules/poll", () => {
   });
 
   it("should set current poll", () => {
-    store.commit("poll/FETCH_POLLS", [{ id: 1 }, { id: 2 }]);
+    store.commit("poll/SET_POLLS", [{ id: 1 }, { id: 2 }]);
 
     store.dispatch("poll/setPoll", 2);
 

@@ -61,7 +61,7 @@ import { db } from "../firebase";
 export default {
   name: "PollsList",
   mounted() {
-    this.fetchPolls(this.userId);
+    this.listenPolls(this.userId);
   },
   computed: {
     ...mapGetters("user", ["userId"]),
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     ...mapActions("app", ["addNotification"]),
-    ...mapActions("poll", ["fetchPolls"]),
+    ...mapActions("poll", ["listenPolls"]),
     async togglePoll(id) {
       try {
         const document = db.collection("polls").doc(id);

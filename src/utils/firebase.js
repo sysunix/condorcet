@@ -1,33 +1,30 @@
-import { db } from "../firebase";
+export const getDataFromQuerySnapshot = querySnapshot => {
+  let docs = [];
+
+  querySnapshot.forEach(doc => {
+    docs.push({ id: doc.id, ...doc.data() });
+  });
+
+  return docs;
+};
+
+export const convertDocumentSnapshotToJson = doc => {
+  return { id: doc.id, ...doc.data() };
+};
+
+export const convertDocumentsSnapshotToJson = docs => {
+  return docs.map(convertDocumentSnapshotToJson);
+};
 
 class Firebase {
-  constructor(collection, doc = null, subcollection = null) {
-    this.collection =
-      doc && subcollection
-        ? db
-            .collection(collection)
-            .doc(doc)
-            .collection(subcollection)
-        : db.collection(collection);
-  }
-
-  /**
-   * Prend une list snapshot de document et retourne les données au format JSON
-   * @param {*} docs
-   */
-  static convertDocumentsSnapshotToJson(docs) {
-    return docs.map(doc => {
-      return { id: doc.id, ...doc.data() };
-    });
+  constructor() {
+    this.collection = "";
   }
 
   /**
    * Prend une list snapshot de document et retourne les données au format JSON
    * @param {*} doc
    */
-  static convertDocumentSnapshotToJson(doc) {
-    return { id: doc.id, ...doc.data() };
-  }
 
   /**
    * Retourne l'instance
@@ -73,25 +70,6 @@ class Firebase {
     const document = await this.collection.doc(id).get();
 
     return Firebase.convertDocumentSnapshotToJson(document);
-  }
-
-  // TODO: return OK response
-  update(id, data) {
-    this.collection.doc(id).update(data);
-  }
-
-  /**
-   * Supprime un document
-   * @param {*} id
-   */
-  async delete(id) {
-    try {
-      await this.collection.doc(id).delete();
-
-      return id;
-    } catch (error) {
-      return { error: true, detail: error };
-    }
   }
 }
 

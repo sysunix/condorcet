@@ -16,14 +16,14 @@
           v-for="(answer, index) in answers"
           :index="index"
           :key="answer.rank"
-          :answer="answer"
+          :value="answer.value"
         ></SortableItem>
       </SortableList>
 
       <div class="w-full mt-10 px-3 flex justify-center">
         <button
           class="w-1/3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          @click="saveAnswers"
+          @click="vote"
         >
           Voter
         </button>
@@ -36,8 +36,7 @@
 import { mapState, mapActions, mapGetters } from "vuex";
 import SortableList from "../components/SortableList";
 import SortableItem from "../components/SortableItem";
-import { db } from "../firebase";
-import VoteModel from "../models/Vote";
+import { createVote } from "../utils/request";
 
 export default {
   name: "Poll",
@@ -50,14 +49,21 @@ export default {
       answers: []
     };
   },
+  computed: {
+    ...mapGetters("user", ["userId"]),
+    ...mapState({
+      poll: state => state.poll.current,
+      userId: state => state.user.id
+    })
+  },
   async mounted() {
-    const poll = await this.fetchPoll(this.$route.params.id);
+    this.setPoll(this.$route.params.id);
 
-    if (!poll.users.includes(this.userId)) {
+    if (!this.poll.users.includes(this.userId)) {
       this.$router.push({ name: "polls_list" });
     }
 
-    this.answers = poll.answers.map((answer, index) => {
+    this.answers = this.poll.answers.map((answer, index) => {
       return {
         rank: index + 1,
         ...answer
@@ -65,7 +71,7 @@ export default {
     });
   },
   methods: {
-    ...mapActions("poll", ["fetchPoll"]),
+    ...mapActions("poll", ["setPoll"]),
     ...mapActions("app", ["addNotification"]),
     onMove(inputs) {
       this.answers = inputs.map((input, index) => {
@@ -75,45 +81,28 @@ export default {
         };
       });
     },
-    saveAnswers() {
+    async vote() {
       const pollId = this.$route.params.id;
       const userId = this.userId;
 
-      const vote = new VoteModel({
-        vote: this.answers
-      });
+      try {
+        await createVote({ vote: this.answers }, pollId, userId);
 
-      if (vote.validate().valid === false) {
+        this.addNotification({
+          text: "Merci de ton vote",
+          status: "success"
+        });
+
+        this.$router.push({
+          name: "polls_list"
+        });
+      } catch (error) {
         this.addNotification({
           text: "Il y a eu un problème",
           status: "error"
         });
-        return;
       }
-
-      db.collection("polls")
-        .doc(pollId)
-        .collection("votes")
-        .doc(userId)
-        .set(vote.toJSON())
-        .then(() => {
-          this.addNotification({
-            text: "Merci de ton vote",
-            status: "success"
-          });
-
-          this.$router.push({
-            name: "polls_list"
-          });
-        });
     }
-  },
-  computed: {
-    ...mapGetters("user", ["userId"]),
-    ...mapState({
-      poll: state => state.poll.current,
-      userId: state => state.user.id
-    })
   }
 };
 </script>
