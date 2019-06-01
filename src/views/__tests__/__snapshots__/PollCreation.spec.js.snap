@@ -16,7 +16,7 @@ exports[`PollCreation.vue should render 1`] = `
       <div class="w-full md:w-1/2 px-3"><label for="answer" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
           Ajouter des réponses *
         </label>
-        <div class="flex"><input id="answer" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"> <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <div class="flex"><input id="answer" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"> <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4">
             Ajouter
           </button></div>
         <ul class="list-disc mt-6 ml-10"></ul>

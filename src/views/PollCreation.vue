@@ -15,7 +15,6 @@
             id="question"
             type="text"
           />
-          <!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> -->
 
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -62,7 +61,7 @@
               @keypress.enter="addAnswer"
             />
             <button
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
               @click.prevent="addAnswer"
             >
               Ajouter
@@ -70,8 +69,14 @@
           </div>
 
           <ul class="list-disc mt-6 ml-10">
-            <li v-for="answer in answers" :key="answer.slug">
+            <li class="mt-2" v-for="answer in answers" :key="answer.slug">
               {{ answer.value }}
+              <button
+                @click.prevent="removeAnswer(answer.slug)"
+                class="bg-red-500 hover:bg-red-700 text-white font-bold w-6 h-6 rounded-full float-right"
+              >
+                -
+              </button>
             </li>
           </ul>
         </div>
@@ -169,6 +174,9 @@ export default {
         }
       ];
       this.answer = "";
+    },
+    removeAnswer(slug) {
+      this.answers = this.answers.filter(answer => answer.slug !== slug);
     }
   }
 };

@@ -45,6 +45,15 @@ describe("PollCreation.vue", () => {
     expect(appActions.addNotification).toHaveBeenCalled();
   });
 
+  it("should remove answer", () => {
+    wrapper.setData({ answers: [{ slug: "foo", value: "Foo" }] });
+    expect(wrapper.vm.answers).toEqual([{ slug: "foo", value: "Foo" }]);
+
+    wrapper.find("li > button").trigger("click");
+
+    expect(wrapper.vm.answers).toEqual([]);
+  });
+
   it("should add answer to the poll", () => {
     const answerInput = wrapper.find("#answer");
     const addAnwserButton = wrapper.find("button");
