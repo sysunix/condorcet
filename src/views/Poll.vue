@@ -16,6 +16,7 @@
           v-for="(answer, index) in answers"
           :index="index"
           :key="answer.rank"
+          :rank="answer.rank"
           :value="answer.value"
         ></SortableItem>
       </SortableList>
