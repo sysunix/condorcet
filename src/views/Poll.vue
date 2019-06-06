@@ -35,6 +35,7 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from "vuex";
+import shuffle from "shuffle-array";
 import SortableList from "../components/SortableList";
 import SortableItem from "../components/SortableItem";
 import { createVote } from "../utils/request";
@@ -64,7 +65,7 @@ export default {
       this.$router.push({ name: "polls_list" });
     }
 
-    this.answers = this.poll.answers.map((answer, index) => {
+    this.answers = shuffle(this.poll.answers).map((answer, index) => {
       return {
         rank: index + 1,
         ...answer

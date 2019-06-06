@@ -4401,7 +4401,7 @@ dns-txt@^2.0.2:
   dependencies:
     buffer-indexof "^1.0.0"
 
-dns@^0.2.2:
+dns@0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/dns/-/dns-0.2.2.tgz#a8477ca26b835842c3125204d8cbcdd6af98c9ec"
   integrity sha1-qEd8omuDWELDElIE2MvN1q+Yyew=
@@ -11959,6 +11959,11 @@ shellwords@^0.1.1:
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
   integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
 
+shuffle-array@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/shuffle-array/-/shuffle-array-1.0.1.tgz#c4ff3cfe74d16f93730592301b25e6577b12898b"
+  integrity sha1-xP88/nTRb5NzBZIwGyXmV3sSiYs=
+
 sigmund@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sigmund/-/sigmund-1.0.1.tgz#3ff21f198cad2175f9f3b781853fd94d0d19b590"
@@ -12654,7 +12659,7 @@ table@^5.2.3:
     slice-ansi "^2.1.0"
     string-width "^3.0.0"
 
-tailwindcss@^1.0.1:
+tailwindcss@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.0.1.tgz#3116e989c64540f1c11214e8b4c08b6aea548be5"
   integrity sha512-tNyvmizhIY9ydXX8m84S/69851QROZzbH6RB/Q4w0K27OssupGcyXeD8zumzb9Yuzq6PifBH2A6ehjuBPklnYA==

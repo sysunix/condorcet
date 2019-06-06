@@ -1,12 +1,16 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
+import shuffle from "shuffle-array";
 import { createVote } from "../../utils/request";
 
 import Poll from "../Poll.vue";
 import { MOCK_POLL_ID, MOCK_USER_ID, MOCK_ANSWERS } from "../../utils/test";
 
+jest.mock("shuffle-array");
 jest.mock("../../firebase");
 jest.mock("../../utils/request");
+
+shuffle.mockReturnValue(MOCK_ANSWERS);
 
 const $route = {
   params: { id: MOCK_POLL_ID }
