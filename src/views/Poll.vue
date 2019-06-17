@@ -59,7 +59,7 @@ export default {
     })
   },
   async mounted() {
-    this.setPoll(this.$route.params.id);
+    await this.setPoll(this.$route.params.id);
 
     if (!this.poll.users.includes(this.userId)) {
       this.$router.push({ name: "polls_list" });
@@ -73,7 +73,7 @@ export default {
     });
   },
   methods: {
-    ...mapActions("poll", ["setPoll"]),
+    ...mapActions("poll", ["setPoll", "fetchPoll"]),
     ...mapActions("app", ["addNotification"]),
     onMove(inputs) {
       this.answers = inputs.map((input, index) => {

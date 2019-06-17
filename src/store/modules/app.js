@@ -1,5 +1,5 @@
 import uuid from "uuid/v1";
-import { ADD_NOTIFCATION, REMOVE_NOTIFCATION, INITIALIZE } from "../../types";
+import { ADD_NOTIFCATION, REMOVE_NOTIFCATION, INITIALIZE } from "../types";
 import config from "../../config";
 
 export default {

@@ -1,16 +1,34 @@
-import { SET_POLLS, SET_POLL } from "../../types";
+import { SET_POLLS, SET_POLL, PUSH_POLL, RESET } from "../types";
 import { db } from "../../firebase";
-import { getDataFromQuerySnapshot } from "../../utils/firebase";
+import {
+  getDataFromQuerySnapshot,
+  convertDocumentSnapshotToJson
+} from "../../utils/firebase";
+
+export const setPolls = polls => {
+  return [...new Set(polls.map(poll => poll.id))].map(pollId => {
+    return polls.find(poll => poll.id === pollId);
+  });
+};
+
+export const initialState = {
+  all: [],
+  current: null
+};
 
 export default {
   namespaced: true,
-  state: {
-    all: [],
-    current: {}
-  },
+  state: initialState,
   mutations: {
+    [RESET](state) {
+      state.all = [];
+      state.current = null;
+    },
     [SET_POLLS](state, polls) {
-      state.all = polls;
+      state.all = setPolls([...polls, ...state.all]);
+    },
+    [PUSH_POLL](state, poll) {
+      state.all = setPolls([poll, ...state.all]);
     },
     [SET_POLL](state, poll) {
       state.current = poll;
@@ -31,8 +49,36 @@ export default {
           commit(SET_POLLS, enhancedPolls);
         });
     },
-    setPoll({ commit, state }, pollId) {
-      const poll = state.all.find(poll => poll.id === pollId);
+    async fetchPoll({ commit, rootState }, pollId) {
+      try {
+        const poll = convertDocumentSnapshotToJson(
+          await db
+            .collection("polls")
+            .doc(pollId)
+            .get()
+        );
+
+        commit(PUSH_POLL, {
+          ...poll,
+          isOwner: rootState.user.id === poll.owner
+        });
+
+        return poll;
+      } catch (error) {
+        return null;
+      }
+    },
+    async setPoll({ commit, state, dispatch }, pollId) {
+      let poll = state.all.find(poll => poll.id === pollId);
+
+      if (!poll) {
+        const poll = await dispatch("fetchPoll", pollId);
+
+        commit(SET_POLL, poll);
+
+        return;
+      }
+
       commit(SET_POLL, poll);
     }
   }

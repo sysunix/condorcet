@@ -1,5 +1,5 @@
 import { auth } from "../firebase";
-import { INITIALIZE } from "../types";
+import { INITIALIZE } from "../store/types";
 
 /**
  * isAppInitialized: bool
