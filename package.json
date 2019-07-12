@@ -14,6 +14,8 @@
     "@firebase/app": "0.4.10",
     "@firebase/auth": "0.11.4",
     "@firebase/firestore": "1.4.4",
+    "@sentry/browser": "^5.5.0",
+    "@sentry/integrations": "5.5.0",
     "cytoscape": "3.8.1",
     "dns": "0.2.2",
     "random-string": "0.2.0",
