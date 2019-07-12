@@ -1,17 +1,16 @@
 <template>
   <div>
-    <div class="mt-10 flex flex-col justify-center">
-      <div>
-        <Typewriter class="inline-flex text-3xl">
-          Bienvenue sur Condorcet
-        </Typewriter>
+    <div>
+      <div class="pt-6">
+        <img
+          class="rounded-full h-40 w-40 mx-auto"
+          src="../assets/images/condorcet.jpg"
+        />
       </div>
-      <span class="mt-4">
-        L'application qui vous permet de réaliser des scrutins en utilisant la
-        méthode de Condorcet et de comparer le résultat au scrutin uninominal.
-      </span>
+      <h1 class="mt-4 text-center text-3xl" id="title"></h1>
 
       <div class="mt-12 text-center">Acceder à l'application via :</div>
+
       <div class="mt-2 flex justify-center">
         <button
           class="mx-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
@@ -26,6 +25,7 @@
         >
           Github
         </button>
+
         <button
           class="mx-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
           @click="signIn('facebook')"
@@ -36,26 +36,21 @@
     </div>
 
     <div class="mt-12">
-      <h4 class="text-2xl">Comment fonctionne le vote ?</h4>
-      <div class="mt-4">
-        <ul class="list-disc">
-          <li>
-            Chaque votant classe les alternatives par ordre de préférence
-          </li>
-          <li>
-            On organise des duels entre toutes les alternatives
-          </li>
-          <li>Celui qui remporte le plus de duels est déclaré gagnant</li>
-        </ul>
-      </div>
+      <h4 class="text-2xl text-center">Quelles sont les règles ?</h4>
+
+      <ul class="mt-1 px-5 list-disc list-inside">
+        <li>Chaque votant classe les alternatives par ordre de préférence</li>
+        <li>On organise des duels entre toutes les alternatives</li>
+        <li>Celui qui remporte le plus de duels est déclaré gagnant</li>
+      </ul>
     </div>
 
     <div class="mt-12">
-      <h4 class="text-2xl">Vidéos qui en parlent :</h4>
+      <h4 class="text-2xl text-center">Vidéos qui en parlent</h4>
 
-      <div class="mt-3 flex justify-around">
-        <div v-for="video in videos" :key="video.id">
-          <div class="px-4 py-2 m-2">
+      <div class="mt-1 flex flex-col flex-wrap sm:flex-row justify-around">
+        <div class="sm:w-1/2 lg:w-1/4" v-for="video in videos" :key="video.id">
+          <div class="h-56 m-2">
             <iframe
               width="100%"
               height="100%"
@@ -74,12 +69,15 @@
 <script>
 import { mapActions } from "vuex";
 import { signIn } from "../utils/authentication.js";
-import Typewriter from "../components/Typewriter";
+
+import TypeIt from "typeit";
 
 export default {
   name: "Authentication",
-  components: {
-    Typewriter
+  mounted() {
+    new TypeIt("#title", {
+      strings: ["Condorcet"]
+    }).go();
   },
   data() {
     return {

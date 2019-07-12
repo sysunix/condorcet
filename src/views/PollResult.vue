@@ -51,7 +51,7 @@
         v-for="item in condorcet.ranking"
         :key="item.slug"
       >
-        <div class="w-1/2 px-6 py-4 rounded overflow-hidden shadow">
+        <div class="w-full px-6 py-4 rounded overflow-hidden shadow">
           {{ item.rank }} - <span class="font-bold">{{ item.value }}</span> /
           {{ item.wins }} victoire(s) & {{ item.equalities }} match(s) nul(s)
         </div>
@@ -65,7 +65,7 @@
         v-for="item in uninominal"
         :key="item.slug"
       >
-        <div class="w-1/2 px-6 py-4 rounded overflow-hidden shadow">
+        <div class="w-full px-6 py-4 rounded overflow-hidden shadow">
           {{ item.rank }} - <span class="font-bold">{{ item.value }}</span> /
           {{ item.numberOfVotes }} voix
         </div>

@@ -1,5 +1,10 @@
 import uuid from "uuid/v1";
-import { ADD_NOTIFCATION, REMOVE_NOTIFCATION, INITIALIZE } from "../types";
+import {
+  ADD_NOTIFCATION,
+  REMOVE_NOTIFCATION,
+  INITIALIZE,
+  TOGGLE_MENU
+} from "../types";
 import config from "../../config";
 
 export default {
@@ -7,6 +12,7 @@ export default {
   state: {
     initialized: false,
     notifications: [],
+    isMenuOpen: false,
     featureFlipping: config.featureFlipping
   },
   mutations: {
@@ -20,6 +26,9 @@ export default {
       state.notifications = state.notifications.filter(
         notification => notification.id !== id
       );
+    },
+    [TOGGLE_MENU](state) {
+      state.isMenuOpen = !state.isMenuOpen;
     }
   },
   actions: {
@@ -32,6 +41,9 @@ export default {
       setTimeout(() => {
         commit(REMOVE_NOTIFCATION, id);
       }, config.notificationTimeout);
+    },
+    toggleMenu({ commit }) {
+      commit(TOGGLE_MENU);
     }
   }
 };

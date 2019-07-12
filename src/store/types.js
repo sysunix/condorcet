@@ -5,6 +5,7 @@ export const RESET = "RESET";
 export const INITIALIZE = "INITIALIZE";
 export const ADD_NOTIFCATION = "ADD_NOTIFCATION";
 export const REMOVE_NOTIFCATION = "REMOVE_NOTIFCATION";
+export const TOGGLE_MENU = "TOGGLE_MENU";
 
 // User
 export const SET_USER = "SET_USER";

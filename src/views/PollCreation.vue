@@ -28,6 +28,12 @@
           ></textarea>
 
           <div class="md:flex md:items-center mb-6">
+            <label
+              class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="description"
+            >
+              Rendre le scrutin public ?
+            </label>
             <input
               id="isPublic"
               class="mr-2 leading-tight"
@@ -37,10 +43,10 @@
             />
             <label
               for="isPublic"
-              class="md:w-2/3 block text-gray-500 font-bold"
+              class="md:w-2/3 block text-gray-500 font-bold inline-block"
             >
               <span class="text-sm">
-                Rendre le scrutin public ? {{ isPublicText }}
+                {{ isPublicText }}
               </span>
             </label>
           </div>

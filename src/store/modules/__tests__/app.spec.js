@@ -19,6 +19,12 @@ describe("store/modules/app", () => {
     expect(store.state.app.initialized).toBeTruthy();
   });
 
+  it("should toggle menu", () => {
+    expect(store.state.app.isMenuOpen).toBeFalsy();
+    store.dispatch("app/toggleMenu");
+    expect(store.state.app.isMenuOpen).toBeTruthy();
+  });
+
   it("should add notification", () => {
     expect(store.state.app.notifications).toEqual([]);
     store.dispatch("app/addNotification", {

@@ -1,10 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PollsList.vue should render 1`] = `
-<div class="flex flex-wrap justify-around">
+<div class="flex">
   <div>
     Tu n'a pas encore de scrutin. Tu peux en créé un en cliquant sur
     <router-link-stub to="polls/new" class="text-teal-500 hover:underline">ce lien</router-link-stub>.
   </div>
+  <div class="flex flex-wrap"></div>
 </div>
 `;

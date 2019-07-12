@@ -1,7 +1,7 @@
 <template>
   <nav
-    class="Menu fixed lg:top-0 lg:bottom-auto bottom-0 left-0 right-0 flex items-center justify-between flex-wrap bg-teal-500 p-6"
-    :class="isDesktop === false ? (isOpen ? 'Menu--show' : 'Menu--hide') : ''"
+    class="Menu fixed bottom-0 left-0 right-0 lg:top-0 lg:bottom-auto flex items-center justify-between flex-wrap bg-teal-500 p-6 z-50"
+    :class="isMenuOpen ? 'Menu--show' : 'Menu--hide'"
   >
     <div class="flex items-center flex-shrink-0 text-white mr-6">
       <span class="font-semibold text-xl tracking-tight">Condorcet</span>
@@ -24,11 +24,13 @@
     <div class="justify-end w-full block lg:flex lg:items-center lg:w-auto">
       <div class="text-sm lg:flex-grow">
         <router-link
+          @click.native="toggleMenu"
           to="/polls"
           class="block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
           >Accueil</router-link
         >
         <router-link
+          @click.native="toggleMenu"
           to="/polls/new"
           class="self-end block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
           >Créer un scrutin</router-link
@@ -50,20 +52,12 @@
 import { mapState, mapActions } from "vuex";
 import { signOut } from "../utils/authentication.js";
 export default {
-  data() {
-    return {
-      isOpen: false
-    };
-  },
   computed: {
-    ...mapState("app", ["notifications"]),
-    isDesktop() {
-      return window.innerWidth > 1024;
-    }
+    ...mapState("app", ["notifications", "isMenuOpen"])
   },
   methods: {
     ...mapActions("user", ["clearUser"]),
-    ...mapActions("app", ["addNotification"]),
+    ...mapActions("app", ["addNotification", "toggleMenu"]),
     async signOut() {
       try {
         await signOut();
@@ -75,9 +69,6 @@ export default {
           message: "Il y a eu un problème"
         });
       }
-    },
-    toggleMenu() {
-      this.isOpen = !this.isOpen;
     }
   }
 };
@@ -88,11 +79,13 @@ export default {
   transition: transform 300ms;
 }
 
-.Menu--hide {
-  transform: translateY(130px);
-}
+@media (max-width: 1024px) {
+  .Menu--hide {
+    transform: translateY(130px);
+  }
 
-.Menu--show {
-  transform: translateY(0);
+  .Menu--show {
+    transform: translateY(0);
+  }
 }
 </style>

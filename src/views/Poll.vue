@@ -1,35 +1,30 @@
 <template>
   <div>
-    <div>
-      <p class="text-xl">
-        Pour voter il suffit de classer vos préférences en les glissant-déposant
-        :
-      </p>
+    <p class="text-center">
+      Pour voter il suffit de classer vos préférences en les glissant-déposant :
+    </p>
 
-      <SortableList
-        class="mt-6 mx-auto w-1/2"
-        lockAxis="y"
-        v-model="answers"
-        @input="onMove"
-      >
-        <SortableItem
-          v-for="(answer, index) in answers"
-          :index="index"
-          :key="answer.rank"
-          :rank="answer.rank"
-          :value="answer.value"
-        ></SortableItem>
-      </SortableList>
+    <SortableList
+      class="mt-6 mx-auto w-full px-2"
+      lockAxis="y"
+      v-model="answers"
+      @input="onMove"
+    >
+      <SortableItem
+        v-for="(answer, index) in answers"
+        :index="index"
+        :key="answer.rank"
+        :rank="answer.rank"
+        :value="answer.value"
+      ></SortableItem>
+    </SortableList>
 
-      <div class="w-full mt-10 px-3 flex justify-center">
-        <button
-          class="w-1/3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          @click="vote"
-        >
-          Voter
-        </button>
-      </div>
-    </div>
+    <button
+      class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      @click="vote"
+    >
+      Voter
+    </button>
   </div>
 </template>
 
