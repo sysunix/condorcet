@@ -62,6 +62,7 @@
             <input
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="answer"
+              ref="answerInput"
               type="text"
               v-model="answer"
               @keypress.enter="addAnswer"
@@ -185,6 +186,7 @@ export default {
         }
       ];
       this.answer = "";
+      this.$refs.answerInput.focus();
     },
     removeAnswer(slug) {
       this.answers = this.answers.filter(answer => answer.slug !== slug);
