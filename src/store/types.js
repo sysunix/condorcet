@@ -4,7 +4,7 @@ export const RESET = "RESET";
 // App
 export const INITIALIZE = "INITIALIZE";
 export const ADD_NOTIFCATION = "ADD_NOTIFCATION";
-export const REMOVE_NOTIFCATION = "REMOVE_NOTIFCATION";
+export const REMOVE_NOTIFICATION = "REMOVE_NOTIFICATION";
 export const TOGGLE_MENU = "TOGGLE_MENU";
 
 // User
