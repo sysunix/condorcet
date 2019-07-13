@@ -15,3 +15,4 @@ export const CLEAR_USER = "CLEAR_USER";
 export const SET_POLLS = "SET_POLLS";
 export const SET_POLL = "SET_POLL";
 export const PUSH_POLL = "PUSH_POLL";
+export const REMOVE_POLL = "REMOVE_POLL";

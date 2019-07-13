@@ -1,4 +1,4 @@
-import { SET_POLLS, SET_POLL, PUSH_POLL, RESET } from "../types";
+import { SET_POLLS, SET_POLL, PUSH_POLL, RESET, REMOVE_POLL } from "../types";
 import { db } from "../../firebase";
 import {
   getDataFromQuerySnapshot,
@@ -32,6 +32,9 @@ export default {
     },
     [SET_POLL](state, poll) {
       state.current = poll;
+    },
+    [REMOVE_POLL](state, pollId) {
+      state.all = state.all.filter(poll => poll.id !== pollId);
     }
   },
   actions: {
@@ -80,6 +83,9 @@ export default {
       }
 
       commit(SET_POLL, poll);
+    },
+    removePoll({ commit }, pollId) {
+      commit(REMOVE_POLL, pollId);
     }
   }
 };

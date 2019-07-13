@@ -45,7 +45,7 @@
             <button
               v-if="poll.isOwner"
               class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full my-1"
-              @click.prevent="removePoll(poll.id)"
+              @click.prevent="deletePoll(poll.id)"
             >
               Supprimer
             </button>
@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     ...mapActions("app", ["addNotification"]),
-    ...mapActions("poll", ["listenPolls"]),
+    ...mapActions("poll", ["listenPolls", "removePoll"]),
     async togglePoll(id) {
       try {
         const document = db.collection("polls").doc(id);
@@ -92,7 +92,7 @@ export default {
         });
       }
     },
-    removePoll(id) {
+    deletePoll(id) {
       if (confirm("Confirmer le suppression ?") === false) {
         return;
       }
@@ -101,6 +101,9 @@ export default {
         db.collection("polls")
           .doc(id)
           .delete();
+
+        this.removePoll(id);
+
         this.addNotification({
           text: "Le scrutin  a bien été supprimé",
           status: "info"
