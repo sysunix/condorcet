@@ -79,6 +79,7 @@ import { mapState } from "vuex";
 import sortKeys from "sort-keys";
 import { db } from "../firebase";
 import Graph from "../components/Graph.vue";
+import { validate } from "indicative";
 import { CondorcetModel, UninominalModel } from "../models/Result";
 
 export default {
@@ -101,17 +102,18 @@ export default {
       .collection("polls")
       .doc(this.$route.params.id)
       .collection("results");
+    try {
+      const uninominal = await validate(
+        (await resultsRef.doc("uninominal").get()).data(),
+        UninominalModel
+      );
 
-    let condorcet = new CondorcetModel(
-      (await resultsRef.doc("condorcet").get()).data()
-    );
+      this.uninominal = uninominal.ranking;
 
-    let uninominal = new UninominalModel(
-      (await resultsRef.doc("uninominal").get()).data()
-    );
-
-    if (condorcet.validate().valid) {
-      condorcet = condorcet.toJSON();
+      const condorcet = await validate(
+        (await resultsRef.doc("condorcet").get()).data(),
+        CondorcetModel
+      );
 
       const condorcetMatrix = Object.keys(condorcet.matrix).reduce(
         (acc, key) => ({
@@ -131,18 +133,15 @@ export default {
         ranking: condorcet.ranking,
         matrix: sortKeys(condorcetMatrix, { deep: true })
       };
-    }
 
-    if (uninominal.validate().valid) {
-      uninominal = uninominal.toJSON();
-      this.uninominal = uninominal.ranking;
+      this.answers = condorcet.ranking
+        .map(c => ({ value: c.value, slug: c.slug }))
+        .sort((a, b) => {
+          return a.slug.localeCompare(b.slug);
+        });
+    } catch (error) {
+      console.log(error);
     }
-
-    this.answers = condorcet.ranking
-      .map(c => ({ value: c.value, slug: c.slug }))
-      .sort((a, b) => {
-        return a.slug.localeCompare(b.slug);
-      });
   }
 };
 </script>

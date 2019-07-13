@@ -4,80 +4,8 @@ exports[`PollResult.vue should render 1`] = `
 <div>
   <h3 class="text-4xl">Condorcet</h3>
   <!---->
-  <div class="overflow-scroll">
-    <table class="text-left w-full border-collapse">
-      <thead>
-        <tr>
-          <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
-            Réponse
-          </th>
-          <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
-            Luffy
-          </th>
-          <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
-            Sanji
-          </th>
-          <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">
-            Zorro
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="py-4 px-6 border-b border-grey-light">
-
-          </td>
-          <td class="py-4 px-6 border-b border-grey-light">
-            /
-          </td>
-        </tr>
-        <tr>
-          <td class="py-4 px-6 border-b border-grey-light">
-
-          </td>
-          <td class="py-4 px-6 border-b border-grey-light">
-            /
-          </td>
-        </tr>
-        <tr>
-          <td class="py-4 px-6 border-b border-grey-light">
-
-          </td>
-          <td class="py-4 px-6 border-b border-grey-light">
-            /
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="mt-10">
-    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
-      <div class="w-full px-6 py-4 rounded overflow-hidden shadow">
-        1 - <span class="font-bold">Zorro</span> /
-        1 victoire(s) &amp; 1 match(s) nul(s)
-      </div>
-    </div>
-    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
-      <div class="w-full px-6 py-4 rounded overflow-hidden shadow">
-        2 - <span class="font-bold">Luffy</span> /
-        1 victoire(s) &amp; 1 match(s) nul(s)
-      </div>
-    </div>
-    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
-      <div class="w-full px-6 py-4 rounded overflow-hidden shadow">
-        3 - <span class="font-bold">Sanji</span> /
-        0 victoire(s) &amp; 0 match(s) nul(s)
-      </div>
-    </div>
-  </div>
-  <div class="mt-10">
-    <h3 class="text-4xl">Uninominal</h3>
-    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
-      <div class="w-full px-6 py-4 rounded overflow-hidden shadow">
-        1 - <span class="font-bold">luffy</span> /
-        voix
-      </div>
-    </div>
-  </div>
+  <!---->
+  <!---->
+  <!---->
 </div>
 `;

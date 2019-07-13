@@ -93,7 +93,7 @@
             :disabled="disabledSubmit"
             class="w-1/3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             :class="disabledSubmit && 'opacity-50 cursor-not-allowed'"
-            @click.prevent="createPoll"
+            @click.prevent="submitPoll"
           >
             Créer
           </button>
@@ -106,6 +106,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import slugify from "slugify";
+import randomString from "random-string";
 import { createPoll } from "../utils/request";
 
 export default {
@@ -132,7 +133,7 @@ export default {
   },
   methods: {
     ...mapActions("app", ["addNotification"]),
-    async createPoll() {
+    async submitPoll() {
       try {
         await createPoll({
           question: this.question,
@@ -140,7 +141,9 @@ export default {
           answers: this.answers,
           owner: this.userId,
           users: [this.userId],
-          isPublic: this.isPublic
+          isPublic: this.isPublic,
+          isActive: false,
+          token: randomString({ length: 20 })
         });
 
         this.addNotification({

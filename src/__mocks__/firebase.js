@@ -60,8 +60,7 @@ when(resultsSubDoc)
             wins: 0,
             equalities: 0
           }
-        ],
-        timestamp: { second: 1000, millisecond: 100000 }
+        ]
       })
     })
   });
@@ -71,8 +70,7 @@ when(resultsSubDoc)
   .mockReturnValue({
     get: () => ({
       data: () => ({
-        ranking: [{ value: "luffy", rank: 1 }],
-        timestamp: { second: 1000, millisecond: 100000 }
+        ranking: [{ value: "luffy", rank: 1 }]
       })
     })
   });

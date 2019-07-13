@@ -1,12 +1,15 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 import PollCreation from "../PollCreation.vue";
-import firebase from "../../firebase";
+
+import { createPoll } from "../../utils/request";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 jest.mock("../../firebase");
+
+jest.mock("../../utils/request");
 
 describe("PollCreation.vue", () => {
   let wrapper;
@@ -75,19 +78,34 @@ describe("PollCreation.vue", () => {
   });
 
   it("should not create poll and notify user that there is an error if question or answer are not set", () => {
-    wrapper.vm.createPoll();
+    const questionInput = wrapper.find("#question");
+    const answerInput = wrapper.find("#answer");
+    const addAnwserButton = wrapper.find("button");
 
-    expect(appActions.addNotification).toHaveBeenCalled();
+    questionInput.setValue("Quel est le meilleru fruit ?");
+    answerInput.trigger("change");
+
+    answerInput.setValue("Les pommes");
+    answerInput.trigger("change");
+    addAnwserButton.trigger("click");
+
+    answerInput.setValue("Les poires");
+    answerInput.trigger("change");
+    addAnwserButton.trigger("click");
+
+    wrapper.vm.submitPoll();
+
+    expect(createPoll).toHaveBeenCalled();
   });
 
-  it("should create the poll and notify user that there is an error", () => {
-    wrapper.setData({
-      question: "Qui est la plus belle ?",
-      answers: ["Megan Fox", "Scarlett", "Natalie Portman"]
-    });
+  // it("should create the poll and notify user that there is an error", () => {
+  //   wrapper.setData({
+  //     question: "Qui est la plus belle ?",
+  //     answers: ["Megan Fox", "Scarlett", "Natalie Portman"]
+  //   });
 
-    wrapper.vm.createPoll();
+  //   wrapper.vm.submitPoll();
 
-    expect(firebase.db.collection).toHaveBeenCalledWith("polls");
-  });
+  //   expect(firebase.db.collection).toHaveBeenCalledWith("polls");
+  // });
 });
