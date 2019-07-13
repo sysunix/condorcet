@@ -1,54 +1,59 @@
 <template>
-  <div class="flex">
-    <div v-if="polls.length === 0">
-      Tu n'a pas encore de scrutin. Tu peux en créé un en cliquant sur
-      <router-link to="polls/new" class="text-teal-500 hover:underline"
-        >ce lien</router-link
-      >.
+  <div>
+    <div v-if="loading" class="flex items-center justify-center h-screen">
+      <PulseLoader :loading="loading"></PulseLoader>
     </div>
+    <div v-else class="flex">
+      <div v-if="polls.length === 0">
+        Tu n'a pas encore de scrutin. Tu peux en créé un en cliquant sur
+        <router-link to="polls/new" class="text-teal-500 hover:underline"
+          >ce lien</router-link
+        >.
+      </div>
 
-    <div class="flex flex-wrap">
-      <div
-        class="w-full md:w-1/2 lg:w-1/3"
-        v-for="poll in polls"
-        :key="poll.id"
-      >
-        <div class="rounded overflow-hidden shadow-md md:mx-2">
-          <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-4">{{ poll.question }}</div>
-            <p class="text-gray-700 text-base">{{ poll.description }}</p>
-          </div>
-          <div class="flex justify-between flex-wrap px-6 py-4">
-            <router-link
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full my-1"
-              tag="button"
-              :to="{
-                name: poll.isActive ? 'poll_show' : 'poll_result',
-                params: { id: poll.id }
-              }"
-              >{{ poll.isActive ? "Voter" : "Résultats" }}</router-link
-            >
-            <button
-              class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded w-full my-1"
-              @click.prevent="copyMagicLink(poll.id)"
-            >
-              Partager
-            </button>
-            <button
-              v-if="poll.isOwner"
-              class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full my-1"
-              @click.prevent="togglePoll(poll.id)"
-            >
-              {{ poll.isActive ? "Fermer" : "Ré-ouvir" }}
-            </button>
+      <div v-else class="flex flex-wrap">
+        <div
+          class="w-full md:w-1/2 lg:w-1/3"
+          v-for="poll in polls"
+          :key="poll.id"
+        >
+          <div class="rounded overflow-hidden shadow-md md:mx-2">
+            <div class="px-6 py-4">
+              <div class="font-bold text-xl mb-4">{{ poll.question }}</div>
+              <p class="text-gray-700 text-base">{{ poll.description }}</p>
+            </div>
+            <div class="flex justify-between flex-wrap px-6 py-4">
+              <router-link
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full my-1"
+                tag="button"
+                :to="{
+                  name: poll.isActive ? 'poll_show' : 'poll_result',
+                  params: { id: poll.id }
+                }"
+                >{{ poll.isActive ? "Voter" : "Résultats" }}</router-link
+              >
+              <button
+                class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded w-full my-1"
+                @click.prevent="copyMagicLink(poll.id)"
+              >
+                Partager
+              </button>
+              <button
+                v-if="poll.isOwner"
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full my-1"
+                @click.prevent="togglePoll(poll.id)"
+              >
+                {{ poll.isActive ? "Fermer" : "Ré-ouvir" }}
+              </button>
 
-            <button
-              v-if="poll.isOwner"
-              class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full my-1"
-              @click.prevent="deletePoll(poll.id)"
-            >
-              Supprimer
-            </button>
+              <button
+                v-if="poll.isOwner"
+                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full my-1"
+                @click.prevent="deletePoll(poll.id)"
+              >
+                Supprimer
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -58,18 +63,34 @@
 
 <script>
 import { mapActions, mapState, mapGetters } from "vuex";
+import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 import { db } from "../firebase";
 
 export default {
   name: "PollsList",
+  components: {
+    PulseLoader
+  },
+  data() {
+    return {
+      waitBeforeDisplay: true
+    };
+  },
   mounted() {
     this.listenPolls(this.userId);
+
+    setTimeout(() => {
+      this.waitBeforeDisplay = false;
+    }, 800);
   },
   computed: {
     ...mapGetters("user", ["userId"]),
     ...mapState({
       polls: state => state.poll.all
-    })
+    }),
+    loading() {
+      return this.polls.length === 0 || this.waitBeforeDisplay;
+    }
   },
   methods: {
     ...mapActions("app", ["addNotification"]),

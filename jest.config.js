@@ -10,7 +10,7 @@ module.exports = {
     "^.+\\.jsx?$": "babel-jest"
   },
   transformIgnorePatterns: [
-    "node_modules/(?!(babel-jest|jest-vue-preprocessor)/)"
+    "node_modules/(?!(babel-jest|jest-vue-preprocessor|vue-spinner)/)"
   ],
   snapshotSerializers: ["jest-serializer-vue"],
   testMatch: ["**/tests/unit/**/*.spec.(js|ts)|**/__tests__/*.(js|ts)"],
