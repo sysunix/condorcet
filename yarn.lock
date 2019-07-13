@@ -6457,7 +6457,7 @@ indicative-rules@^6.0.0:
     date-fns "^1.30.1"
     validator "^10.11.0"
 
-indicative@^6.0.1:
+indicative@6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/indicative/-/indicative-6.0.1.tgz#f0ce18f25af8955580abcc8451dfaa51122f94ad"
   integrity sha512-hUNc8bdP/oTepNhvoNFsnjDsywloY+PCpjdY4xBKGZcdKjlF4jnUDxiit6Js+sHLqbk+CfySyLwPwGAewPnt3A==
