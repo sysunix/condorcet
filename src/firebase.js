@@ -2,13 +2,23 @@ import firebase from "@firebase/app";
 import "@firebase/firestore";
 import "@firebase/auth";
 
+const {
+  VUE_APP_API_KEY,
+  VUE_APP_AUTH_DOMAIN,
+  VUE_APP_DATABASE_URL,
+  VUE_APP_PROJECT_ID,
+  VUE_APP_STORAGE_BUCKET,
+  VUE_APP_MESSAGING_SENDER_ID
+} = process.env;
+
+console.log(process.env);
 const config = {
-  apiKey: "AIzaSyBl7KGWaRY0B-BQ7WhUwSnmFHj3f3OYF0U",
-  authDomain: "condorcet-4167c.firebaseapp.com",
-  databaseURL: "https://condorcet-4167c.firebaseio.com",
-  projectId: "condorcet-4167c",
-  storageBucket: "condorcet-4167c.appspot.com",
-  messagingSenderId: "400396103060"
+  apiKey: VUE_APP_API_KEY,
+  authDomain: VUE_APP_AUTH_DOMAIN,
+  databaseURL: VUE_APP_DATABASE_URL,
+  projectId: VUE_APP_PROJECT_ID,
+  storageBucket: VUE_APP_STORAGE_BUCKET,
+  messagingSenderId: VUE_APP_MESSAGING_SENDER_ID
 };
 
 firebase.initializeApp(config);
