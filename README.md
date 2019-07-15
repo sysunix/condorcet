@@ -3,42 +3,43 @@
 [![CircleCI](https://circleci.com/gh/jean-smaug/condorcet/tree/master.svg?style=svg)](https://circleci.com/gh/jean-smaug/condorcet/tree/master)
 [![codecov](https://codecov.io/gh/jean-smaug/condorcet/branch/master/graph/badge.svg)](https://codecov.io/gh/jean-smaug/condorcet)
 
-## Project setup
+## But
+
+Condorcet est un projet ayant pour but la comparaison de différents systèmes de vote.
+
+- [x] Scrutin de Condorcet
+- [x] Scrutin uninominal à 1 tour
+- [ ] Scrutin uninominal à 2 tours
+- [ ] Scrutin à la De Borda
+- [ ] Vote alternatif
+
+Ce projet à premièrement une visée pédagogique. S'il existe, c'est pour faire découvrir au plus grand nombre, qu'une prise de décision collective, via un scrutin, ne repose pas uniquement sur les choix des joueurs, mais aussi sur les règles du jeu.
+
+## Initialisation
+
+Commence par lancer un 
 
 ```
-yarn install
+yarn setup
 ```
 
-### Compiles and hot-reloads for development
+Ensuite, créé un projet Firebase depuis la [console](https://console.firebase.google.com/)
 
-```
-yarn run serve
-```
+Enfin il faut copier les informations de configuration du projet Firebase dans le fichier `.env`
 
-### Compiles and minifies for production
+## Contribuer
 
-```
-yarn run build
-```
+Si l'envie te prends de faire une PR, pense à jeter un oeil au [guide de contribution](CONTRIBUTING.md) 😄
 
-### Run your tests
+## Scripts
 
-```
-yarn run test
-```
-
-### Lints and fixes files
-
-```
-yarn run lint
+```bash
+yarn serve # Compiles and hot-reloads for development
+yarn build # Compiles and minifies for production
+yarn test:unit # Run your unit tests
+yarn lint # Lints and fixes files
 ```
 
-### Run your unit tests
+## Customizer la  configuration
 
-```
-yarn run test:unit
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Regardez la [configuration de référence](https://cli.vuejs.org/config/).
