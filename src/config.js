@@ -1,7 +1,7 @@
 export default {
   notificationTimeout: 3000,
   featureFlipping: {
-    publicPolls: process.env.NODE_ENV === "development" ? true : false,
+    publicPolls: true,
     graphOfTheDuels: false,
     matrixOfTheDuels: true,
     condorcetRanking: true,
