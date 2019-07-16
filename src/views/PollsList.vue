@@ -11,7 +11,7 @@
         >.
       </div>
 
-      <div v-else class="flex flex-wrap">
+      <div v-else class="flex flex-wrap w-full">
         <div
           class="w-full md:w-1/2 lg:w-1/3"
           v-for="poll in polls"
