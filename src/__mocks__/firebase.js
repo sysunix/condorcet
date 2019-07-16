@@ -108,6 +108,11 @@ module.exports = {
   db: {
     collection: jest.fn(() => ({
       where: jest.fn(() => ({
+        get: () => [
+          {
+            data: () => {}
+          }
+        ],
         orderBy: jest.fn(() => ({
           onSnapshot: jest.fn(() => [MOCK_POLL])
         }))

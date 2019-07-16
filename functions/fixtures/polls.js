@@ -29,6 +29,7 @@ module.exports = () => {
         answers,
         description: faker.lorem.paragraph(),
         isActive: true,
+        isPublic: faker.random.boolean(),
         question: faker.lorem.sentence(),
         owner: USER_ID,
         token: uuid(),

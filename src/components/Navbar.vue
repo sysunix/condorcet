@@ -31,6 +31,13 @@
         >
         <router-link
           @click.native="toggleMenu"
+          v-if="featureFlipping.publicPolls"
+          to="/polls/public"
+          class="self-end block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          >Découvrir</router-link
+        >
+        <router-link
+          @click.native="toggleMenu"
           to="/polls/new"
           class="self-end block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
           >Créer un scrutin</router-link
@@ -53,7 +60,7 @@ import { mapState, mapActions } from "vuex";
 import { signOut } from "../utils/authentication.js";
 export default {
   computed: {
-    ...mapState("app", ["notifications", "isMenuOpen"])
+    ...mapState("app", ["notifications", "featureFlipping", "isMenuOpen"])
   },
   methods: {
     ...mapActions("user", ["clearUser"]),
@@ -81,7 +88,7 @@ export default {
 
 @media (max-width: 1024px) {
   .Menu--hide {
-    transform: translateY(130px);
+    transform: translateY(165px);
   }
 
   .Menu--show {

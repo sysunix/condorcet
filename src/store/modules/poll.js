@@ -37,6 +37,18 @@ export default {
       state.all = state.all.filter(poll => poll.id !== pollId);
     }
   },
+  getters: {
+    publicPolls: (state, _, rootState) => {
+      return state.all.filter(
+        poll =>
+          poll.isPublic === true &&
+          poll.users.includes(rootState.user.id) === false
+      );
+    },
+    userPolls: (state, _, rootState) => {
+      return state.all.filter(poll => poll.users.includes(rootState.user.id));
+    }
+  },
   actions: {
     listenPolls({ commit }, userId) {
       db.collection("polls")
@@ -70,6 +82,16 @@ export default {
       } catch (error) {
         return null;
       }
+    },
+    async fetchPublicPolls({ commit }) {
+      const polls = getDataFromQuerySnapshot(
+        await db
+          .collection("polls")
+          .where("isPublic", "==", true)
+          .get()
+      );
+
+      commit(SET_POLLS, polls);
     },
     async setPoll({ commit, state, dispatch }, pollId) {
       let poll = state.all.find(poll => poll.id === pollId);

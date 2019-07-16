@@ -2,8 +2,9 @@ import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 import Navbar from "../Navbar.vue";
 import { signOut } from "../../utils/authentication";
+import config from "../../config";
 
-jest.mock("../../utils/authentication.js");
+jest.mock("../../utils/authentication");
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -20,7 +21,13 @@ describe("Navbar.vue", () => {
 
     const store = new Vuex.Store({
       modules: {
-        app: { namespaced: true, actions: appActions },
+        app: {
+          namespaced: true,
+          actions: appActions,
+          state: {
+            featureFlipping: config.featureFlipping
+          }
+        },
         user: { namespaced: true, actions: userActions }
       }
     });

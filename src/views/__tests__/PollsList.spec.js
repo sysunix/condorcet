@@ -5,9 +5,13 @@ import store from "../../store/index";
 jest.mock("../../firebase");
 
 describe("PollsList.vue", () => {
-  it("should render", () => {
-    const wrapper = shallowMount(PollsList, { store, stubs: ["router-link"] });
+  let wrapper;
 
+  beforeEach(() => {
+    wrapper = shallowMount(PollsList, { store, stubs: ["router-link"] });
+  });
+
+  it("should render", () => {
     expect(wrapper).toMatchSnapshot();
   });
 });

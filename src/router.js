@@ -5,11 +5,12 @@ import store from "./store";
 import initializationMiddleware from "./utils/initialization";
 
 import Authentication from "./views/Authentication.vue";
-import Polls_listList from "./views/PollsList.vue";
+import PollsList from "./views/PollsList.vue";
 import Poll from "./views/Poll.vue";
 import PollResult from "./views/PollResult.vue";
 import PollJoin from "./views/PollJoin.vue";
 import PollCreation from "./views/PollCreation.vue";
+import PublicPolls from "./views/PublicPolls.vue";
 
 Vue.use(Router);
 
@@ -28,7 +29,15 @@ const router = new Router({
     {
       path: "/polls",
       name: "polls_list",
-      component: Polls_listList,
+      component: PollsList,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: "/polls/public",
+      name: "polls_public",
+      component: PublicPolls,
       meta: {
         auth: true
       }
