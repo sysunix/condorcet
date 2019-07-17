@@ -1,6 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PollsList.vue should render 1`] = `
+exports[`PollsList.vue should render with message saying there is no polls 1`] = `
+<loader-stub condition="true">
+  <div class="flex">
+    <div>
+      Tu n'a pas encore de scrutin. Tu peux en créé un en cliquant sur
+      <router-link-stub to="polls/new" class="text-teal-500 hover:underline">ce lien</router-link-stub>.
+    </div>
+  </div>
+</loader-stub>
+`;
+
+exports[`PollsList.vue should render with one poll 1`] = `
 <loader-stub condition="true">
   <div class="flex">
     <div>

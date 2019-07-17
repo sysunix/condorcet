@@ -39,6 +39,14 @@
       </button>
 
       <button
+        v-if="users.includes(userId) === true && owner !== userId"
+        class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded w-full my-1"
+        @click.prevent="$emit('onLeave', id)"
+      >
+        Quitter
+      </button>
+
+      <button
         v-if="owner === userId"
         class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full my-1"
         @click.prevent="$emit('onDelete', id)"

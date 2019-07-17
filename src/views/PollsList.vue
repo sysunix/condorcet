@@ -21,6 +21,7 @@
             @onShare="copyMagicLink"
             @onToggleStatus="togglePoll"
             @onDelete="deletePoll"
+            @onLeave="leavePoll"
           />
         </div>
       </div>
@@ -67,6 +68,29 @@ export default {
           status: "error"
         });
       }
+    },
+    async leavePoll(id) {
+      if (confirm("Tu veux quitter ce scrutin ?") === false) {
+        return;
+      }
+
+      const poll = (await db
+        .collection("polls")
+        .doc(id)
+        .get()).data();
+
+      const users = poll.users.filter(user => user !== this.userId);
+
+      db.collection("polls")
+        .doc(id)
+        .set({ ...poll, users });
+
+      this.removePoll(id);
+
+      this.addNotification({
+        text: `Tu as bien quitté le scrutin ${poll.question}`,
+        status: "info"
+      });
     },
     deletePoll(id) {
       if (confirm("Confirmer le suppression ?") === false) {
