@@ -2,7 +2,7 @@ require("dotenv").config();
 const pollsFixtures = require("./polls");
 const votesFixtures = require("./votes");
 
-const { db, admin } = require("../config/firebase");
+const { db, admin } = require("../functions/config/firebase");
 
 const polls = pollsFixtures();
 
