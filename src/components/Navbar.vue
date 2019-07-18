@@ -8,6 +8,7 @@
     </div>
     <div class="block lg:hidden">
       <button
+        data-testid="burger-button"
         class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
         @click="toggleMenu"
       >
@@ -37,6 +38,7 @@
           >Découvrir</router-link
         >
         <router-link
+          data-testid="navlink-poll-creation"
           to="/polls/new"
           class="self-end block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
           @click.native="toggleMenu"

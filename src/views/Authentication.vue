@@ -13,6 +13,7 @@
 
       <div class="mt-2 flex justify-center">
         <button
+          data-testid="google-button"
           class="mx-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
           @click="signIn('google')"
         >
@@ -20,6 +21,7 @@
         </button>
 
         <button
+          data-testid="github-button"
           class="mx-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
           @click="signIn('github')"
         >
@@ -27,6 +29,7 @@
         </button>
 
         <button
+          data-testid="facebook-button"
           class="mx-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
           @click="signIn('facebook')"
         >

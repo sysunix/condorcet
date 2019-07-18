@@ -34,7 +34,7 @@ Si l'envie te prends de faire une PR, pense à jeter un oeil au [guide de contri
 ## Scripts
 
 ```bash
-yarn serve # Compiles and hot-reloads for development
+yarn dev # Compiles and hot-reloads for development
 yarn build # Compiles and minifies for production
 yarn test:unit # Run your unit tests
 yarn lint # Lints and fixes files

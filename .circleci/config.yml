@@ -7,12 +7,12 @@ commands:
       - restore_cache:
           key: v2-dependencies-{{ checksum "yarn.lock" }}
       - restore_cache:
-          key: v2-functions-dependencies-{{ checksum "yarn.lock" }}
+          key: v3-functions-dependencies-{{ checksum "yarn.lock" }}
 
 executors:
   node:
     docker:
-      - image: circleci/node:11.12.0
+      - image: cypress/base:10.16.0
     working_directory: ~/app
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
             - ./node_modules
       - run: cd ./functions && yarn install --ignore-engines
       - save_cache:
-          key: v2-functions-dependencies-{{ checksum "yarn.lock" }}
+          key: v3-functions-dependencies-{{ checksum "yarn.lock" }}
           paths:
             - ./functions/node_modules
 
@@ -47,12 +47,25 @@ jobs:
       - checkout_and_restore_cache
       - run: yarn lint
 
-  test:
+  test_unit:
     executor: node
     steps:
       - checkout_and_restore_cache
       - run: yarn test:unit --coverage
       - run: yarn codecov
+
+  test_e2e:
+    executor: node
+    steps:
+      - checkout_and_restore_cache
+      - attach_workspace:
+          at: ~/app
+      - run:
+          command: yarn firebase serve --only hosting -p 8080
+          background: true
+      - run: yarn cypress install
+      - run: echo $SERVICE_ACCOUNT > ./serviceAccount.json
+      - run: yarn test:e2e
 
   deploy:
     executor: node
@@ -72,15 +85,18 @@ workflows:
             - install
       - lint:
           requires:
-            - install
-      - test:
-          requires:
-            - install
-      - deploy:
+            - build
+      - test_unit:
           requires:
             - build
+      - test_e2e:
+          requires:
+            - build
+      - deploy:
+          requires:
             - lint
-            - test
+            - test_unit
+            - test_e2e
           filters:
             branches:
               only: master

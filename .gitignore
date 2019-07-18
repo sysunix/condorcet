@@ -3,6 +3,9 @@ node_modules/
 dist/
 functions/config/serviceAccountKey.json
 coverage/
+serviceAccount.json
+firebase-debug.log
+cypress.env.json
 
 # local env files
 .env

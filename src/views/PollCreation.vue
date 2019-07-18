@@ -11,6 +11,7 @@
           <input
             id="question"
             v-model="question"
+            data-testid="form-question"
             class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             type="text"
           />
@@ -22,6 +23,7 @@
           >
           <textarea
             v-model="description"
+            data-testid="form-description"
             class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
           ></textarea>
 
@@ -34,6 +36,7 @@
             <input
               id="isPublic"
               v-model="isPublic"
+              data-testid="form-isPublic"
               class="mr-2 leading-tight"
               type="checkbox"
               name="isPublic"
@@ -57,11 +60,13 @@
               id="answer"
               ref="answerInput"
               v-model="answer"
+              data-testid="form-answer"
               class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               type="text"
               @keypress.enter="addAnswer"
             />
             <button
+              data-testid="form-addAnswer"
               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
               @click.prevent="addAnswer"
             >
@@ -77,6 +82,7 @@
             >
               {{ answerProposal.value }}
               <button
+                :data-testid="`form-answerProposal-${answerProposal.slug}`"
                 class="bg-red-500 hover:bg-red-700 text-white font-bold w-6 h-6 rounded-full float-right"
                 @click.prevent="removeAnswer(answerProposal.slug)"
               >
@@ -88,6 +94,7 @@
 
         <div class="w-full mt-4 px-3 flex justify-center">
           <button
+            data-testid="form-submit"
             :disabled="disabledSubmit"
             class="w-1/3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             :class="disabledSubmit && 'opacity-50 cursor-not-allowed'"
