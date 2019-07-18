@@ -10,14 +10,14 @@
 
       <div v-else class="flex flex-wrap w-full">
         <div
-          class="w-full md:w-1/2 lg:w-1/3"
           v-for="poll in userPolls"
           :key="poll.id"
+          class="w-full md:w-1/2 lg:w-1/3"
         >
           <Card
             class="md:mx-2"
             v-bind="poll"
-            :userId="userId"
+            :user-id="userId"
             @onShare="copyMagicLink"
             @onToggleStatus="togglePoll"
             @onDelete="deletePoll"
@@ -41,12 +41,12 @@ export default {
     Card,
     Loader
   },
-  mounted() {
-    this.listenPolls(this.userId);
-  },
   computed: {
     ...mapGetters("user", ["userId"]),
     ...mapGetters("poll", ["userPolls"])
+  },
+  mounted() {
+    this.listenPolls(this.userId);
   },
   methods: {
     ...mapActions("app", ["addNotification"]),

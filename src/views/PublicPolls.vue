@@ -13,8 +13,8 @@
         <Card
           class="md:mx-2"
           v-bind="poll"
-          :userId="userId"
-          :isJoinable="true"
+          :user-id="userId"
+          :is-joinable="true"
           @onJoin="joinPoll"
         />
       </div>

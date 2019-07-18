@@ -6,22 +6,20 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="question"
+            >Question *</label
           >
-            Question *
-          </label>
           <input
+            id="question"
             v-model="question"
             class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            id="question"
             type="text"
           />
 
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="description"
+            >Description</label
           >
-            Description
-          </label>
           <textarea
             v-model="description"
             class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -31,23 +29,20 @@
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="description"
+              >Rendre le scrutin public ?</label
             >
-              Rendre le scrutin public ?
-            </label>
             <input
               id="isPublic"
+              v-model="isPublic"
               class="mr-2 leading-tight"
               type="checkbox"
-              v-model="isPublic"
               name="isPublic"
             />
             <label
               for="isPublic"
               class="md:w-2/3 block text-gray-500 font-bold inline-block"
             >
-              <span class="text-sm">
-                {{ isPublicText }}
-              </span>
+              <span class="text-sm">{{ isPublicText }}</span>
             </label>
           </div>
         </div>
@@ -55,16 +50,15 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="answer"
+            >Ajouter des réponses *</label
           >
-            Ajouter des réponses *
-          </label>
           <div class="flex">
             <input
-              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="answer"
               ref="answerInput"
-              type="text"
               v-model="answer"
+              class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              type="text"
               @keypress.enter="addAnswer"
             />
             <button
@@ -76,11 +70,15 @@
           </div>
 
           <ul class="list-disc mt-6 ml-10">
-            <li class="mt-2" v-for="answer in answers" :key="answer.slug">
-              {{ answer.value }}
+            <li
+              v-for="answerProposal in answers"
+              :key="answerProposal.slug"
+              class="mt-2"
+            >
+              {{ answerProposal.value }}
               <button
-                @click.prevent="removeAnswer(answer.slug)"
                 class="bg-red-500 hover:bg-red-700 text-white font-bold w-6 h-6 rounded-full float-right"
+                @click.prevent="removeAnswer(answerProposal.slug)"
               >
                 -
               </button>

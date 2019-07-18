@@ -5,8 +5,8 @@
     <Graph v-if="featureFlipping.graphOfTheDuels"></Graph>
 
     <div
-      class="overflow-scroll"
       v-if="condorcet && featureFlipping.matrixOfTheDuels && answers"
+      class="overflow-scroll"
     >
       <table class="text-left w-full border-collapse">
         <thead>
@@ -17,9 +17,9 @@
               Réponse
             </th>
             <th
-              class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light"
               v-for="answer in answers"
               :key="answer.slug"
+              class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light"
             >
               {{ answer.value }}
             </th>
@@ -34,9 +34,9 @@
               {{ item.value }}
             </td>
             <td
-              class="py-4 px-6 border-b border-grey-light"
               v-for="opponent in item.duels"
               :key="opponent.slug"
+              class="py-4 px-6 border-b border-grey-light"
             >
               {{ opponent }}
             </td>
@@ -45,11 +45,11 @@
       </table>
     </div>
 
-    <div class="mt-10" v-if="condorcet && featureFlipping.condorcetRanking">
+    <div v-if="condorcet && featureFlipping.condorcetRanking" class="mt-10">
       <div
-        class="font-sans flex items-center justify-center bg-blue-darker w-full py-2"
         v-for="item in condorcet.ranking"
         :key="item.slug"
+        class="font-sans flex items-center justify-center bg-blue-darker w-full py-2"
       >
         <div class="w-full px-6 py-4 rounded overflow-hidden shadow">
           {{ item.rank }} - <span class="font-bold">{{ item.value }}</span> /
@@ -58,12 +58,12 @@
       </div>
     </div>
 
-    <div class="mt-10" v-if="uninominal && featureFlipping.uninominalRanking">
+    <div v-if="uninominal && featureFlipping.uninominalRanking" class="mt-10">
       <h3 class="text-4xl">Uninominal</h3>
       <div
-        class="font-sans flex items-center justify-center bg-blue-darker w-full py-2"
         v-for="item in uninominal"
         :key="item.slug"
+        class="font-sans flex items-center justify-center bg-blue-darker w-full py-2"
       >
         <div class="w-full px-6 py-4 rounded overflow-hidden shadow">
           {{ item.rank }} - <span class="font-bold">{{ item.value }}</span> /

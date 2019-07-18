@@ -15,6 +15,9 @@ export default {
       message: "Traitement en cours..."
     };
   },
+  computed: {
+    ...mapGetters("user", ["userId"])
+  },
   async mounted() {
     try {
       const { params, query } = this.$route;
@@ -46,9 +49,6 @@ export default {
     } catch (error) {
       console.error(error);
     }
-  },
-  computed: {
-    ...mapGetters("user", ["userId"])
   }
 };
 </script>

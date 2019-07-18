@@ -5,15 +5,15 @@
     </p>
 
     <SortableList
-      class="mt-6 mx-auto w-full px-2"
-      lockAxis="y"
       v-model="answers"
+      class="mt-6 mx-auto w-full px-2"
+      lock-axis="y"
       @input="onMove"
     >
       <SortableItem
         v-for="(answer, index) in answers"
-        :index="index"
         :key="answer.rank"
+        :index="index"
         :rank="answer.rank"
         :value="answer.value"
       ></SortableItem>

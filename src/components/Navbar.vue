@@ -8,8 +8,8 @@
     </div>
     <div class="block lg:hidden">
       <button
-        @click="toggleMenu"
         class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
+        @click="toggleMenu"
       >
         <svg
           class="fill-current h-3 w-3"
@@ -24,22 +24,22 @@
     <div class="justify-end w-full block lg:flex lg:items-center lg:w-auto">
       <div class="text-sm lg:flex-grow">
         <router-link
-          @click.native="toggleMenu"
           to="/polls"
           class="block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          @click.native="toggleMenu"
           >Accueil</router-link
         >
         <router-link
-          @click.native="toggleMenu"
           v-if="featureFlipping.publicPolls"
           to="/polls/public"
           class="self-end block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          @click.native="toggleMenu"
           >Découvrir</router-link
         >
         <router-link
-          @click.native="toggleMenu"
           to="/polls/new"
           class="self-end block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          @click.native="toggleMenu"
           >Créer un scrutin</router-link
         >
       </div>

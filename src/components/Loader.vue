@@ -27,15 +27,15 @@ export default {
       waitBeforeDisplay: true
     };
   },
-  mounted() {
-    setTimeout(() => {
-      this.waitBeforeDisplay = false;
-    }, 800);
-  },
   computed: {
     loading() {
       return this.waitBeforeDisplay && this.condition;
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.waitBeforeDisplay = false;
+    }, 800);
   }
 };
 </script>

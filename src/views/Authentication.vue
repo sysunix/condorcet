@@ -7,7 +7,7 @@
           src="../assets/images/condorcet.jpg"
         />
       </div>
-      <h1 class="mt-4 text-center text-3xl" id="title"></h1>
+      <h1 id="title" class="mt-4 text-center text-3xl"></h1>
 
       <div class="mt-12 text-center">Acceder à l'application via :</div>
 
@@ -49,7 +49,7 @@
       <h4 class="text-2xl text-center">Vidéos qui en parlent</h4>
 
       <div class="mt-1 flex flex-col flex-wrap sm:flex-row justify-around">
-        <div class="sm:w-1/2 lg:w-1/4" v-for="video in videos" :key="video.id">
+        <div v-for="video in videos" :key="video.id" class="sm:w-1/2 lg:w-1/4">
           <div class="h-56 m-2">
             <iframe
               width="100%"
@@ -74,11 +74,6 @@ import TypeIt from "typeit";
 
 export default {
   name: "Authentication",
-  mounted() {
-    new TypeIt("#title", {
-      strings: ["Condorcet"]
-    }).go();
-  },
   data() {
     return {
       videos: [
@@ -100,6 +95,11 @@ export default {
         }
       ]
     };
+  },
+  mounted() {
+    new TypeIt("#title", {
+      strings: ["Condorcet"]
+    }).go();
   },
   methods: {
     ...mapActions("user", ["setUser"]),
