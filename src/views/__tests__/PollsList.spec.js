@@ -1,14 +1,17 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 
+
 import { db } from "../../firebase";
-import { MOCK_USER_ID, MOCK_POLL_ID } from "../../utils/test";
+import { MOCK_USER_ID, MOCK_POLL_ID, MOCK_POLL } from "../../utils/test";
 import PollsList from "../PollsList.vue";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 jest.mock("../../firebase");
+
+const $copyText = jest.fn()
 
 describe("PollsList.vue", () => {
   let wrapper;
@@ -30,7 +33,7 @@ describe("PollsList.vue", () => {
     };
 
     pollGetters = {
-      userPolls: jest.fn(() => [])
+      userPolls: jest.fn(() => [{ id: MOCK_POLL_ID, ...MOCK_POLL }])
     };
 
     const store = new Vuex.Store({
@@ -56,7 +59,8 @@ describe("PollsList.vue", () => {
     wrapper = shallowMount(PollsList, {
       store,
       stubs: ["router-link"],
-      localVue
+      localVue,
+      mocks: { $copyText }
     });
   });
 
@@ -75,10 +79,17 @@ describe("PollsList.vue", () => {
     expect(db.collection).toBeCalledWith("polls");
     expect(db.collection("polls").doc).toBeCalledWith(MOCK_POLL_ID);
   });
+
   it("should not leave poll", () => {
     window.confirm = jest.fn(() => false);
     wrapper.vm.leavePoll(MOCK_POLL_ID);
     expect(db.collection).not.toBeCalled();
     expect(db.collection("polls").doc).not.toBeCalled();
+  });
+  
+  it("should copy magic link", async () => {
+    await wrapper.vm.copyMagicLink(MOCK_POLL_ID);
+
+    expect(wrapper.vm.$copyText).toBeCalled();
   });
 });

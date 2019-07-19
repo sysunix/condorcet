@@ -116,7 +116,7 @@ export default {
       }
     },
     async copyMagicLink(id) {
-      const poll = this.polls.find(poll => poll.id === id);
+      const poll = this.userPolls.find(poll => poll.id === id);
       const link = `${window.location.origin}/polls/${poll.id}/join?token=${
         poll.token
       }`;
