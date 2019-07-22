@@ -1,10 +1,13 @@
-# Semantic Commit Messages
+# Guide de contribution
 
-See how a minor change to your commit message style can make you a better programmer.
+Pour les personnes internes au dépôt vous pouvez faire des PR ciblant `master`
+Pour les personnes ayant forké le dépôt, merci de faire vos PR en ciblant la branche `dev`
+
+## Titre de PR sémantique
 
 Format: `<type>: <subject>`
 
-## Example
+### Exemple
 
 ```
 feat: add hat wobble

@@ -26,6 +26,7 @@ jobs:
           paths:
             - ./node_modules
       - run: cd ./functions && yarn install
+      - run: cd ~/app
       - save_cache:
           key: v3-functions-dependencies-{{ checksum "yarn.lock" }}
           paths:
@@ -64,7 +65,7 @@ jobs:
           command: yarn firebase serve --only hosting -p 8080
           background: true
       - run: yarn cypress install
-      - run: echo $SERVICE_ACCOUNT > ./serviceAccount.json
+      - run: echo ${SERVICE_ACCOUNT} > ./serviceAccount.json
       - run: yarn test:e2e
 
   deploy:
@@ -73,7 +74,15 @@ jobs:
       - checkout_and_restore_cache
       - attach_workspace:
           at: ~/app
-      - run: yarn firebase deploy --token "$FIREBASE_TOKEN" --only hosting
+      - run: yarn firebase deploy --token "${FIREBASE_TOKEN}" --only hosting
+
+  # sync_github:
+  #   executor: node
+  #   steps:
+  #     - checkout_and_restore_cache
+  #     - run: echo ${CIRCLE_PULL_REQUEST}
+  #     - run: GITHUB_PERSONAL_TOKEN=${GITHUB_PERSONAL_TOKEN} node scripts/verifyPullRequest.js
+  # - run: git push -q https://${GITHUB_PERSONAL_TOKEN}@github.com/jean-smaug/condorcet.git master:dev
 
 workflows:
   version: 2
@@ -92,6 +101,9 @@ workflows:
       - test_e2e:
           requires:
             - build
+          filters:
+            branches:
+              only: /^(?!pull\/).*$/
       - deploy:
           requires:
             - lint
