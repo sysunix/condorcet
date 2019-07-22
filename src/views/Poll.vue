@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="text-center">
-      Pour voter il suffit de classer vos préférences en les glissant-déposant :
+      {{ $t("poll.dragAndDrop") }}
     </p>
 
     <SortableList
@@ -23,7 +23,7 @@
       class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       @click="vote"
     >
-      Voter
+      {{ $t("global.vote") }}
     </button>
   </div>
 </template>

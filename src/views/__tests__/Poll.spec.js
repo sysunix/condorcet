@@ -4,7 +4,7 @@ import shuffle from "shuffle-array";
 import { createVote } from "../../utils/request";
 
 import Poll from "../Poll.vue";
-import { MOCK_POLL_ID, MOCK_USER_ID, MOCK_ANSWERS } from "../../utils/test";
+import { MOCK_POLL_ID, MOCK_USER_ID, MOCK_ANSWERS, getTranslation } from "../../utils/test";
 
 jest.mock("shuffle-array");
 jest.mock("../../firebase");
@@ -49,6 +49,7 @@ describe("Poll.vue", () => {
       localVue,
       store,
       mocks: {
+        $t: getTranslation,
         $route,
         $router: { push: jest.fn() }
       }

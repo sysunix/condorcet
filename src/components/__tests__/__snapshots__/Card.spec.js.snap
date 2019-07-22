@@ -5,7 +5,7 @@ exports[`Card.vue should render when there is no notifications 1`] = `
   <div class="px-6 py-4">
     <div class="font-bold text-xl mb-3">Qui est le meilleur ?</div>
     <p class="text-gray-700 text-lg mb-2">
-      1 participant(s)
+
     </p>
     <p class="text-gray-700 text-base">Qui repellendus est aliquam vel qui.</p>
   </div>

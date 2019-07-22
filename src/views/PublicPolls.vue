@@ -2,7 +2,10 @@
   <Loader>
     <div class="flex flex-wrap">
       <div v-if="publicPolls.length === 0">
-        Il n'y a pas de scrutins publics disponibles
+        {{ $t("empty.publicPolls.text") }}
+        <router-link to="/polls/new" class="text-teal-500 hover:underline">{{
+          $t("empty.publicPolls.action")
+        }}</router-link>
       </div>
 
       <div

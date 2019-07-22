@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import Navbar from "../Navbar.vue";
 import { signOut } from "../../utils/authentication";
 import config from "../../config";
+import { getTranslation } from '../../utils/test'
 
 jest.mock("../../utils/authentication");
 
@@ -32,7 +33,14 @@ describe("Navbar.vue", () => {
       }
     });
 
-    wrapper = shallowMount(Navbar, { localVue, store, stubs: ["router-link"] });
+    wrapper = shallowMount(Navbar, {
+      localVue,
+      store,
+      stubs: ["router-link"],
+      mocks: {
+        $t: getTranslation
+      }
+    });
   });
 
   it("should render", () => {

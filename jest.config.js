@@ -25,6 +25,7 @@ module.exports = {
     "src/types.js",
     "src/plugins/*",
     "src/store/index.js",
-    "src/utils/firebase.js"
+    "src/utils/firebase.js",
+    "src/i18n.js"
   ]
 };

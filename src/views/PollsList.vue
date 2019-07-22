@@ -2,10 +2,10 @@
   <Loader>
     <div class="flex">
       <div v-if="userPolls.length === 0">
-        Tu n'a pas encore de scrutin. Tu peux en créé un en cliquant sur
-        <router-link to="polls/new" class="text-teal-500 hover:underline"
-          >ce lien</router-link
-        >.
+        {{ $t("empty.userPolls.text") }}
+        <router-link to="/polls/new" class="text-teal-500 hover:underline">{{
+          $t("empty.userPolls.action")
+        }}</router-link>
       </div>
 
       <div v-else class="flex flex-wrap w-full">

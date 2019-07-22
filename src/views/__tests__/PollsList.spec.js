@@ -1,7 +1,6 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 
-
 import { db } from "../../firebase";
 import { MOCK_USER_ID, MOCK_POLL_ID, MOCK_POLL } from "../../utils/test";
 import PollsList from "../PollsList.vue";
@@ -11,7 +10,7 @@ localVue.use(Vuex);
 
 jest.mock("../../firebase");
 
-const $copyText = jest.fn()
+const $copyText = jest.fn();
 
 describe("PollsList.vue", () => {
   let wrapper;
@@ -86,7 +85,7 @@ describe("PollsList.vue", () => {
     expect(db.collection).not.toBeCalled();
     expect(db.collection("polls").doc).not.toBeCalled();
   });
-  
+
   it("should copy magic link", async () => {
     await wrapper.vm.copyMagicLink(MOCK_POLL_ID);
 

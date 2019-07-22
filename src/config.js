@@ -3,7 +3,7 @@ export default {
   featureFlipping: {
     publicPolls: true,
     graphOfTheDuels: false,
-    matrixOfTheDuels: true,
+    matrixOfTheDuels: false,
     condorcetRanking: true,
     uninominalRanking: true
   }

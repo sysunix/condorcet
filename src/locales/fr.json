@@ -1,0 +1,56 @@
+{
+  "global": {
+    "close": "Fermer",
+    "vote": "Voter",
+    "join": "Rejoindre",
+    "leave": "Quitter",
+    "delete": "Supprimer",
+    "share": "Partager",
+    "reOpen": "Ré-ouvrir",
+    "results": "Résultat",
+    "create": "Créer",
+    "add": "Ajouter"
+  },
+  "poll": {
+    "dragAndDrop": "Pour voter il suffit de classer vos préférences en les glissant-déposant",
+    "wins": "Aucune victoire | 1 victoire | {count} victoires",
+    "equalities": "Aucun match nul | 1 match nul | {count} matchs nuls",
+    "participants": "Aucun partipant | 1 partipant | {count} partipants",
+    "numberOfVotes": "Aucun vote | {count} voix",
+    "fields": {
+      "question": "Question",
+      "answer": "Ajouter une réponse",
+      "answers": "Réponses",
+      "description": "Descritpion",
+      "isPublic": "Rendre le scrutin public ?"
+    }
+  },
+  "navigation": {
+    "userPolls": "Mes scrutins",
+    "publicPolls": "Découvrir",
+    "createPoll": "Créer un scrutin",
+    "logOut": "Deconnexion"
+  },
+  "rules": {
+    "title": "Quelles sont les règles ?",
+    "step1": "Chaque votant classe les alternatives par ordre de préférence",
+    "step2": "On organise des duels entre toutes les alternatives",
+    "step3": "Celui qui remporte le plus de duels est déclaré gagnant"
+  },
+  "empty": {
+    "publicPolls": {
+      "text": "Il n'y a pas de scrutins publics disponibles. Mais tu peux en",
+      "action": "créer un"
+    },
+    "userPolls": {
+      "text": "Tu n'a pas encore de scrutin. Tu peux en créé un en cliquant sur",
+      "action": "ce lien"
+    }
+  },
+  "errors": {
+    "network": "Nous rencontrons un problème réseau, merci de réessayer plus tard"
+  },
+  "misc": {
+    "bonusVideos": "Vidéos qui en parlent"
+  }
+}

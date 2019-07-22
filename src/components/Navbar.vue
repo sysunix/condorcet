@@ -28,21 +28,21 @@
           to="/polls"
           class="block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
           @click.native="toggleMenu"
-          >Accueil</router-link
+          >{{ $t("navigation.userPolls") }}</router-link
         >
         <router-link
           v-if="featureFlipping.publicPolls"
           to="/polls/public"
           class="self-end block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
           @click.native="toggleMenu"
-          >Découvrir</router-link
+          >{{ $t("navigation.publicPolls") }}</router-link
         >
         <router-link
           data-testid="navlink-poll-creation"
           to="/polls/new"
           class="self-end block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
           @click.native="toggleMenu"
-          >Créer un scrutin</router-link
+          >{{ $t("navigation.createPoll") }}</router-link
         >
       </div>
       <div>
@@ -50,7 +50,7 @@
           href="#"
           class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
           @click="signOut"
-          >Deconnexion</a
+          >{{ $t("navigation.logOut") }}</a
         >
       </div>
     </div>

@@ -1,3 +1,6 @@
+import _get from "lodash/get";
+import frLocal from "../locales/fr.json";
+
 export const MOCK_POLL_ID = "MOCK_POLL_ID";
 
 export const MOCK_USER_ID = "MOCK_USER_ID";
@@ -24,3 +27,5 @@ export const MOCK_POLL = {
   token: MOCK_TOKEN,
   users: [MOCK_USER_ID]
 };
+
+export const getTranslation = path => _get(frLocal, path);

@@ -39,17 +39,17 @@
     </div>
 
     <div class="mt-12">
-      <h4 class="text-2xl text-center">Quelles sont les règles ?</h4>
+      <h4 class="text-2xl text-center">{{ $t("rules.title") }}</h4>
 
       <ul class="mt-1 px-5 list-disc list-inside">
-        <li>Chaque votant classe les alternatives par ordre de préférence</li>
-        <li>On organise des duels entre toutes les alternatives</li>
-        <li>Celui qui remporte le plus de duels est déclaré gagnant</li>
+        <li>{{ $t("rules.step1") }}</li>
+        <li>{{ $t("rules.step2") }}</li>
+        <li>{{ $t("rules.step3") }}</li>
       </ul>
     </div>
 
     <div class="mt-12">
-      <h4 class="text-2xl text-center">Vidéos qui en parlent</h4>
+      <h4 class="text-2xl text-center">{{ $t("misc.bonusVideos") }}</h4>
 
       <div class="mt-1 flex flex-col flex-wrap sm:flex-row justify-around">
         <div v-for="video in videos" :key="video.id" class="sm:w-1/2 lg:w-1/4">

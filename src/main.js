@@ -9,6 +9,7 @@ import store from "./store";
 import router from "./router";
 
 import "./assets/main.css";
+import i18n from "./i18n";
 
 Vue.config.productionTip = false;
 
@@ -22,5 +23,6 @@ Sentry.init({
 new Vue({
   store,
   router,
+  i18n,
   render: h => h(App)
 }).$mount("#app");

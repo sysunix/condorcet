@@ -2,6 +2,7 @@ import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 import Authentication from "../Authentication.vue";
 import { signIn } from "../../utils/authentication";
+import { getTranslation } from '../../utils/test';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -25,7 +26,11 @@ describe("Authentication.vue", () => {
       }
     });
 
-    wrapper = shallowMount(Authentication, { localVue, store });
+    wrapper = shallowMount(Authentication, {
+      localVue,
+      store,
+      mocks: { $t: getTranslation }
+    });
   });
 
   it("should render", () => {

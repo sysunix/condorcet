@@ -3,19 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve",
     "serve": "yarn build && firebase serve --only hosting -p 3000",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "dev": "vue-cli-service serve",
+    "fixtures": "node functions/fixtures/index.js",
+    "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
+    "setup": "yarn install && cpy .env.example . --rename=.env",
+    "teo": "yarn test:e2e:open",
+    "test:e2e": "yarn test:e2e:config && cypress run --env envName=stage",
+    "test:e2e:config": "cypress-firebase createTestEnvFile",
+    "test:e2e:open": "yarn test:e2e:config && cypress open",
     "test:unit": "vue-cli-service test:unit",
     "test:unit:watch": "yarn test:unit --watch",
-    "tuw": "yarn test:unit:watch",
-    "test:e2e:config": "cypress-firebase createTestEnvFile",
-    "test:e2e": "yarn test:e2e:config && cypress run --env envName=stage",
-    "test:e2e:open": "yarn test:e2e:config && cypress open",
-    "teo": "yarn test:e2e:open",
-    "fixtures": "node functions/fixtures/index.js",
-    "setup": "yarn install && cpy .env.example . --rename=.env"
+    "tuw": "yarn test:unit:watch"
   },
   "dependencies": {
     "@firebase/app": "0.4.11",
@@ -33,6 +34,7 @@
     "uuid": "3.3.2",
     "vue": "2.6.10",
     "vue-clipboard2": "0.3.0",
+    "vue-i18n": "^8.0.0",
     "vue-router": "3.0.7",
     "vue-slicksort": "1.1.3",
     "vue-spinner": "1.0.3",
@@ -62,8 +64,10 @@
     "firebase-mock": "2.2.10",
     "firebase-tools": "7.1.1",
     "jest-when": "2.6.0",
+    "lodash": "4.17.15",
     "sort-keys": "3.0.0",
     "tailwindcss": "1.0.5",
+    "vue-cli-plugin-i18n": "^0.6.0",
     "vue-style-loader": "4.1.2",
     "vue-template-compiler": "2.6.10"
   }

@@ -53,7 +53,10 @@
       >
         <div class="w-full px-6 py-4 rounded overflow-hidden shadow">
           {{ item.rank }} - <span class="font-bold">{{ item.value }}</span> /
-          {{ item.wins }} victoire(s) & {{ item.equalities }} match(s) nul(s)
+          {{ $t("poll.wins", item.wins, { count: item.wins }) }} &
+          {{
+            $t("poll.equalities", item.equalities, { count: item.equalities })
+          }}
         </div>
       </div>
     </div>
@@ -67,7 +70,11 @@
       >
         <div class="w-full px-6 py-4 rounded overflow-hidden shadow">
           {{ item.rank }} - <span class="font-bold">{{ item.value }}</span> /
-          {{ item.numberOfVotes }} voix
+          {{
+            $t("poll.numberOfVotes", item.numberOfVotes, {
+              count: item.numberOfVotes
+            })
+          }}
         </div>
       </div>
     </div>

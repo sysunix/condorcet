@@ -6,7 +6,7 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="question"
-            >Question *</label
+            >{{ $t("poll.fields.question") }} *</label
           >
           <input
             id="question"
@@ -19,7 +19,7 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="description"
-            >Description</label
+            >{{ $t("poll.fields.description") }}</label
           >
           <textarea
             v-model="description"
@@ -31,7 +31,7 @@
             <label
               class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="description"
-              >Rendre le scrutin public ?</label
+              >{{ $t("poll.fields.isPublic") }}</label
             >
             <input
               id="isPublic"
@@ -53,7 +53,7 @@
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="answer"
-            >Ajouter des réponses *</label
+            >{{ $t("poll.fields.answer") }} *</label
           >
           <div class="flex">
             <input
@@ -70,7 +70,7 @@
               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
               @click.prevent="addAnswer"
             >
-              Ajouter
+              {{ $t("global.add") }}
             </button>
           </div>
 
@@ -100,7 +100,7 @@
             :class="disabledSubmit && 'opacity-50 cursor-not-allowed'"
             @click.prevent="submitPoll"
           >
-            Créer
+            {{ $t("global.create") }}
           </button>
         </div>
       </div>

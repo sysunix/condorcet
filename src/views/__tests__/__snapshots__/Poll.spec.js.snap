@@ -3,7 +3,7 @@
 exports[`Poll.vue should render 1`] = `
 <div>
   <p class="text-center">
-    Pour voter il suffit de classer vos préférences en les glissant-déposant :
+    Pour voter il suffit de classer vos préférences en les glissant-déposant
   </p>
   <sortablelist-stub value="[object Object],[object Object],[object Object]" axis="y" distance="0" pressdelay="0" pressthreshold="5" hidesortableghost="true" lockoffset="50%" transitionduration="300" appendto="body" lockaxis="y" shouldcancelstart="function _default(e) {
         // Cancel sorting if the event target is an \`input\`, \`textarea\`, \`select\` or \`option\`

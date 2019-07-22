@@ -2,7 +2,7 @@ import { shallowMount } from "@vue/test-utils";
 import PollResult from "../PollResult.vue";
 import store from "../../store/index";
 
-import { MOCK_POLL_ID } from "../../utils/test";
+import { MOCK_POLL_ID, getTranslation } from "../../utils/test";
 
 jest.mock("../../firebase");
 
@@ -17,6 +17,7 @@ describe("PollResult.vue", () => {
     wrapper = shallowMount(PollResult, {
       store,
       mocks: {
+        $t: getTranslation,
         $route
       }
     });

@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import PollCreation from "../PollCreation.vue";
 
 import { createPoll } from "../../utils/request";
+import { getTranslation } from '../../utils/test'
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -31,6 +32,9 @@ describe("PollCreation.vue", () => {
     wrapper = shallowMount(PollCreation, {
       localVue,
       store,
+      mocks: {
+        $t: getTranslation
+      },
       computed: {
         userId: () => "azfnez893jfz"
       }
