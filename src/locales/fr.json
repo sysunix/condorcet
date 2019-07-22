@@ -15,7 +15,7 @@
     "dragAndDrop": "Pour voter il suffit de classer vos préférences en les glissant-déposant",
     "wins": "Aucune victoire | 1 victoire | {count} victoires",
     "equalities": "Aucun match nul | 1 match nul | {count} matchs nuls",
-    "participants": "Aucun partipant | 1 partipant | {count} partipants",
+    "participants": "Aucun participant | 1 participant | {count} participants",
     "numberOfVotes": "Aucun vote | {count} voix",
     "fields": {
       "question": "Question",
