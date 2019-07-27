@@ -1,38 +1,38 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
-
+title: ""
+labels: "bug"
+assignees: ""
 ---
 
-**Describe the bug**
+## Décris le bug
+
 A clear and concise description of what the bug is.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+## Comment le reproduire ?
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+Étapes:
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+1. Vas sur '...'
+2. Clique sur '....'
+3. Oh non c'est cassé
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+## Comportement souhaité
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+...
 
-**Additional context**
+## Screenshots
+
+...
+
+## Environnement
+
+- Appareil: [e.g. iPhone6]
+- OS: [e.g. iOS]
+- Navigateur [e.g. chrome, safari]
+- Version du navigateur [e.g. 22]
+
+## Informations complémentaires
+
 Add any other context about the problem here.
