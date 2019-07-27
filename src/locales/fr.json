@@ -16,7 +16,7 @@
     "wins": "Aucune victoire | 1 victoire | {count} victoires",
     "equalities": "Aucun match nul | 1 match nul | {count} matchs nuls",
     "participants": "Aucun participant | 1 participant | {count} participants",
-    "numberOfVotes": "Aucun vote | {count} voix",
+    "numberOfVotes": "Aucune voix | {count} voix | {count} voix",
     "fields": {
       "question": "Question",
       "answer": "Ajouter une réponse",
