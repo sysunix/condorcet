@@ -9,7 +9,7 @@
     "dev": "vue-cli-service serve",
     "fixtures": "node functions/fixtures/index.js",
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
-    "setup": "yarn install && cpy .env.example . --rename=.env",
+    "setup": "yarn install && cpy .env.example . --rename=.env && cd functions && yarn install",
     "teo": "yarn test:e2e:open",
     "test:e2e": "yarn test:e2e:config && cypress run --env envName=stage",
     "test:e2e:config": "cypress-firebase createTestEnvFile",
