@@ -25,6 +25,7 @@
     <div class="justify-end w-full block lg:flex lg:items-center lg:w-auto">
       <div class="text-sm lg:flex-grow">
         <router-link
+          data-testid="navlink-user-polls"
           to="/polls"
           class="block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
           @click.native="toggleMenu"
@@ -32,6 +33,7 @@
         >
         <router-link
           v-if="featureFlipping.publicPolls"
+          data-testid="navlink-public-polls"
           to="/polls/public"
           class="self-end block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
           @click.native="toggleMenu"

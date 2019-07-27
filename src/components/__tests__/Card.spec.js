@@ -1,6 +1,6 @@
 import { shallowMount } from "@vue/test-utils";
 import Card from "../Card.vue";
-import { getTranslation } from '../../utils/test';
+import { getTranslation } from "../../utils/test";
 import { MOCK_POLL, MOCK_USER_ID, MOCK_POLL_ID } from "../../utils/test";
 
 describe("Card.vue", () => {

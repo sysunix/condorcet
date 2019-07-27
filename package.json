@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "yarn build && firebase serve --only hosting -p 3000",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "dev": "vue-cli-service serve",
@@ -11,7 +10,7 @@
     "i18n:report": "vue-cli-service i18n:report --src './src/**/*.?(js|vue)' --locales './src/locales/**/*.json'",
     "setup": "yarn install && cpy .env.example . --rename=.env && cd functions && yarn install",
     "teo": "yarn test:e2e:open",
-    "test:e2e": "yarn test:e2e:config && cypress run --env envName=stage",
+    "test:e2e": "yarn test:e2e:config && cypress run",
     "test:e2e:config": "cypress-firebase createTestEnvFile",
     "test:e2e:open": "yarn test:e2e:config && cypress open",
     "test:unit": "vue-cli-service test:unit",

@@ -3,7 +3,7 @@ import Vuex from "vuex";
 import PollCreation from "../PollCreation.vue";
 
 import { createPoll } from "../../utils/request";
-import { getTranslation } from '../../utils/test'
+import { getTranslation } from "../../utils/test";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);

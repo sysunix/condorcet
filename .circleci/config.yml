@@ -1,13 +1,21 @@
 version: 2.1
 
 commands:
+  restore_cypress:
+    steps:
+      - restore_cache:
+          key: v1-cypress-binary-{{ checksum "yarn.lock" }}
+
+  restore_functions:
+    steps:
+      - restore_cache:
+          key: v4-functions-dependencies-{{ checksum "functions/yarn.lock" }}
+
   checkout_and_restore_cache:
     steps:
       - checkout
       - restore_cache:
-          key: v2-dependencies-{{ checksum "yarn.lock" }}
-      - restore_cache:
-          key: v3-functions-dependencies-{{ checksum "yarn.lock" }}
+          key: v3-dependencies-{{ checksum "yarn.lock" }}
 
 executors:
   node:
@@ -20,17 +28,23 @@ jobs:
     executor: node
     steps:
       - checkout_and_restore_cache
+      - restore_functions
+      - restore_cypress
       - run: yarn install
+      - run: yarn cypress install
+      - run: cd ~/app/functions && yarn install
       - save_cache:
-          key: v2-dependencies-{{ checksum "yarn.lock" }}
+          key: v3-dependencies-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
-      - run: cd ./functions && yarn install
-      - run: cd ~/app
       - save_cache:
-          key: v3-functions-dependencies-{{ checksum "yarn.lock" }}
+          key: v4-functions-dependencies-{{ checksum "functions/yarn.lock" }}
           paths:
-            - ./functions/node_modules
+            - ~/app/functions/node_modules
+      - save_cache:
+          key: v1-cypress-binary-{{ checksum "yarn.lock" }}
+          paths:
+            - /root/.cache/Cypress
 
   build:
     executor: node
@@ -52,6 +66,7 @@ jobs:
     executor: node
     steps:
       - checkout_and_restore_cache
+      - restore_functions
       - run: yarn test:unit --coverage
       - run: yarn codecov
 
@@ -59,13 +74,13 @@ jobs:
     executor: node
     steps:
       - checkout_and_restore_cache
+      - restore_cypress
       - attach_workspace:
           at: ~/app
       - run:
           command: yarn firebase serve --only hosting -p 8080
           background: true
-      - run: yarn cypress install
-      - run: echo ${SERVICE_ACCOUNT} > ./serviceAccount.json
+      - run: echo $SERVICE_ACCOUNT > ./serviceAccount.json
       - run: yarn test:e2e
 
   deploy:
@@ -76,7 +91,7 @@ jobs:
           at: ~/app
       - run: yarn firebase deploy --token "${FIREBASE_TOKEN}" --only hosting
 
-  github_validate:
+  check_pr:
     executor: node
     steps:
       - checkout
@@ -87,7 +102,7 @@ workflows:
   version: 2
   integration:
     jobs:
-      - github_validate:
+      - check_pr:
           filters:
             branches:
               only: /^(pull\/).*$/

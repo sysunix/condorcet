@@ -2,9 +2,7 @@
 
 exports[`Poll.vue should render 1`] = `
 <div>
-  <p class="text-center">
-    Pour voter il suffit de classer vos préférences en les glissant-déposant
-  </p>
+  <p class="text-center">Pour voter il suffit de classer vos préférences en les glissant-déposant</p>
   <sortablelist-stub value="[object Object],[object Object],[object Object]" axis="y" distance="0" pressdelay="0" pressthreshold="5" hidesortableghost="true" lockoffset="50%" transitionduration="300" appendto="body" lockaxis="y" shouldcancelstart="function _default(e) {
         // Cancel sorting if the event target is an \`input\`, \`textarea\`, \`select\` or \`option\`
         var disabledElements = ['input', 'textarea', 'select', 'option', 'button'];
@@ -19,7 +17,7 @@ exports[`Poll.vue should render 1`] = `
     <sortableitem-stub index="0" collection="default" value="Luffy" rank="1"></sortableitem-stub>
     <sortableitem-stub index="1" collection="default" value="Zorro" rank="2"></sortableitem-stub>
     <sortableitem-stub index="2" collection="default" value="Sanji" rank="3"></sortableitem-stub>
-  </sortablelist-stub> <button class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  </sortablelist-stub> <button data-testid="vote" class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
     Voter
   </button>
 </div>

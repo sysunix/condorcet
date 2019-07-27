@@ -10,6 +10,9 @@
     <div class="flex justify-between flex-wrap px-6 py-4">
       <router-link
         v-if="users.includes(userId)"
+        :data-testid="
+          isActive ? `vote-${questionSlug}` : `results-${questionSlug}`
+        "
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full my-1"
         tag="button"
         :to="{
@@ -27,6 +30,9 @@
       </button>
       <button
         v-if="owner === userId"
+        :data-testid="
+          isActive ? `close-${questionSlug}` : `reOpen-${questionSlug}`
+        "
         class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full my-1"
         @click.prevent="$emit('onToggleStatus', id)"
       >
@@ -51,6 +57,7 @@
 
       <button
         v-if="owner === userId"
+        data-testid="delete"
         class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full my-1"
         @click.prevent="$emit('onDelete', id)"
       >
@@ -61,6 +68,8 @@
 </template>
 
 <script>
+import slugify from "slugify";
+
 export default {
   name: "Card",
   props: {
@@ -91,6 +100,11 @@ export default {
     users: {
       type: Array,
       required: true
+    }
+  },
+  computed: {
+    questionSlug() {
+      return slugify(this.question);
     }
   }
 };
