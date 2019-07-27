@@ -1,7 +1,47 @@
+rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if request.auth.uid != null;
+    match /logs/{log} {
+      allow write;
+    }
+
+    match /polls/{poll} {
+      allow read: if request.auth.uid != null;
+
+      allow create: if 
+        request.resource.data.owner == request.auth.uid &&
+        request.resource.data.answers is list &&
+        request.resource.data.description is string &&
+        request.resource.data.isActive is bool &&
+        request.resource.data.isPublic is bool &&
+        request.resource.data.question is string &&
+        request.resource.data.token is string &&
+        request.resource.data.users is list;
+      
+      allow update: if 
+        resource.data.owner == request.auth.uid &&
+        request.resource.data.owner == request.auth.uid &&
+        request.resource.data.answers is list &&
+        request.resource.data.description is string &&
+        request.resource.data.isActive is bool &&
+        request.resource.data.isPublic is bool &&
+        request.resource.data.question is string &&
+        request.resource.data.token is string &&
+        request.resource.data.users is list;
+
+      allow delete: if resource.data.owner == request.auth.uid;
+
+      match /votes/{vote} {
+        allow read: if request.auth.uid == vote;
+        allow create: if request.auth.uid != null;
+        allow update: if request.auth.uid == vote;
+      }
+      
+      match /results/{result=**} {
+        allow write: if false;
+        allow read: if request.auth.uid != null;
+      }
     }
   }
 }
