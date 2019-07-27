@@ -1,0 +1,10 @@
+{
+  "name": "github-assistant",
+  "version": "1.0.0",
+  "dependencies": {
+    "@octokit/graphql": "3.0.1"
+  },
+  "devDependencies": {
+    "got": "9.6.0"
+  }
+}

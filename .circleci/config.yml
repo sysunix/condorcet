@@ -76,18 +76,21 @@ jobs:
           at: ~/app
       - run: yarn firebase deploy --token "${FIREBASE_TOKEN}" --only hosting
 
-  # sync_github:
-  #   executor: node
-  #   steps:
-  #     - checkout_and_restore_cache
-  #     - run: echo ${CIRCLE_PULL_REQUEST}
-  #     - run: GITHUB_PERSONAL_TOKEN=${GITHUB_PERSONAL_TOKEN} node scripts/verifyPullRequest.js
-  # - run: git push -q https://${GITHUB_PERSONAL_TOKEN}@github.com/jean-smaug/condorcet.git master:dev
+  github_validate:
+    executor: node
+    steps:
+      - checkout
+      - run: cd tools/assistant && yarn install
+      - run: PR_NUMBER=${CIRCLE_PR_NUMBER} node ./tools/assistant/scripts/callChecker.js
 
 workflows:
   version: 2
   integration:
     jobs:
+      - github_validate:
+          filters:
+            branches:
+              only: /^(pull\/).*$/
       - install
       - build:
           requires:

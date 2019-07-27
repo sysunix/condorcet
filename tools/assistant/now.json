@@ -1,0 +1,8 @@
+{
+    "name": "assistant",
+    "version": 2,
+    "env": {
+        "GITHUB_PERSONAL_TOKEN": "@github_personal_token"
+    }
+
+}
