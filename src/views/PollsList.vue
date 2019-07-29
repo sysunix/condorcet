@@ -3,14 +3,17 @@
     <div class="flex">
       <div v-if="userPolls.length === 0">
         {{ $t("empty.userPolls.text") }}
-        <router-link
-          to="/polls/new"
-          class="text-teal-500 hover:underline"
-        >{{ $t("empty.userPolls.action") }}</router-link>
+        <router-link to="/polls/new" class="text-teal-500 hover:underline">{{
+          $t("empty.userPolls.action")
+        }}</router-link>
       </div>
 
       <div v-else class="flex flex-wrap w-full">
-        <div v-for="poll in userPolls" :key="poll.id" class="w-full md:w-1/2 lg:w-1/3">
+        <div
+          v-for="poll in userPolls"
+          :key="poll.id"
+          class="w-full md:w-1/2 lg:w-1/3"
+        >
           <Card
             class="md:mx-2"
             v-bind="poll"
@@ -110,7 +113,9 @@ export default {
     },
     async copyMagicLink(id) {
       const poll = this.userPolls.find(poll => poll.id === id);
-      const link = `${window.location.origin}/polls/${poll.id}/join?token=${poll.token}`;
+      const link = `${window.location.origin}/polls/${poll.id}/join?token=${
+        poll.token
+      }`;
 
       try {
         await this.$copyText(link);
