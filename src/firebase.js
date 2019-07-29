@@ -1,6 +1,7 @@
 import firebase from "@firebase/app";
 import "@firebase/firestore";
 import "@firebase/auth";
+import "@firebase/functions";
 
 const {
   VUE_APP_API_KEY,
@@ -24,5 +25,6 @@ firebase.initializeApp(config);
 
 export const db = firebase.firestore();
 export const auth = firebase.auth();
+export const functions = firebase.functions();
 
 export default firebase;

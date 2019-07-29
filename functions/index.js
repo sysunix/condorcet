@@ -2,10 +2,9 @@ const functions = require("firebase-functions");
 const { db } = require("./config/firebase");
 const condorcet = require("./utils/condorcet-v3");
 const uninominal = require("./utils/uninominal");
+const deletePoll = require("./api/deletePoll");
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
+exports.deletePoll = functions.https.onCall(deletePoll);
 
 exports.addUserToFirestoreAfterCreation = functions.auth
   .user()
