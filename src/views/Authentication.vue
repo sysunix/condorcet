@@ -112,7 +112,6 @@ export default {
         const { user } = await signIn(provider);
         this.setUser(user);
 
-        this.$router.push({ name: "polls_list" });
         this.addNotification({ text: "Vous êtes connecté", status: "info" });
       } catch (error) {
         switch (error.code) {

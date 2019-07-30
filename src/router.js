@@ -12,6 +12,8 @@ import PollJoin from "./views/PollJoin.vue";
 import PollCreation from "./views/PollCreation.vue";
 import PublicPolls from "./views/PublicPolls.vue";
 
+import { SET_REDIRECTION, CLEAR_REDIRECTION } from "./store/types";
+
 Vue.use(Router);
 
 const router = new Router({
@@ -77,13 +79,20 @@ const router = new Router({
   ]
 });
 
-router.beforeEach((to, from, next) => {
-  const { meta, name } = to;
+export const beforeEach = (to, from, next) => {
+  const { meta, name, params, query } = to;
   const userId = store.state.user.id;
 
   initializationMiddleware(store, ({ state }) => {
     switch (state) {
       case "just_logged":
+        if (store.state.app.redirection) {
+          next(store.state.app.redirection);
+          store.commit(`app/${CLEAR_REDIRECTION}`);
+
+          return;
+        }
+
         if (name === "authentication" || name === null) {
           next({
             name: "polls_list"
@@ -95,6 +104,10 @@ router.beforeEach((to, from, next) => {
         next();
         return;
       case "no_user":
+        if (name === "poll_join") {
+          store.commit(`app/${SET_REDIRECTION}`, { name, params, query });
+        }
+
         next({
           name: "authentication"
         });
@@ -111,6 +124,8 @@ router.beforeEach((to, from, next) => {
         next();
     }
   });
-});
+};
+
+router.beforeEach(beforeEach);
 
 export default router;

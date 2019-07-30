@@ -1,6 +1,8 @@
 import { createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 import app from "../app";
+import { MOCK_POLL_ID, MOCK_TOKEN } from "../../../utils/test";
+import config from "../../../config";
 
 jest.useFakeTimers();
 
@@ -35,6 +37,14 @@ describe("store/modules/app", () => {
     });
 
     expect(setTimeout).toHaveBeenCalledTimes(1);
+    expect(setTimeout).toHaveBeenCalledWith(
+      expect.any(Function),
+      config.notificationTimeout
+    );
+
+    jest.advanceTimersByTime(config.notificationTimeout);
+
+    expect(store.state.app.notifications.length).toBe(0);
   });
 
   it("should remove notification from the store", () => {
@@ -61,5 +71,28 @@ describe("store/modules/app", () => {
         message: "bonsoir paris yeeeeah"
       }
     ]);
+  });
+
+  it("should set redirection and clear it", () => {
+    expect(store.state.app.redirection).toBeNull();
+    store.commit("app/SET_REDIRECTION", {
+      name: "poll_join",
+      params: { id: MOCK_POLL_ID },
+      query: { token: MOCK_TOKEN }
+    });
+    expect(store.state.app.redirection).toMatchInlineSnapshot(`
+Object {
+  "name": "poll_join",
+  "params": Object {
+    "id": "MOCK_POLL_ID",
+  },
+  "query": Object {
+    "token": "MOCK_TOKEN",
+  },
+}
+`);
+
+    store.commit("app/CLEAR_REDIRECTION");
+    expect(store.state.app.redirection).toBeNull();
   });
 });

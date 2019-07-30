@@ -4,7 +4,9 @@ import {
   REMOVE_NOTIFICATION,
   INITIALIZE,
   TOGGLE_MENU,
-  RESET
+  RESET,
+  SET_REDIRECTION,
+  CLEAR_REDIRECTION
 } from "../types";
 import config from "../../config";
 
@@ -14,7 +16,8 @@ export default {
     initialized: false,
     notifications: [],
     isMenuOpen: false,
-    featureFlipping: config.featureFlipping
+    featureFlipping: config.featureFlipping,
+    redirection: null
   },
   mutations: {
     [RESET](state) {
@@ -36,6 +39,12 @@ export default {
     },
     [TOGGLE_MENU](state) {
       state.isMenuOpen = !state.isMenuOpen;
+    },
+    [SET_REDIRECTION](state, redirection) {
+      state.redirection = redirection;
+    },
+    [CLEAR_REDIRECTION](state) {
+      state.redirection = null;
     }
   },
   actions: {
