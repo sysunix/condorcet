@@ -81,7 +81,7 @@ jobs:
           command: yarn firebase serve --only hosting -p 8080
           background: true
       - run: echo $SERVICE_ACCOUNT > ./serviceAccount.json
-      - run: yarn test:e2e
+      - run: yarn test:e2e:ci
 
   deploy:
     executor: node

@@ -2,8 +2,9 @@
   <div class="Notification">
     <transition-group name="Transition" tag="p">
       <div
-        v-for="notification in notifications"
+        v-for="(notification, key) in notifications"
         :key="notification.id"
+        :data-testid="`notification-${key}`"
         :value="true"
         :type="notification.status"
         class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4"

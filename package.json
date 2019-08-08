@@ -11,6 +11,7 @@
     "setup": "yarn install && cpy .env.example . --rename=.env && cd functions && yarn install",
     "teo": "yarn test:e2e:open",
     "test:e2e": "yarn test:e2e:config && cypress run",
+    "test:e2e:ci": "yarn test:e2e:config && cypress run --record --key 9fffd190-40d8-4d91-8310-e447c12363af --parallel",
     "test:e2e:config": "cypress-firebase createTestEnvFile",
     "test:e2e:open": "yarn test:e2e:config && cypress open",
     "test:unit": "vue-cli-service test:unit",
