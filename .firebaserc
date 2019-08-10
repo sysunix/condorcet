@@ -1,6 +1,7 @@
 {
   "projects": {
-    "default": "condorcet-4167c",
+    "prod": "condorcet-4167c",
+    "default": "condorcet-dev",
     "dev": "condorcet-dev"
   }
 }
