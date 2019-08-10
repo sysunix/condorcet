@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PublicPolls.vue should render 1`] = `
-<loader-stub condition="true">
+<loader-stub>
   <empty-stub text="Il n'y a pas de scrutins publics disponibles." actiontext="Créer un scrutin" to="/polls/new"></empty-stub>
   <div class="flex flex-wrap">
     <div class="w-full md:w-1/2 lg:w-1/3">

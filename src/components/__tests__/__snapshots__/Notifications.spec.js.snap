@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Notifications.vue should render when there is more than one notification 1`] = `<div class="Notification"><span name="Transition" tag="p"><div data-testid="notification-0" value="true" type="error" role="alert" class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4"><p>Il y a eu un problème...</p></div><div data-testid="notification-1" value="true" type="success" role="alert" class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4"><p>Yeaaaaah !!!</p></div></span></div>`;
+exports[`Notifications.vue should render when there is more than one notification 1`] = `<div class="Notification"><span name="Transition" tag="p"><div data-testid="notification-0" value="true" type="error" role="alert" class="mt-2 bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4"><p>Il y a eu un problème...</p></div><div data-testid="notification-1" value="true" type="success" role="alert" class="mt-2 bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4"><p>Yeaaaaah !!!</p></div></span></div>`;
 
 exports[`Notifications.vue should render when there is no notifications 1`] = `<div class="Notification"><span name="Transition" tag="p"></span></div>`;
 
-exports[`Notifications.vue should render when there is one notification 1`] = `<div class="Notification"><span name="Transition" tag="p"><div data-testid="notification-0" value="true" type="error" role="alert" class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4"><p>Il y a eu un problème...</p></div></span></div>`;
+exports[`Notifications.vue should render when there is one notification 1`] = `<div class="Notification"><span name="Transition" tag="p"><div data-testid="notification-0" value="true" type="error" role="alert" class="mt-2 bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4"><p>Il y a eu un problème...</p></div></span></div>`;

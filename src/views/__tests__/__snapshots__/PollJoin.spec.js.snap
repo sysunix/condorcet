@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PollJoin.vue should render 1`] = `
-<div class="Container">
-  <div>Qui est le meilleur ?</div>
-</div>
+<loader-stub>
+  <div class="flex flex-col justify-center items-center h-full">
+    <div class="text-2xl text-center w-full">Tu as rejoint le scrutin :</div>
+    <div class="text-xl text-center w-full">Qui est le meilleur ?</div>
+  </div>
+</loader-stub>
 `;

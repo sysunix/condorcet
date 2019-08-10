@@ -12,6 +12,7 @@
     "add": "Ajouter"
   },
   "poll": {
+    "joined": "Tu as rejoint le scrutin :",
     "dragAndDrop": "Pour voter il suffit de classer vos préférences en les glissant-déposant",
     "wins": "Aucune victoire | 1 victoire | {count} victoires",
     "equalities": "Aucun match nul | 1 match nul | {count} matchs nuls",
