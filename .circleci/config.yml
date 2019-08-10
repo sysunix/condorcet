@@ -78,7 +78,7 @@ jobs:
       - attach_workspace:
           at: ~/app
       - run:
-          command: yarn firebase serve --only hosting -p 8080
+          command: yarn firebase serve --project prod --only hosting -p 8080
           background: true
       - run: echo $SERVICE_ACCOUNT > ./serviceAccount.json
       - run: yarn test:e2e:ci
