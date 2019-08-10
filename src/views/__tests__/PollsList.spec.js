@@ -2,7 +2,12 @@ import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 
 import { db } from "../../firebase";
-import { MOCK_USER_ID, MOCK_POLL_ID, MOCK_POLL } from "../../utils/test";
+import {
+  MOCK_USER_ID,
+  MOCK_POLL_ID,
+  MOCK_POLL,
+  getTranslation
+} from "../../utils/test";
 import PollsList from "../PollsList.vue";
 
 const localVue = createLocalVue();
@@ -59,7 +64,7 @@ describe("PollsList.vue", () => {
       store,
       stubs: ["router-link"],
       localVue,
-      mocks: { $copyText }
+      mocks: { $copyText, $t: getTranslation }
     });
   });
 

@@ -39,12 +39,12 @@
   },
   "empty": {
     "publicPolls": {
-      "text": "Il n'y a pas de scrutins publics disponibles. Mais tu peux en",
-      "action": "créer un"
+      "text": "Il n'y a pas de scrutins publics disponibles.",
+      "action": "Créer un scrutin"
     },
     "userPolls": {
-      "text": "Tu n'a pas encore de scrutin. Tu peux en créé un en cliquant sur",
-      "action": "ce lien"
+      "text": "Tu n'a pas encore de scrutin.",
+      "action": "Créer un scrutin"
     }
   },
   "errors": {

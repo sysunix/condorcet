@@ -1,13 +1,13 @@
 <template>
   <Loader>
-    <div class="flex flex-wrap">
-      <div v-if="publicPolls.length === 0">
-        {{ $t("empty.publicPolls.text") }}
-        <router-link to="/polls/new" class="text-teal-500 hover:underline">{{
-          $t("empty.publicPolls.action")
-        }}</router-link>
-      </div>
+    <Empty
+      :condition="publicPolls.length === 0"
+      :text="$t('empty.publicPolls.text')"
+      :action-text="$t('empty.publicPolls.action')"
+      to="/polls/new"
+    />
 
+    <div class="flex flex-wrap">
       <div
         v-for="poll in publicPolls"
         :key="poll.id"
@@ -29,12 +29,14 @@
 import { mapGetters, mapActions } from "vuex";
 import Card from "../components/Card";
 import Loader from "../components/Loader";
+import Empty from "../components/Empty";
 
 export default {
   name: "PublicPolls",
   components: {
     Card,
-    Loader
+    Loader,
+    Empty
   },
   computed: {
     ...mapGetters("user", ["userId"]),

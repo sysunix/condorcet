@@ -1,7 +1,12 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 import PublicPolls from "../PublicPolls.vue";
-import { MOCK_POLL, MOCK_POLL_ID, MOCK_USER_ID } from "../../utils/test";
+import {
+  MOCK_POLL,
+  MOCK_POLL_ID,
+  MOCK_USER_ID,
+  getTranslation
+} from "../../utils/test";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -9,7 +14,8 @@ localVue.use(Vuex);
 jest.mock("../../firebase");
 
 const mocks = {
-  $router: { push: jest.fn() }
+  $router: { push: jest.fn() },
+  $t: getTranslation
 };
 
 describe("PublicPolls.vue", () => {
