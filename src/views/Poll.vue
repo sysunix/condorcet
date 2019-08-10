@@ -1,6 +1,7 @@
 <template>
   <div>
-    <p class="text-center">{{ $t("poll.dragAndDrop") }}</p>
+    <div class="text-center text-4xl">{{ poll.question }}</div>
+    <p class="text-center mt-3">{{ $t("poll.dragAndDrop") }}</p>
 
     <SortableList
       v-model="answers"

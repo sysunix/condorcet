@@ -1,9 +1,9 @@
 <template>
-  <div class="h-content">
-    <div v-if="loading" class="flex justify-center items-center h-content">
+  <div class="h-full">
+    <div v-if="loading" class="flex justify-center items-center h-full">
       <PulseLoader></PulseLoader>
     </div>
-    <div v-else class="h-content">
+    <div v-else class="h-full">
       <slot></slot>
     </div>
   </div>
@@ -17,9 +17,8 @@ export default {
     PulseLoader
   },
   props: {
-    condition: {
-      type: Boolean,
-      default: true
+    processing: {
+      type: Boolean
     }
   },
   data() {
@@ -29,7 +28,10 @@ export default {
   },
   computed: {
     loading() {
-      return this.waitBeforeDisplay && this.condition;
+      if (this.processing) {
+        return this.waitBeforeDisplay || this.processing;
+      }
+      return this.waitBeforeDisplay;
     }
   },
   mounted() {

@@ -4,7 +4,7 @@
 
     <div
       class="container mx-auto pt-4 px-4 h-content"
-      :class="isAuth && 'pb-20 sm:pb-0 lg:pt-24'"
+      :class="isAuth && 'pb-4 sm:pb-0 lg:pt-24'"
     >
       <Notifications :notifications="notifications" />
 

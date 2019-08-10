@@ -1,13 +1,15 @@
 <template>
-  <div class="rounded overflow-hidden shadow-md">
-    <div class="px-6 py-4">
+  <div class="px-6 rounded overflow-hidden shadow-md">
+    <div class="pt-4">
       <div class="font-bold text-xl mb-3">{{ question }}</div>
       <p class="text-gray-700 text-lg mb-2">
         {{ $tc("poll.participants", users.length, { count: users.length }) }}
       </p>
-      <p class="text-gray-700 text-base">{{ description }}</p>
+      <p class="text-gray-700 text-base">
+        {{ description }}
+      </p>
     </div>
-    <div class="flex justify-between flex-wrap px-6 py-4">
+    <div class="flex justify-between flex-wrap  py-3">
       <router-link
         v-if="users.includes(userId)"
         :data-testid="

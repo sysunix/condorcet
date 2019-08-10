@@ -1,22 +1,32 @@
 <template>
-  <div class="Container">
-    <div>{{ message }}</div>
-  </div>
+  <Loader :processing="isProcessing">
+    <div class="flex flex-col justify-center items-center h-full">
+      <div class="text-2xl text-center w-full">{{ $t("poll.joined") }}</div>
+      <div class="text-xl text-center w-full">{{ message }}</div>
+    </div>
+  </Loader>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import { db } from "../firebase";
+import Loader from "../components/Loader";
 
 export default {
   name: "PollJoin",
+  components: {
+    Loader
+  },
   data() {
     return {
-      message: "Traitement en cours..."
+      message: ""
     };
   },
   computed: {
-    ...mapGetters("user", ["userId"])
+    ...mapGetters("user", ["userId"]),
+    isProcessing() {
+      return this.message === "";
+    }
   },
   async mounted() {
     try {
@@ -53,11 +63,4 @@ export default {
 };
 </script>
 
-<style>
-.Container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-</style>
+<style></style>

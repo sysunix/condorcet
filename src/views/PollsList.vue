@@ -1,5 +1,5 @@
 <template>
-  <Loader>
+  <Loader :processing="processing">
     <Empty
       :condition="userPolls.length === 0"
       :text="$t('empty.userPolls.text')"

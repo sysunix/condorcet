@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Loader.vue should render when there is no notifications 1`] = `
-<div class="h-content">
-  <div class="flex justify-center items-center h-content">
+<div class="h-full">
+  <div class="flex justify-center items-center h-full">
     <pulseloader-stub loading="true" color="#5dc596" size="15px" margin="2px" radius="100%"></pulseloader-stub>
   </div>
 </div>

@@ -2,7 +2,12 @@ import { shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 import PollJoin from "../PollJoin.vue";
 
-import { MOCK_POLL_ID, MOCK_TOKEN, MOCK_USER_ID } from "../../utils/test";
+import {
+  MOCK_POLL_ID,
+  MOCK_TOKEN,
+  MOCK_USER_ID,
+  getTranslation
+} from "../../utils/test";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -29,7 +34,11 @@ describe("PollJoin.vue", () => {
       }
     });
 
-    wrapper = shallowMount(PollJoin, { localVue, store, mocks: { $route } });
+    wrapper = shallowMount(PollJoin, {
+      localVue,
+      store,
+      mocks: { $route, $t: getTranslation }
+    });
   });
 
   it("should render", () => {
