@@ -2,8 +2,8 @@
 
 exports[`PublicPolls.vue should render 1`] = `
 <loader-stub condition="true">
+  <empty-stub text="Il n'y a pas de scrutins publics disponibles." actiontext="Créer un scrutin" to="/polls/new"></empty-stub>
   <div class="flex flex-wrap">
-    <!---->
     <div class="w-full md:w-1/2 lg:w-1/3">
       <card-stub question="Qui est le meilleur ?" description="Qui repellendus est aliquam vel qui." id="MOCK_POLL_ID" userid="MOCK_USER_ID" owner="MOCK_USER_ID" isactive="true" users="MOCK_USER_ID" is-joinable="true" answers="[object Object],[object Object],[object Object]" ispublic="true" timestamp="[object Object]" token="MOCK_TOKEN" class="md:mx-2"></card-stub>
     </div>

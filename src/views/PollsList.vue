@@ -1,14 +1,14 @@
 <template>
   <Loader>
-    <div class="flex">
-      <div v-if="userPolls.length === 0">
-        {{ $t("empty.userPolls.text") }}
-        <router-link to="/polls/new" class="text-teal-500 hover:underline">{{
-          $t("empty.userPolls.action")
-        }}</router-link>
-      </div>
+    <Empty
+      :condition="userPolls.length === 0"
+      :text="$t('empty.userPolls.text')"
+      :action-text="$t('empty.userPolls.action')"
+      to="/polls/new"
+    />
 
-      <div v-else class="flex flex-wrap w-full">
+    <div class="flex">
+      <div class="flex flex-wrap w-full">
         <div
           v-for="poll in userPolls"
           :key="poll.id"
@@ -34,12 +34,14 @@ import { mapActions, mapGetters } from "vuex";
 import { db } from "../firebase";
 import Card from "../components/Card";
 import Loader from "../components/Loader.vue";
+import Empty from "../components/Empty";
 
 export default {
   name: "PollsList",
   components: {
     Card,
-    Loader
+    Loader,
+    Empty
   },
   computed: {
     ...mapGetters("user", ["userId"]),

@@ -27,7 +27,7 @@
         <router-link
           data-testid="navlink-user-polls"
           to="/polls"
-          class="block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          class="text-center block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
           @click.native="toggleMenu"
           >{{ $t("navigation.userPolls") }}</router-link
         >
@@ -35,14 +35,14 @@
           v-if="featureFlipping.publicPolls"
           data-testid="navlink-public-polls"
           to="/polls/public"
-          class="self-end block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          class="text-center self-end block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
           @click.native="toggleMenu"
           >{{ $t("navigation.publicPolls") }}</router-link
         >
         <router-link
           data-testid="navlink-poll-creation"
           to="/polls/new"
-          class="self-end block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+          class="text-center self-end block mt-4 mx-6 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
           @click.native="toggleMenu"
           >{{ $t("navigation.createPoll") }}</router-link
         >
@@ -50,7 +50,7 @@
       <div>
         <a
           href="#"
-          class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+          class="w-full text-center inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
           @click="signOut"
           >{{ $t("navigation.logOut") }}</a
         >
