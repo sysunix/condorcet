@@ -30,12 +30,12 @@ import "@firebase/firestore";
 import { attachCustomCommands } from "cypress-firebase";
 
 const fbConfig = {
-  apiKey: "AIzaSyBl7KGWaRY0B-BQ7WhUwSnmFHj3f3OYF0U",
-  authDomain: "condorcet-4167c.firebaseapp.com",
-  databaseURL: "https://condorcet-4167c.firebaseio.com",
-  projectId: "condorcet-4167c",
-  storageBucket: "condorcet-4167c.appspot.com",
-  messagingSenderId: 400396103060
+  apiKey: "AIzaSyCBG8fOBbpMJcVg1nENtRVQ289-8s2XPlc",
+  authDomain: "condorcet-dev.firebaseapp.com",
+  databaseURL: "https://condorcet-dev.firebaseio.com",
+  projectId: "condorcet-dev",
+  storageBucket: "",
+  messagingSenderId: 894372023049
 };
 
 firebase.initializeApp(fbConfig);
