@@ -17,7 +17,7 @@ Ce projet à premièrement une visée pédagogique. S'il existe, c'est pour fair
 
 ## Initialisation
 
-Commence par lancer un 
+Commence par lancer un
 
 ```
 yarn setup
@@ -26,6 +26,8 @@ yarn setup
 Ensuite, créé un projet Firebase depuis la [console](https://console.firebase.google.com/)
 
 Enfin il faut copier les informations de configuration du projet Firebase dans le fichier `.env`
+
+Tu peux aussi prendre le contenu du fichier `.env.test`
 
 ## Contribuer
 
@@ -40,6 +42,6 @@ yarn test:unit # Run your unit tests
 yarn lint # Lints and fixes files
 ```
 
-## Customizer la  configuration
+## Customizer la configuration
 
 Regardez la [configuration de référence](https://cli.vuejs.org/config/).
