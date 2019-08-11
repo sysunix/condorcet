@@ -4,7 +4,7 @@ exports[`Empty.vue should not render if condition is falsy 1`] = ``;
 
 exports[`Empty.vue should render if condition is truthy 1`] = `
 <div class="flex flex-col justify-center items-center h-full">
-  <div class="text-xl">
+  <div class="text-xl text-center">
     Smaug
   </div>
   <div class="mt-4">

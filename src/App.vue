@@ -3,8 +3,8 @@
     <Navbar v-if="isAuth"></Navbar>
 
     <div
-      class="container mx-auto pt-4 px-4 h-content"
-      :class="isAuth && 'pb-4 sm:pb-0 lg:pt-24'"
+      class="container mx-auto px-4 h-content overflow-scroll"
+      :class="isAuth && 'sm:pb-0 lg:pt-24'"
     >
       <Notifications :notifications="notifications" />
 

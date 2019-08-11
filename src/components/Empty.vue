@@ -3,7 +3,7 @@
     v-if="condition"
     class="flex flex-col justify-center items-center h-full"
   >
-    <div class="text-xl">
+    <div class="text-xl text-center">
       {{ text }}
     </div>
     <div class="mt-4">
