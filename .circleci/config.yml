@@ -116,17 +116,17 @@ workflows:
       - test_unit:
           requires:
             - build
-      - test_e2e:
-          requires:
-            - build
-          filters:
-            branches:
-              only: /^(?!pull\/).*$/
+      # - test_e2e:
+      #     requires:
+      #       - build
+      #     filters:
+      #       branches:
+      #         only: /^(?!pull\/).*$/
       - deploy:
           requires:
             - lint
             - test_unit
-            - test_e2e
+            # - test_e2e
           filters:
             branches:
               only: master

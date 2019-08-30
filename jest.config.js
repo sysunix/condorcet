@@ -26,6 +26,7 @@ module.exports = {
     "src/plugins/*",
     "src/store/index.js",
     "src/utils/firebase.js",
-    "src/i18n.js"
+    "src/i18n.js",
+    "src/views/PrivacyPolicy.vue"
   ]
 };
