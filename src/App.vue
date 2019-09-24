@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-gray-100 text-gray-800 min-h-screen lg:pb-4">
+  <div class="bg-gray-100 text-gray-800 min-h-screen lg:pb-4 overflow-scroll">
     <Navbar v-if="isAuth"></Navbar>
 
     <div
-      class="container mx-auto px-4 h-content overflow-scroll"
+      class="container mx-auto px-4 h-content"
       :class="isAuth && 'sm:pb-0 lg:pt-24'"
     >
       <Notifications :notifications="notifications" />
