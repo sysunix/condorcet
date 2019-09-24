@@ -22,7 +22,11 @@ describe("PollCreation.vue", () => {
 
     const store = new Vuex.Store({
       modules: {
-        app: { namespaced: true, actions: appActions },
+        app: {
+          namespaced: true,
+          actions: appActions,
+          state: { featureFlipping: { publicPolls: true } }
+        },
         user: {
           namespaced: true
         }
