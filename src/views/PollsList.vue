@@ -126,12 +126,12 @@ export default {
       try {
         await this.$copyText(link);
         this.addNotification({
-          text: `Lien copié`,
+          text: "Lien copié, partage le avec tes AMIS",
           status: "info"
         });
       } catch (error) {
         this.addNotification({
-          text: `Lien copié`,
+          text: "Réessaye de copier le lien, stp bogass",
           status: "error"
         });
       }
