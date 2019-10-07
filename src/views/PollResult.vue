@@ -1,5 +1,6 @@
 <template>
   <div>
+  <div v-if="uninominal && condorcet">
     <h3 class="text-4xl">Condorcet</h3>
 
     <Graph v-if="featureFlipping.graphOfTheDuels"></Graph>
@@ -79,6 +80,10 @@
       </div>
     </div>
   </div>
+  <div>
+    Merci de recharger la page
+  </div>
+  </div>
 </template>
 
 <script>
@@ -104,7 +109,7 @@ export default {
   computed: {
     ...mapState("app", ["featureFlipping"])
   },
-  async created() {
+  async mounted() {
     const resultsRef = db
       .collection("polls")
       .doc(this.$route.params.id)
