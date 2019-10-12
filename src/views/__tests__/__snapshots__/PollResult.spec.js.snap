@@ -2,10 +2,9 @@
 
 exports[`PollResult.vue should render 1`] = `
 <div>
-  <h3 class="text-4xl">Condorcet</h3>
   <!---->
-  <!---->
-  <!---->
-  <!---->
+  <div>
+    Merci de recharger la page
+  </div>
 </div>
 `;
