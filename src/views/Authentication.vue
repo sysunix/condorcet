@@ -117,9 +117,7 @@ export default {
         switch (error.code) {
           case "auth/account-exists-with-different-credential":
             this.addNotification({
-              text: `Ton compte n'est pas assicié à ${
-                error.credential.signInMethod
-              }. Essaye une autre méthode d'authentification`,
+              text: `Ton compte n'est pas assicié à ${error.credential.signInMethod}. Essaye une autre méthode d'authentification`,
               status: "error"
             });
 

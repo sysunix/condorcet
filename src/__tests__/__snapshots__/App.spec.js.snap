@@ -5,7 +5,9 @@ exports[`App.vue should render 1`] = `
   <navbar-stub></navbar-stub>
   <div class="container mx-auto px-4 h-content overflow-scroll sm:pb-0 lg:pt-24">
     <notifications-stub notifications=""></notifications-stub>
-    <router-view-stub name="fade" mode="out-in"></router-view-stub>
+    <transition-stub name="fade" mode="out-in">
+      <router-view-stub></router-view-stub>
+    </transition-stub>
   </div>
 </div>
 `;

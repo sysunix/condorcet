@@ -56,11 +56,13 @@ describe("PollCreation.vue", () => {
     expect(appActions.addNotification).toHaveBeenCalled();
   });
 
-  it("should remove answer", () => {
+  it("should remove answer", async () => {
     wrapper.setData({ answers: [{ slug: "foo", value: "Foo" }] });
     expect(wrapper.vm.answers).toEqual([{ slug: "foo", value: "Foo" }]);
 
-    wrapper.find("li > button").trigger("click");
+    await localVue.nextTick();
+
+    wrapper.find("[data-testid='form-answerProposal-foo']").trigger("click");
 
     expect(wrapper.vm.answers).toEqual([]);
   });

@@ -42,7 +42,12 @@ Array [
   it("should create vote", async () => {
     expect.assertions(1);
     await createVote(
-      { vote: [{ value: "foo", rank: 1 }, { value: "bar", rank: 2 }] },
+      {
+        vote: [
+          { value: "foo", rank: 1 },
+          { value: "bar", rank: 2 }
+        ]
+      },
       MOCK_POLL_ID,
       MOCK_USER_ID
     );

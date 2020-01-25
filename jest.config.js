@@ -13,9 +13,9 @@ module.exports = {
     "node_modules/(?!(babel-jest|jest-vue-preprocessor|vue-spinner)/)"
   ],
   snapshotSerializers: ["jest-serializer-vue"],
-  testMatch: ["**/tests/unit/**/*.spec.(js|ts)|**/__tests__/*.(js|ts)"],
+  testMatch: ["<rootDir>/(src|functions)/**/*.spec.(js|ts)"],
   testURL: "http://localhost/",
-  setupTestFrameworkScriptFile: "<rootDir>/src/config/setupTest.js",
+  setupFilesAfterEnv: ["<rootDir>/src/config/setupTest.js"],
   collectCoverageFrom: ["src/**/*.{js,vue}", "functions/utils/*.js"],
   coveragePathIgnorePatterns: [
     "src/config",

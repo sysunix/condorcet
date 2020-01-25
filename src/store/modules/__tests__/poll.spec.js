@@ -138,7 +138,10 @@ Array [
 
   describe("helper", () => {
     expect(
-      setPolls([{ id: 1, ...MOCK_POLL }, { id: 1, ...MOCK_POLL }])
+      setPolls([
+        { id: 1, ...MOCK_POLL },
+        { id: 1, ...MOCK_POLL }
+      ])
     ).toEqual([{ id: 1, ...MOCK_POLL }]);
   });
 });

@@ -147,7 +147,7 @@ export default {
           return a.slug.localeCompare(b.slug);
         });
     } catch (error) {
-      console.log(error);
+      return;
     }
   }
 };

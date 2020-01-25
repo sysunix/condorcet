@@ -57,7 +57,7 @@ export default {
         this.$router.push({ name: "poll_result", params: params.id });
       }, 2000);
     } catch (error) {
-      console.error(error);
+      return;
     }
   }
 };

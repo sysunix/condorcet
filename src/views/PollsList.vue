@@ -76,10 +76,12 @@ export default {
         return;
       }
 
-      const poll = (await db
-        .collection("polls")
-        .doc(id)
-        .get()).data();
+      const poll = (
+        await db
+          .collection("polls")
+          .doc(id)
+          .get()
+      ).data();
 
       const users = poll.users.filter(user => user !== this.userId);
 
@@ -119,9 +121,7 @@ export default {
     },
     async copyMagicLink(id) {
       const poll = this.userPolls.find(poll => poll.id === id);
-      const link = `${window.location.origin}/polls/${poll.id}/join?token=${
-        poll.token
-      }`;
+      const link = `${window.location.origin}/polls/${poll.id}/join?token=${poll.token}`;
 
       try {
         await this.$copyText(link);
