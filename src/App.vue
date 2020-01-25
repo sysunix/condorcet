@@ -15,22 +15,23 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import { State, Getter, Action, Mutation, namespace } from "vuex-class";
 import { mapState, mapGetters } from "vuex";
-import Navbar from "./components/Navbar";
-import Notifications from "./components/Notifications";
+import Navbar from "./components/Navbar.vue";
+import Notifications from "./components/Notifications.vue";
 
-export default {
-  name: "App",
+@Component({
   components: {
     Navbar,
     Notifications
-  },
-  computed: {
-    ...mapState("app", ["notifications"]),
-    ...mapGetters("user", ["isAuth"])
   }
-};
+})
+export default class App extends Vue {
+  @State(state => state.app.notifications) notifications: any;
+  @Getter("user/isAuth") isAuth: any;
+}
 </script>
 
 <style>

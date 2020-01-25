@@ -16,27 +16,35 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    condition: {
-      type: Boolean,
-      required: true
-    },
-    text: {
-      type: String,
-      required: true
-    },
-    actionText: {
-      type: String,
-      required: true
-    },
-    to: {
-      type: String,
-      required: true
-    }
-  }
-};
+<script lang="ts">
+import { Vue, Component, Prop } from "vue-property-decorator";
+
+@Component
+export default class Empty extends Vue {
+  @Prop({
+    type: Boolean,
+    required: true
+  })
+  readonly condition!: boolean;
+
+  @Prop({
+    type: String,
+    required: true
+  })
+  readonly text!: string;
+
+  @Prop({
+    type: String,
+    required: true
+  })
+  readonly actionText!: string;
+
+  @Prop({
+    type: String,
+    required: true
+  })
+  readonly to!: string;
+}
 </script>
 
 <style></style>

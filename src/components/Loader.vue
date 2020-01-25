@@ -9,37 +9,33 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Vue, Component, Prop } from "vue-property-decorator";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
 
-export default {
+@Component({
   components: {
     PulseLoader
-  },
-  props: {
-    processing: {
-      type: Boolean
+  }
+})
+export default class Loader extends Vue {
+  @Prop({ type: Boolean }) readonly processing!: boolean;
+
+  waitBeforeDisplay: boolean = true;
+
+  get loading() {
+    if (this.processing) {
+      return this.waitBeforeDisplay || this.processing;
     }
-  },
-  data() {
-    return {
-      waitBeforeDisplay: true
-    };
-  },
-  computed: {
-    loading() {
-      if (this.processing) {
-        return this.waitBeforeDisplay || this.processing;
-      }
-      return this.waitBeforeDisplay;
-    }
-  },
+    return this.waitBeforeDisplay;
+  }
+
   mounted() {
     setTimeout(() => {
       this.waitBeforeDisplay = false;
     }, 800);
   }
-};
+}
 </script>
 
 <style></style>

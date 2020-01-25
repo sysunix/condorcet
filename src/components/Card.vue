@@ -69,47 +69,24 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Vue, Component, Prop } from "vue-property-decorator";
 import slugify from "slugify";
 
-export default {
-  name: "Card",
-  props: {
-    question: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
-      required: true
-    },
-    id: {
-      type: String,
-      required: true
-    },
-    userId: {
-      type: String,
-      required: true
-    },
-    owner: {
-      type: String,
-      required: true
-    },
-    isActive: {
-      type: Boolean,
-      required: true
-    },
-    users: {
-      type: Array,
-      required: true
-    }
-  },
-  computed: {
-    questionSlug() {
-      return slugify(this.question);
-    }
+@Component
+export default class Card extends Vue {
+  @Prop({ type: String, required: true }) readonly id!: string;
+  @Prop({ type: String, required: true }) readonly userId!: string;
+  @Prop({ type: String, required: true }) readonly description!: string;
+  @Prop({ type: String, required: true }) readonly question!: string;
+  @Prop({ type: String, required: true }) readonly owner!: string;
+  @Prop({ type: Boolean, required: true }) readonly isActive!: boolean;
+  @Prop({ type: Array, required: true }) readonly users!: Array<string>;
+
+  get questionSlug() {
+    return slugify(this.question);
   }
-};
+}
 </script>
 
 <style></style>

@@ -7,32 +7,32 @@
   </Loader>
 </template>
 
-<script>
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import { State, Getter, Action, Mutation, namespace } from "vuex-class";
 import { mapGetters } from "vuex";
 import { db } from "../firebase";
-import Loader from "../components/Loader";
+import Loader from "../components/Loader.vue";
 
-export default {
-  name: "PollJoin",
+@Component({
   components: {
     Loader
-  },
-  data() {
-    return {
-      message: ""
-    };
-  },
-  computed: {
-    ...mapGetters("user", ["userId"]),
-    isProcessing() {
-      return this.message === "";
-    }
-  },
+  }
+})
+export default class PollJoin extends Vue {
+  message: string = "";
+
+  @Getter("user/userId") userId: any;
+
+  get isProcessing() {
+    return this.message === "";
+  }
+
   async mounted() {
     try {
-      const { params, query } = this.$route;
+      const { params, query }: { params: any; query: any } = this.$route;
       const document = db.collection("polls").doc(params.id);
-      const poll = (await document.get()).data();
+      const poll: any = (await document.get()).data();
       const { users, token: pollToken } = poll;
 
       if (!query.token) {
@@ -43,7 +43,8 @@ export default {
         return;
       }
 
-      const newPoll = { ...poll, users: [...new Set([...users, this.userId])] };
+      const temp: any = new Set([...users, this.userId]);
+      const newPoll = { ...poll, users: [...temp] };
 
       document.set(newPoll);
 
@@ -60,7 +61,7 @@ export default {
       return;
     }
   }
-};
+}
 </script>
 
 <style></style>

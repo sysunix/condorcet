@@ -81,7 +81,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import { State, Getter, Action, Mutation, namespace } from "vuex-class";
 import { mapState } from "vuex";
 import sortKeys from "sort-keys";
 import { db } from "../firebase";
@@ -89,31 +91,28 @@ import Graph from "../components/Graph.vue";
 
 import { CondorcetModel, UninominalModel } from "../models/Result";
 
-export default {
-  name: "PollResult",
+@Component({
   components: {
     Graph
-  },
-  data() {
-    return {
-      uninominal: null,
-      condorcet: null,
-      answers: null
-    };
-  },
-  computed: {
-    ...mapState("app", ["featureFlipping"])
-  },
+  }
+})
+export default class PollResult extends Vue {
+  uninominal: object | null = null;
+  condorcet: object | null = null;
+  answers: object | null = null;
+
+  @State(state => state.app.featureFlipping) featureFlipping: any;
+
   async created() {
     const resultsRef = db
       .collection("polls")
       .doc(this.$route.params.id)
       .collection("results");
     try {
-      const uninominal = (await resultsRef.doc("uninominal").get()).data();
+      const uninominal: any = (await resultsRef.doc("uninominal").get()).data();
       this.uninominal = uninominal.ranking;
 
-      const condorcet = (await resultsRef.doc("condorcet").get()).data();
+      const condorcet: any = (await resultsRef.doc("condorcet").get()).data();
 
       const condorcetMatrix = Object.keys(condorcet.matrix).reduce(
         (acc, key) => ({
@@ -135,15 +134,15 @@ export default {
       };
 
       this.answers = condorcet.ranking
-        .map(c => ({ value: c.value, slug: c.slug }))
-        .sort((a, b) => {
+        .map((c: any) => ({ value: c.value, slug: c.slug }))
+        .sort((a: any, b: any) => {
           return a.slug.localeCompare(b.slug);
         });
     } catch (error) {
       return;
     }
   }
-};
+}
 </script>
 
 <style></style>

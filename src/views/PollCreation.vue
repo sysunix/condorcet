@@ -109,100 +109,98 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import { State, Getter, Action, Mutation, namespace } from "vuex-class";
 import { mapState, mapActions } from "vuex";
 import slugify from "slugify";
 import randomString from "random-string";
 import { createPoll } from "../utils/request";
 
-export default {
-  name: "PollCreation",
-  data() {
-    return {
-      question: "",
-      description: "",
-      answer: "",
-      answers: [],
-      isPublic: false
-    };
-  },
-  computed: {
-    ...mapState("app", ["featureFlipping"]),
-    ...mapState({
-      userId: state => state.user.id
-    }),
-    isPublicText() {
-      return this.isPublic ? "Oui" : "Non";
-    },
-    disabledSubmit() {
-      return this.answers.length < 2 || this.question === "";
-    }
-  },
-  methods: {
-    ...mapActions("app", ["addNotification"]),
-    async submitPoll() {
-      try {
-        await createPoll({
-          question: this.question,
-          description: this.description,
-          answers: this.answers,
-          owner: this.userId,
-          users: [this.userId],
-          isPublic: this.isPublic,
-          isActive: true,
-          token: randomString({ length: 20 })
-        });
+@Component
+export default class PollCreation extends Vue {
+  question: string = "";
+  description: string = "";
+  answer: string = "";
+  answers: Array<any> = [];
+  isPublic: boolean = false;
 
-        this.addNotification({
-          text: "Scrutin créé mon pote",
-          status: "success"
-        });
+  @State(state => state.app.featureFlipping) featureFlipping: any;
+  @State(state => state.user.id) userId: any;
 
-        this.question = "";
-        this.description = "";
-        this.answer = "";
-        this.answers = [];
-      } catch (error) {
-        this.addNotification({
-          text: `Il y a eu un problème lors de la création du scrutin`,
-          status: "error"
-        });
-      }
-    },
-    addAnswer() {
-      const cleanAnswer = this.answer.trim();
-      if (cleanAnswer.length === 0) {
-        this.addNotification({
-          text: "Une réponse ne peut pas être vide",
-          status: "warning"
-        });
-        return;
-      }
+  @Action("app/addNotification") addNotification: any;
 
-      if (this.answers.find(answer => answer.value === cleanAnswer)) {
-        this.addNotification({
-          text: "Cette réponse existe déjà",
-          status: "warning"
-        });
+  get isPublicText() {
+    return this.isPublic ? "Oui" : "Non";
+  }
+  get disabledSubmit() {
+    return this.answers.length < 2 || this.question === "";
+  }
 
-        return;
-      }
+  async submitPoll() {
+    try {
+      await createPoll({
+        question: this.question,
+        description: this.description,
+        answers: this.answers,
+        owner: this.userId,
+        users: [this.userId],
+        isPublic: this.isPublic,
+        isActive: true,
+        token: randomString({ length: 20 })
+      });
 
-      this.answers = [
-        ...this.answers,
-        {
-          value: cleanAnswer,
-          slug: slugify(cleanAnswer, { lower: true, replacement: "-" })
-        }
-      ];
+      this.addNotification({
+        text: "Scrutin créé mon pote",
+        status: "success"
+      });
+
+      this.question = "";
+      this.description = "";
       this.answer = "";
-      this.$refs.answerInput.focus();
-    },
-    removeAnswer(slug) {
-      this.answers = this.answers.filter(answer => answer.slug !== slug);
+      this.answers = [];
+    } catch (error) {
+      this.addNotification({
+        text: `Il y a eu un problème lors de la création du scrutin`,
+        status: "error"
+      });
     }
   }
-};
+  addAnswer() {
+    const cleanAnswer = this.answer.trim();
+    if (cleanAnswer.length === 0) {
+      this.addNotification({
+        text: "Une réponse ne peut pas être vide",
+        status: "warning"
+      });
+      return;
+    }
+
+    if (this.answers.find(answer => answer.value === cleanAnswer)) {
+      this.addNotification({
+        text: "Cette réponse existe déjà",
+        status: "warning"
+      });
+
+      return;
+    }
+
+    this.answers = [
+      ...this.answers,
+      {
+        value: cleanAnswer,
+        slug: slugify(cleanAnswer, { lower: true, replacement: "-" })
+      }
+    ];
+    this.answer = "";
+    const answerInput = this.$refs.answerInput as any;
+    answerInput.focus();
+  }
+
+  removeAnswer(slug: string) {
+    this.answers = this.answers.filter(answer => answer.slug !== slug);
+  }
+}
 </script>
 
 <style></style>

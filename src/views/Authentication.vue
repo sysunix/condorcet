@@ -7,7 +7,7 @@
           src="../assets/images/condorcet.jpg"
         />
       </div>
-      <h1 id="title" class="mt-4 text-center text-3xl"></h1>
+      <h1 class="mt-4 text-center text-3xl">Condorcet</h1>
 
       <div class="mt-12 text-center">Acceder à l'application via :</div>
 
@@ -69,71 +69,62 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import { State, Getter, Action, Mutation, namespace } from "vuex-class";
 import { mapActions } from "vuex";
 import { signIn } from "../utils/authentication.js";
 
-import TypeIt from "typeit";
+@Component
+export default class Authentication extends Vue {
+  @Action("app/addNotification") addNotification: any;
+  @Action("user/setUser") setUser: any;
 
-export default {
-  name: "Authentication",
-  data() {
-    return {
-      videos: [
-        {
-          id: "vfTJ4vmIsO4",
-          link: "https://www.youtube.com/embed/vfTJ4vmIsO4?start=260"
-        },
-        {
-          id: "hI89r4LqaCc",
-          link: "https://www.youtube.com/embed/hI89r4LqaCc"
-        },
-        {
-          id: "wKimU8jy2a8",
-          link: "https://www.youtube.com/embed/wKimU8jy2a8"
-        },
-        {
-          id: "ZoGH7d51bvc",
-          link: "https://www.youtube.com/embed/ZoGH7d51bvc?start=534"
-        }
-      ]
-    };
-  },
-  mounted() {
-    new TypeIt("#title", {
-      strings: ["Condorcet"]
-    }).go();
-  },
-  methods: {
-    ...mapActions("user", ["setUser"]),
-    ...mapActions("app", ["addNotification"]),
-    async signIn(provider) {
-      try {
-        const { user } = await signIn(provider);
-        this.setUser(user);
+  videos = [
+    {
+      id: "vfTJ4vmIsO4",
+      link: "https://www.youtube.com/embed/vfTJ4vmIsO4?start=260"
+    },
+    {
+      id: "hI89r4LqaCc",
+      link: "https://www.youtube.com/embed/hI89r4LqaCc"
+    },
+    {
+      id: "wKimU8jy2a8",
+      link: "https://www.youtube.com/embed/wKimU8jy2a8"
+    },
+    {
+      id: "ZoGH7d51bvc",
+      link: "https://www.youtube.com/embed/ZoGH7d51bvc?start=534"
+    }
+  ];
 
-        this.addNotification({ text: "Vous êtes connecté", status: "info" });
-      } catch (error) {
-        switch (error.code) {
-          case "auth/account-exists-with-different-credential":
-            this.addNotification({
-              text: `Ton compte n'est pas assicié à ${error.credential.signInMethod}. Essaye une autre méthode d'authentification`,
-              status: "error"
-            });
+  async signIn(provider: any) {
+    try {
+      const { user } = await signIn(provider);
+      this.setUser(user);
 
-            break;
+      this.addNotification({ text: "Vous êtes connecté", status: "info" });
+    } catch (error) {
+      switch (error.code) {
+        case "auth/account-exists-with-different-credential":
+          this.addNotification({
+            text: `Ton compte n'est pas assicié à ${error.credential.signInMethod}. Essaye une autre méthode d'authentification`,
+            status: "error"
+          });
 
-          default:
-            this.addNotification({
-              text: "Il y a eu un problème pour vous authentifier",
-              status: "error"
-            });
-            break;
-        }
+          break;
+
+        default:
+          this.addNotification({
+            text: "Il y a eu un problème pour vous authentifier",
+            status: "error"
+          });
+          break;
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>

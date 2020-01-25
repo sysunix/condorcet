@@ -60,50 +60,54 @@
   </nav>
 </template>
 
-<script>
-import { mapState, mapActions } from "vuex";
+<script lang="ts">
+import { Vue, Component, Prop } from "vue-property-decorator";
+import { State, Getter, Action, Mutation } from "vuex-class";
+import { mapState } from "vuex";
 import { signOut } from "../utils/authentication.js";
-export default {
-  data() {
-    return {
-      navbarHeight: 0
-    };
-  },
-  computed: {
-    ...mapState("app", ["notifications", "featureFlipping", "isMenuOpen"]),
-    navbarStyle() {
-      if (window.innerWidth >= 1024) {
-        return {};
-      }
 
-      return {
-        transition: "transform 300ms",
-        transform: `translateY(${
-          this.isMenuOpen ? 0 : this.navbarHeight - 70
-        }px)`
-      };
+@Component
+export default class Navbar extends Vue {
+  navbarHeight = 0;
+
+  @State(state => state.app.notifications) notifications: any;
+  @State(state => state.app.featureFlipping) featureFlipping: any;
+  @State(state => state.app.isMenuOpen) isMenuOpen: any;
+
+  @Action("app/addNotification") addNotification: any;
+  @Action("app/toggleMenu") toggleMenu: any;
+
+  @Action("user/clearUser") clearUser: any;
+
+  get navbarStyle() {
+    if (window.innerWidth >= 1024) {
+      return {};
     }
-  },
+
+    return {
+      transition: "transform 300ms",
+      transform: `translateY(${this.isMenuOpen ? 0 : this.navbarHeight - 70}px)`
+    };
+  }
+
   mounted() {
-    this.navbarHeight = this.$refs.navbar.clientHeight;
-  },
-  methods: {
-    ...mapActions("user", ["clearUser"]),
-    ...mapActions("app", ["addNotification", "toggleMenu"]),
-    async signOut() {
-      try {
-        await signOut();
-        this.clearUser();
-        this.$router.push({ name: "authentication" });
-      } catch (error) {
-        this.addNotification({
-          status: "error",
-          message: "Il y a eu un problème"
-        });
-      }
+    const navbarHeight = this.$refs.navbar as Element;
+    this.navbarHeight = navbarHeight.clientHeight;
+  }
+
+  async signOut() {
+    try {
+      await signOut();
+      this.clearUser();
+      this.$router.push({ name: "authentication" });
+    } catch (error) {
+      this.addNotification({
+        status: "error",
+        message: "Il y a eu un problème"
+      });
     }
   }
-};
+}
 </script>
 
 <style></style>

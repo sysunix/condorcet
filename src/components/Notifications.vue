@@ -16,12 +16,13 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    notifications: { type: Array, required: true }
-  }
-};
+<script lang="ts">
+import { Vue, Component, Prop } from "vue-property-decorator";
+
+@Component
+export default class Notifications extends Vue {
+  @Prop({ type: Array, required: true }) readonly notifications!: Array<object>;
+}
 </script>
 
 <style scoped>
