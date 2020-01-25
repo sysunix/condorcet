@@ -10,22 +10,22 @@ export default {
     refreshToken: ""
   },
   getters: {
-    userId: state => {
+    userId: (state: any) => {
       return state.id;
     },
-    isAuth: state => {
+    isAuth: (state: any) => {
       return state.id !== "";
     }
   },
   mutations: {
-    [SET_USER](state, { name, email, id, photoUrl, refreshToken }) {
+    [SET_USER](state: any, { name, email, id, photoUrl, refreshToken }: any) {
       state.name = name;
       state.email = email;
       state.id = id;
       state.photoUrl = photoUrl;
       state.refreshToken = refreshToken;
     },
-    [CLEAR_USER](state) {
+    [CLEAR_USER](state: any) {
       state.name = "";
       state.email = "";
       state.id = "";
@@ -34,7 +34,10 @@ export default {
     }
   },
   actions: {
-    setUser({ commit }, { displayName, email, uid, photoURL, refreshToken }) {
+    setUser(
+      { commit }: any,
+      { displayName, email, uid, photoURL, refreshToken }: any
+    ) {
       commit(SET_USER, {
         name: displayName,
         email,
@@ -43,7 +46,7 @@ export default {
         refreshToken
       });
     },
-    clearUser({ commit }) {
+    clearUser({ commit }: any) {
       commit(CLEAR_USER);
     }
   }

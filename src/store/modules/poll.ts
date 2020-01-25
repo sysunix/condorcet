@@ -5,9 +5,10 @@ import {
   convertDocumentSnapshotToJson
 } from "../../utils/firebase";
 
-export const setPolls = polls => {
-  return [...new Set(polls.map(poll => poll.id))].map(pollId => {
-    return polls.find(poll => poll.id === pollId);
+export const setPolls = (polls: any) => {
+  const uniqPolls: any = new Set(polls.map((poll: any) => poll.id));
+  return [...uniqPolls].map(pollId => {
+    return polls.find((poll: any) => poll.id === pollId);
   });
 };
 
@@ -20,43 +21,45 @@ export default {
   namespaced: true,
   state: initialState,
   mutations: {
-    [RESET](state) {
+    [RESET](state: any) {
       state.all = [];
       state.current = null;
     },
-    [SET_POLLS](state, polls) {
+    [SET_POLLS](state: any, polls: any) {
       state.all = setPolls([...polls, ...state.all]);
     },
-    [PUSH_POLL](state, poll) {
+    [PUSH_POLL](state: any, poll: any) {
       state.all = setPolls([poll, ...state.all]);
     },
-    [SET_POLL](state, poll) {
+    [SET_POLL](state: any, poll: any) {
       state.current = poll;
     },
-    [REMOVE_POLL](state, pollId) {
-      state.all = state.all.filter(poll => poll.id !== pollId);
+    [REMOVE_POLL](state: any, pollId: any) {
+      state.all = state.all.filter((poll: any) => poll.id !== pollId);
     }
   },
   getters: {
-    publicPolls: (state, _, rootState) => {
+    publicPolls: (state: any, _: any, rootState: any) => {
       return state.all.filter(
-        poll =>
+        (poll: any) =>
           poll.isPublic === true &&
           poll.users.includes(rootState.user.id) === false
       );
     },
-    userPolls: (state, _, rootState) => {
-      return state.all.filter(poll => poll.users.includes(rootState.user.id));
+    userPolls: (state: any, _: any, rootState: any) => {
+      return state.all.filter((poll: any) =>
+        poll.users.includes(rootState.user.id)
+      );
     }
   },
   actions: {
-    listenPolls({ commit }, userId) {
+    listenPolls({ commit }: any, userId: string) {
       db.collection("polls")
         .where("users", "array-contains", userId)
         .orderBy("timestamp", "desc")
-        .onSnapshot(querySnapshot => {
+        .onSnapshot((querySnapshot: any) => {
           const polls = getDataFromQuerySnapshot(querySnapshot);
-          const enhancedPolls = polls.map(poll => ({
+          const enhancedPolls = polls.map((poll: any) => ({
             ...poll,
             isOwner: userId === poll.owner
           }));
@@ -64,7 +67,7 @@ export default {
           commit(SET_POLLS, enhancedPolls);
         });
     },
-    async fetchPoll({ commit, rootState }, pollId) {
+    async fetchPoll({ commit, rootState }: any, pollId: string) {
       try {
         const poll = convertDocumentSnapshotToJson(
           await db
@@ -83,7 +86,7 @@ export default {
         return null;
       }
     },
-    async fetchPublicPolls({ commit }) {
+    async fetchPublicPolls({ commit }: any) {
       const polls = getDataFromQuerySnapshot(
         await db
           .collection("polls")
@@ -93,8 +96,8 @@ export default {
 
       commit(SET_POLLS, polls);
     },
-    async setPoll({ commit, state, dispatch }, pollId) {
-      let poll = state.all.find(poll => poll.id === pollId);
+    async setPoll({ commit, state, dispatch }: any, pollId: string) {
+      let poll = state.all.find((poll: any) => poll.id === pollId);
 
       if (!poll) {
         const poll = await dispatch("fetchPoll", pollId);
@@ -106,7 +109,7 @@ export default {
 
       commit(SET_POLL, poll);
     },
-    removePoll({ commit }, pollId) {
+    removePoll({ commit }: any, pollId: string) {
       commit(REMOVE_POLL, pollId);
     }
   }

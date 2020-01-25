@@ -11,7 +11,7 @@ import PollResult from "./views/PollResult.vue";
 import PollJoin from "./views/PollJoin.vue";
 import PollCreation from "./views/PollCreation.vue";
 import PublicPolls from "./views/PublicPolls.vue";
-import PrivacyPolicy from "./views/PrivacyPolicy";
+import PrivacyPolicy from "./views/PrivacyPolicy.vue";
 
 import { SET_REDIRECTION, CLEAR_REDIRECTION } from "./store/types";
 
@@ -89,11 +89,11 @@ const router = new Router({
   ]
 });
 
-export const beforeEach = (to, from, next) => {
+export const beforeEach = (to: any, from: any, next: any) => {
   const { meta, name, params, query } = to;
   const userId = store.state.user.id;
 
-  initializationMiddleware(store, ({ state }) => {
+  initializationMiddleware(store, ({ state }: { state: string }) => {
     switch (state) {
       case "just_logged":
         if (store.state.app.redirection) {
