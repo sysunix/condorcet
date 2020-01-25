@@ -1,7 +1,4 @@
 import firebase, { db } from "../firebase";
-import { VoteModel } from "../models/Vote";
-import { PollModel } from "../models/Poll";
-import { validate } from "indicative";
 
 export const createPoll = async poll => {
   const pollWithTimestap = {
@@ -9,9 +6,7 @@ export const createPoll = async poll => {
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
   };
 
-  const validatedPoll = await validate(pollWithTimestap, PollModel);
-
-  return db.collection("polls").add(validatedPoll);
+  return db.collection("polls").add(pollWithTimestap);
 };
 
 export const createVote = async (vote, pollId, userId) => {
@@ -20,12 +15,10 @@ export const createVote = async (vote, pollId, userId) => {
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
   };
 
-  const validatedVote = await validate(voteWithTimestap, VoteModel);
-
   return db
     .collection("polls")
     .doc(pollId)
     .collection("votes")
     .doc(userId)
-    .set(validatedVote);
+    .set(voteWithTimestap);
 };

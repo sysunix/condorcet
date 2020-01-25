@@ -5,7 +5,37 @@ exports[`PollResult.vue should render 1`] = `
   <h3 class="text-4xl">Condorcet</h3>
   <!---->
   <!---->
-  <!---->
-  <!---->
+  <div class="mt-10">
+    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
+      <div class="w-full px-6 py-4 rounded overflow-hidden shadow">
+        1 - <span class="font-bold">Zorro</span> /
+        &amp;
+
+      </div>
+    </div>
+    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
+      <div class="w-full px-6 py-4 rounded overflow-hidden shadow">
+        2 - <span class="font-bold">Luffy</span> /
+        &amp;
+
+      </div>
+    </div>
+    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
+      <div class="w-full px-6 py-4 rounded overflow-hidden shadow">
+        3 - <span class="font-bold">Sanji</span> /
+        &amp;
+
+      </div>
+    </div>
+  </div>
+  <div class="mt-10">
+    <h3 class="text-4xl">Uninominal</h3>
+    <div class="font-sans flex items-center justify-center bg-blue-darker w-full py-2">
+      <div class="w-full px-6 py-4 rounded overflow-hidden shadow">
+        1 - <span class="font-bold">luffy</span> /
+
+      </div>
+    </div>
+  </div>
 </div>
 `;

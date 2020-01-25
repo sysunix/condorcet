@@ -27,15 +27,9 @@ describe("utils/request", () => {
     try {
       await createVote({});
     } catch (error) {
-      expect(error).toMatchInlineSnapshot(`
-Array [
-  Object {
-    "error": "required validation failed on vote",
-    "field": "vote",
-    "validation": "required",
-  },
-]
-`);
+      expect(error).toMatchInlineSnapshot(
+        `[TypeError: Cannot read property 'collection' of undefined]`
+      );
     }
   });
 

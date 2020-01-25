@@ -3,20 +3,24 @@ process.env.VUE_CLI_BABEL_TRANSPILE_MODULES = true;
 
 module.exports = {
   moduleFileExtensions: ["js", "jsx", "json", "vue"],
+
   transform: {
     "^.+\\.vue$": "vue-jest",
     ".+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$":
       "jest-transform-stub",
     "^.+\\.jsx?$": "babel-jest"
   },
+
   transformIgnorePatterns: [
     "node_modules/(?!(babel-jest|jest-vue-preprocessor|vue-spinner)/)"
   ],
+
   snapshotSerializers: ["jest-serializer-vue"],
   testMatch: ["<rootDir>/(src|functions)/**/*.spec.(js|ts)"],
   testURL: "http://localhost/",
   setupFilesAfterEnv: ["<rootDir>/src/config/setupTest.js"],
   collectCoverageFrom: ["src/**/*.{js,vue}", "functions/utils/*.js"],
+
   coveragePathIgnorePatterns: [
     "src/config",
     "src/registerServiceWorker.js",
@@ -28,5 +32,7 @@ module.exports = {
     "src/utils/firebase.js",
     "src/i18n.js",
     "src/views/PrivacyPolicy.vue"
-  ]
+  ],
+
+  preset: "@vue/cli-plugin-unit-jest/presets/typescript-and-babel"
 };

@@ -86,7 +86,7 @@ import { mapState } from "vuex";
 import sortKeys from "sort-keys";
 import { db } from "../firebase";
 import Graph from "../components/Graph.vue";
-import { validate } from "indicative";
+
 import { CondorcetModel, UninominalModel } from "../models/Result";
 
 export default {
@@ -110,17 +110,10 @@ export default {
       .doc(this.$route.params.id)
       .collection("results");
     try {
-      const uninominal = await validate(
-        (await resultsRef.doc("uninominal").get()).data(),
-        UninominalModel
-      );
-
+      const uninominal = (await resultsRef.doc("uninominal").get()).data();
       this.uninominal = uninominal.ranking;
 
-      const condorcet = await validate(
-        (await resultsRef.doc("condorcet").get()).data(),
-        CondorcetModel
-      );
+      const condorcet = (await resultsRef.doc("condorcet").get()).data();
 
       const condorcetMatrix = Object.keys(condorcet.matrix).reduce(
         (acc, key) => ({
