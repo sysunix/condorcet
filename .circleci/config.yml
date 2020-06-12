@@ -116,12 +116,6 @@ workflows:
       - test_unit:
           requires:
             - build
-      # - test_e2e:
-      #     requires:
-      #       - build
-      #     filters:
-      #       branches:
-      #         only: /^(?!pull\/).*$/
       - deploy:
           requires:
             - lint
